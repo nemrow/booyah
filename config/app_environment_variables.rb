@@ -1,0 +1,1 @@
+ENV['MOGREET_SECRET'] = '8b229bb3e0a15ea0b5406ddc6d55be6f'
