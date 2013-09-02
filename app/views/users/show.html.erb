@@ -1,0 +1,7 @@
+<h1>Profile for <%= @user.first_name %></h1>
+
+<h2>Addresses</h2>
+
+<% @addresses.each do |address| %>
+  <p><%= address.address_line1 %></p>
+<% end %>

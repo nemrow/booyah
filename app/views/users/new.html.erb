@@ -1,0 +1,9 @@
+<h1>New User</h1>
+<%= form_for @user do |user| %>
+  <%= user.text_field 'first_name', :placeholder => 'First Name' %>
+  <%= user.text_field 'last_name', :placeholder => 'Last Name' %>
+  <%= user.text_field 'email', :placeholder => 'Email' %>
+  <%= user.text_field 'cell', :placeholder => 'Cell Phone (ex: 1-555-555-555)' %>
+  <%= user.text_field 'password', :placeholder => 'Password' %>
+  <%= user.submit 'Join!' %>
+<% end %>

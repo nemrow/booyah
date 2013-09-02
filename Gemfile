@@ -5,6 +5,7 @@ gem 'rails', '3.2.13'
 gem 'pg'
 gem 'rmagick', '2.13.2'
 gem 'lob'
+gem 'bcrypt-ruby'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -16,8 +17,11 @@ end
 
 group :development, :test do
   gem 'rspec-rails'
+  gem 'shoulda-matchers'
   gem 'cucumber-rails', :require => false
   gem 'database_cleaner'
+  gem 'launchy'
+  gem "factory_girl_rails", "~> 4.0"
 end
 
 gem 'jquery-rails'

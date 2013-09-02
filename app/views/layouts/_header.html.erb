@@ -1,0 +1,32 @@
+<nav class="top-bar">
+  <ul class="title-area">
+    <li class="name">
+      <h1><a href="#">Booyah</a></h1>
+    </li>
+    <li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
+  </ul>
+
+  <section class="top-bar-section">
+    <!-- Left Nav Section -->
+    <ul class="left">
+    </ul>
+
+    <!-- Right Nav Section -->
+    <ul class="right">
+      <% if current_user %>
+
+        <li>Hello <%= current_user.first_name %></li>
+        <li><a href="#">Sign Out</a></li>
+
+      <% else %>
+
+        <li class="divider"></li>
+        <li><%= link_to 'Sign Up', signup_path %></li>
+        <li class="divider"></li>
+        <li><a href="#">Sign In</a></li>
+
+      <% end %>
+
+    </ul>
+  </section>
+</nav>

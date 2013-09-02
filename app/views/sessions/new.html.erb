@@ -1,0 +1,6 @@
+<h1>Sign In</h1>
+<%= form_for @user do |user| %>
+  <%= user.text_field 'email', :placeholder => 'Email' %>
+  <%= user.text_field 'password', :placeholder => 'Password' %>
+  <%= user.submit 'Sign In' %>
+<% end %>
