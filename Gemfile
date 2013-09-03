@@ -3,7 +3,7 @@ ruby '1.9.3'
 gem 'rails', '3.2.13'
 
 gem 'pg'
-gem 'rmagick', :require => 'RMagick'
+gem 'rmagick', '2.13.2'
 gem 'lob'
 gem 'bcrypt-ruby'
 
