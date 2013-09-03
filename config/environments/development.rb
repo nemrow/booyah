@@ -36,8 +36,5 @@ Booyah::Application.configure do
   config.assets.debug = true
 
   app_environment_variables = File.join(Rails.root, 'config', 'app_environment_variables.rb')
-  load(app_environment_variables) if File.exists?(app_environment_variables)
-
-  config.gem "rmagick",
-  :lib => "RMagick" 
+  load(app_environment_variables) if File.exists?(app_environment_variables) 
 end

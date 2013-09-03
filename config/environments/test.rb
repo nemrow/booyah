@@ -35,9 +35,6 @@ Booyah::Application.configure do
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
 
-  config.gem "rmagick",
-  :lib => "RMagick"
-
   app_environment_variables = File.join(Rails.root, 'config', 'app_environment_variables.rb')
   load(app_environment_variables) if File.exists?(app_environment_variables)
 end
