@@ -1,9 +1,9 @@
 module OrdersHelper
-  # @lob = Lob(api_key: LOB_KEY)
+  # @lob = Lob(api_key: ENV['LOB_KEY'])
   def create_new_order(user, picture)
     picture = 'https://dl.dropboxusercontent.com/u/22698720/test_pdf.pdf' if environment == 'local' || environment == 'test'
     address = user.addresses.first
-    @lob = Lob(api_key: LOB_KEY)
+    @lob = Lob(api_key: ENV['LOB_KEY'])
     postcard = @lob.postcards.create(
       "#{user.first_name} #{user.last_name}\'s Order",
       user.addresses.first.lob_address_id,
@@ -37,7 +37,7 @@ module OrdersHelper
   end
 
   def create_new_address(address_params)
-    @lob = Lob(api_key: LOB_KEY)
+    @lob = Lob(api_key: ENV['LOB_KEY'])
     new_address = Address.new(address_params)
     address_params.merge!(  :name => current_user.full_name,
                             :email => current_user.email,
@@ -51,8 +51,7 @@ module OrdersHelper
   end
 
   def verify_and_create_address(address_params)
-    p LOB_KEY
-    @lob = Lob(api_key: LOB_KEY)
+    @lob = Lob(api_key: ENV['LOB_KEY'])
     begin
       @lob.addresses.verify(address_params.dup)
       create_new_address(address_params)
