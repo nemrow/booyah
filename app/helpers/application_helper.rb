@@ -1,4 +1,5 @@
 require 'securerandom'
+require 'RMagick'
 
 module ApplicationHelper
   include OrdersHelper
