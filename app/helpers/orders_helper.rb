@@ -2,7 +2,7 @@ module OrdersHelper
   # @lob = Lob(api_key: ENV['LOB_KEY'])
   def create_new_order(user, picture)
     p environment
-    picture = 'https://dl.dropboxusercontent.com/u/22698720/test_pdf.pdf' if environment == 'local' || environment == 'test'
+    picture = 'https://dl.dropboxusercontent.com/u/22698720/test_pdf.pdf' #if environment == 'local' || environment == 'test'
     p picture
     address = user.addresses.first
     p address
