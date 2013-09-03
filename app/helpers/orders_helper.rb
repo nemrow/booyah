@@ -1,8 +1,11 @@
 module OrdersHelper
   # @lob = Lob(api_key: ENV['LOB_KEY'])
   def create_new_order(user, picture)
+    p environment
     picture = 'https://dl.dropboxusercontent.com/u/22698720/test_pdf.pdf' if environment == 'local' || environment == 'test'
+    p picture
     address = user.addresses.first
+    p address
     @lob = Lob(api_key: ENV['LOB_KEY'])
     postcard = @lob.postcards.create(
       "#{user.first_name} #{user.last_name}\'s Order",
@@ -11,6 +14,7 @@ module OrdersHelper
       front: picture, #stubbed image
       from: booyah_address
     )
+    p postcard
     if postcard
       order = Order.create( :user_id => user.id,
                             :to_id => postcard['to'],
