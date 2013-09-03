@@ -51,6 +51,7 @@ module OrdersHelper
   end
 
   def verify_and_create_address(address_params)
+    p LOB_KEY
     @lob = Lob(api_key: LOB_KEY)
     begin
       @lob.addresses.verify(address_params.dup)
