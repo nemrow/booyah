@@ -1,7 +1,7 @@
 module OrdersHelper
   # @lob = Lob(api_key: LOB_KEY)
   def create_new_order(user, picture)
-    picture = 'https://dl.dropboxusercontent.com/u/22698720/test_pdf.pdf' if BASE_URL == 'http://localhost:3000'
+    picture = 'https://dl.dropboxusercontent.com/u/22698720/test_pdf.pdf' if environment == 'http://localhost:3000'
     address = user.addresses.first
     @lob = Lob(api_key: LOB_KEY)
     postcard = @lob.postcards.create(

@@ -2,6 +2,20 @@ require 'securerandom'
 
 module ApplicationHelper
   include OrdersHelper
+
+  def base_url
+    request.protocol + request.host_with_port
+  end
+
+  def environment
+    if base_url == "http://localhost:3000"
+      "local"
+    elsif base_url == "http://booyah-s.herokuapp.com"
+      "staging"
+    elsif base_url == 'http://booyah-p.herokuapp.com'
+      "production"
+    end
+  end
   
   def current_user
     User.find(session[:user_id]) if session[:user_id]
@@ -21,7 +35,7 @@ module ApplicationHelper
     img = Magick::Image::read(file_url).first
     img.density = "300x300"
     img.resize_to_fill(1800,1200).write("app/assets/images/#{file_path}")
-    "#{BASE_URL}/assets/#{file_path}"
+    "#{base_url}/assets/#{file_path}"
   end
 
   def create_file_path(user)
