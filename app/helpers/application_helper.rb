@@ -21,7 +21,7 @@ module ApplicationHelper
     img = Magick::Image::read(file_url).first
     img.density = "300x300"
     img.resize_to_fill(1800,1200).write("app/assets/images/#{file_path}")
-    "#{ENV['BASE_URL']}/assets/#{file_path}"
+    "#{BASE_URL}/assets/#{file_path}"
   end
 
   def create_file_path(user)

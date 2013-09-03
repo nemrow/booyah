@@ -15,3 +15,4 @@
 /tmp
 
 /config/app_environment_variables.rb
+/assets/images/user_pictures/*
