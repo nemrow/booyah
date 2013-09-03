@@ -10,6 +10,8 @@ module ApplicationHelper
   def environment
     if base_url == "http://localhost:3000"
       "local"
+    elsif base_url == "http://test.host"
+      "test"
     elsif base_url == "http://booyah-s.herokuapp.com"
       "staging"
     elsif base_url == 'http://booyah-p.herokuapp.com'
