@@ -2,8 +2,9 @@ include OrdersHelper
 
 class PicturesController < ApplicationController
   skip_before_filter  :verify_authenticity_token
-  
+
   def create
+    p params
     user = User.find_by_cell(params['msisdn'])
     new_picture_url = create_picture(params['images'][0]['image'], user)
     if create_new_order(user, new_picture_url)
