@@ -4,6 +4,7 @@ class CreateOrders < ActiveRecord::Migration
       t.string :to_id
       t.integer :user_id
       t.string :order_id
+      t.string :image_source
       t.decimal :lob_cost
       t.decimal :user_cost
 
