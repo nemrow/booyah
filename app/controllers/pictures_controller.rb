@@ -4,13 +4,17 @@ class PicturesController < ApplicationController
   skip_before_filter  :verify_authenticity_token
 
   def create
-    p params
     user = User.find_by_cell(params['msisdn'])
-    new_picture_url = create_picture(params['images'][0]['image'], user)
-    if create_new_order(user, new_picture_url)
-      p "it worked"
+    if params['images'][0]['image']
+      new_picture_url = create_picture(params['images'][0]['image'], user)
+      order = create_new_order(user, new_picture_url)
+      if order
+        send_order_success_sms(order)
+      else
+        send_failed_order(user)
+      end
     else
-      p "it failed"
+      send_no_image_response(user)
     end
     render :nothing => true
   end

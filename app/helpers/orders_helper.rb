@@ -1,26 +1,37 @@
 module OrdersHelper
   # @lob = Lob(api_key: ENV['LOB_KEY'])
   def create_new_order(user, picture)
-    address = user.addresses.first
-    @lob = Lob(api_key: ENV['LOB_KEY'])
-    postcard = @lob.postcards.create(
+    postcard = order_new_postcard(user, picture)
+    if postcard
+      order = add_order_to_db(user, postcard, picture, 1.50)
+      order
+    else
+      p "error trying to order postcard: #{postcard}"
+      false
+    end
+  end
+
+  def order_new_postcard(user, picture)
+    lob = Lob(api_key: ENV['LOB_KEY'])
+    lob.postcards.create(
       "#{user.first_name} #{user.last_name}\'s Order",
-      user.addresses.first.lob_address_id,
+      user.address.lob_address_id,
       message: "Thanks for using Booyah!",
       front: picture,
       from: Rails.env.production? ? 'adr_d06d2d0316a1cd0f' : 'adr_5860b42d2df0309e'
     )
-    if postcard
-      order = Order.create( :user_id => user.id,
-                            :to_id => postcard['to'],
-                            :order_id => postcard['id'],
-                            :lob_cost => postcard['price'],
-                            :user_cost => 1.50
-                          )
-      user.orders << order
-    else
-      postcard
-    end
+  end
+
+  def add_order_to_db(user, postcard, picture, user_cost)
+    order = Order.create( :user_id => user.id,
+                          :to_id => postcard['to'],
+                          :order_id => postcard['id'],
+                          :lob_cost => postcard['price'],
+                          :user_cost => user_cost,
+                          :image_source => picture
+                        )
+    user.orders << order
+    order
   end
 
   def create_new_address(address_params)

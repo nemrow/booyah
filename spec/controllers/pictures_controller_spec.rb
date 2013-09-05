@@ -20,16 +20,20 @@ describe PicturesController do
                             "subject": "",
                             "images": [
                               {
-                                "image": "http://d2c.bandcon.mogreet.com/mo-mms/images/695364_4767994.jpeg"
+                                "image": "http://d2c.bandcon.mogreet.com/mo-mms/images/710133_4856324.jpeg"
                               }
                             ]
                           }
                         ')
       post :create, json
-      # Application.count.should == 0
-      # response.status.should eq(403)
-      # JSON.parse(response.body)["status"] == "error"
-      # JSON.parse(response.body)["message"] =~ /authorized/
+      response.status. should == 200
+      @user.orders.count.should == 1
     end 
   end
 end
+
+# lanscape
+# http://d2c.bandcon.mogreet.com/mo-mms/images/710133_4856324.jpeg
+
+# vertical
+# http://d2c.bandcon.mogreet.com/mo-mms/images/710148_4856428.jpeg

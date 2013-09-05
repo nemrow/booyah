@@ -5,6 +5,9 @@ module ImageHelper
     file_name = create_file_name(user)
     img = Magick::Image::read(file_url).first
     img.density = "300x300"
+    if img.columns < img.rows
+      img = img.rotate(90)
+    end
     img.resize_to_fill(1800,1200).write("tmp/#{file_name}")
     write_to_aws(user, file_name)
     "https://s3.amazonaws.com/booyahbooyah/#{file_name}"

@@ -9,4 +9,8 @@ class User < ActiveRecord::Base
   def full_name
     "#{first_name} #{last_name}"
   end
+
+  def address
+    addresses.first
+  end
 end
