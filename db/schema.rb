@@ -31,11 +31,12 @@ ActiveRecord::Schema.define(:version => 20130902210958) do
     t.string   "to_id"
     t.integer  "user_id"
     t.string   "order_id"
-    t.string   "image_source"
+    t.string   "pdf_source"
+    t.string   "jpg_source"
     t.float    "lob_cost"
     t.float    "user_cost"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|

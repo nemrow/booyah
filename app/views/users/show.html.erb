@@ -3,5 +3,5 @@
 <h2>Addresses</h2>
 
 <% @addresses.each do |address| %>
-  <p><%= address.address_line1 %></p>
+  <p><%= link_to address.address_line1, edit_user_address_path(@user, address) %></p>
 <% end %>

@@ -17,7 +17,8 @@
 3.times do |num|
   order = Order.create( :to_id => 'adr_429adf52853ec0a7',
                         :order_id => "lob_id_num_#{num}",
-                        :image_source => 'https://s3.amazonaws.com/booyahbooyah/user_9_1378310853.pdf',
+                        :jpg_source => 'https://s3.amazonaws.com/booyahbooyah/user_4_1378395726.jpg',
+                        :pdf_source => 'https://s3.amazonaws.com/booyahbooyah/user_4_1378395726.pdf',
                         :lob_cost => 1.0,
                         :user_cost => 1.5
                       )

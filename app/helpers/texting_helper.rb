@@ -18,6 +18,13 @@ module TextingHelper
     send_sms(user.cell, message)
   end
 
+  def send_no_user_message(cell)
+    message = 
+      "Hello! This number is not registered with Booyah. " +
+      "Please go to booyahbooyah.com to begin getting prints!"
+    send_sms(cell, message)
+  end
+
   def send_no_image_response(user)
     message = 
       "Hello #{user.first_name}, " +

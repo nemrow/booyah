@@ -4,7 +4,8 @@ class CreateOrders < ActiveRecord::Migration
       t.string :to_id
       t.integer :user_id
       t.string :order_id
-      t.string :image_source
+      t.string :pdf_source
+      t.string :jpg_source
       t.float :lob_cost
       t.float :user_cost
 
