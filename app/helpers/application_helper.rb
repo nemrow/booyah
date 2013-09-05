@@ -21,7 +21,12 @@ module ApplicationHelper
   end
   
   def current_user
-    User.find(session[:user_id]) if session[:user_id]
+    begin
+      User.find(session[:user_id]) if session[:user_id]
+    rescue
+      session[:user_id] = nil
+      false
+    end
   end
 
   def set_current_user(user)

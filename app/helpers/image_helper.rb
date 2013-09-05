@@ -13,6 +13,10 @@ module ImageHelper
     "https://s3.amazonaws.com/booyahbooyah/#{file_name}"
   end
 
+  def render_jpg(img)
+
+  end
+
   def create_file_name(user)
     "user_#{user.id}_#{Time.now.to_i}.pdf"
   end

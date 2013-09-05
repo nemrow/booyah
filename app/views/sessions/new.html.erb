@@ -1,5 +1,5 @@
 <h1>Sign In</h1>
-<%= form_for @user do |user| %>
+<%= form_for @user, :url => sessions_path do |user| %>
   <%= user.text_field 'email', :placeholder => 'Email' %>
   <%= user.text_field 'password', :placeholder => 'Password' %>
   <%= user.submit 'Sign In' %>
