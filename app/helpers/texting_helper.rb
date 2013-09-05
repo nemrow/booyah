@@ -32,6 +32,13 @@ module TextingHelper
     send_sms(user.cell, message)
   end
 
+  def send_welcome_message(user)
+    message = 
+      "Hello #{user.first_name}, welcome to Booyah! " +
+      "Send a picture along with the text 'booyah' to this number to place print orders!"
+    send_sms(user.cell, message)
+  end
+
   def send_sms(to, message)
     url = URI.parse(
       "https://api.mogreet.com/moms/transaction.send?" +
