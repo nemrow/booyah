@@ -18,6 +18,13 @@ module TextingHelper
     send_sms(user.cell, message)
   end
 
+  def send_account_incomplete_message(user)
+    message = 
+      "Hello #{user.first_name}, " +
+      "Your account is not active. Please go to booyahbooyah.com to finish activating it! "
+    send_sms(user.cell, message)
+  end
+
   def send_no_user_message(cell)
     message = 
       "Hello! This number is not registered with Booyah. " +

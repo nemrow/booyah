@@ -5,16 +5,20 @@ class PicturesController < ApplicationController
 
   def create
     if user = User.find_by_cell(params['msisdn'])
-      if params['images'][0]['image']
-        image_hash = create_picture(params['images'][0]['image'], user)
-        order = create_new_order(user, image_hash)
-        if order
-          send_order_success_sms(order)
+      if user.account_active?
+        if params['images'][0]['image']
+          image_hash = create_picture(params['images'][0]['image'], user)
+          order = create_new_order(user, image_hash)
+          if order
+            send_order_success_sms(order)
+          else
+            send_failed_order(user)
+          end
         else
-          send_failed_order(user)
+          send_no_image_response(user)
         end
       else
-        send_no_image_response(user)
+        send_account_incomplete_message(user)
       end
     else
       send_no_user_message(params['msisdn'])

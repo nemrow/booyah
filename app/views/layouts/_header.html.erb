@@ -1,7 +1,7 @@
 <nav class="top-bar">
   <ul class="title-area">
     <li class="name">
-      <h1><a href="#">Booyah</a></h1>
+      <h1><%= link_to 'Booyah', root_path %></h1>
     </li>
     <li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
   </ul>
@@ -16,8 +16,8 @@
       <% if current_user %>
 
         <li>Hello <%= current_user.first_name %></li>
+        <li><%= link_to 'My Account', user_path(current_user) %></li>
         <li><%= link_to 'Signout', signout_path %></li>
-        <li><%= link_to 'Orders', user_orders_path(current_user) %></li>
       <% else %>
 
         <li class="divider"></li>

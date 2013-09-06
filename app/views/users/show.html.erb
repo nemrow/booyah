@@ -1,7 +1,18 @@
 <h1>Profile for <%= @user.first_name %></h1>
 
-<h2>Addresses</h2>
+<h2>Address</h2>
+<% if @address %>
+  <%= render :partial => 'shared/address', :locals => {:address => @address} %>
+<p><%= link_to 'Edit Addess', edit_user_address_path(@user, @address) %></p>
+<% else %>
+  <%= link_to 'Add your address', new_user_address_path(current_user) %>
+<% end %>
 
-<% @addresses.each do |address| %>
-  <p><%= link_to address.address_line1, edit_user_address_path(@user, address) %></p>
+<h2>Recent Orders</h2>
+
+<h2>Paypal Status</h2>
+<% if @approval_status != 'ACTIVE' %>
+  <%= link_to 'Activate Paypal Now!', get_preapproval_url(current_user) %>
+<% else %>
+  <p><%= @approval_status %></p>
 <% end %>

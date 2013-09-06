@@ -2,7 +2,13 @@
 <%= form_for @user do |user| %>
   <%= user.text_field 'email', :placeholder => 'Email' %>
   <%= user.text_field 'name', :placeholder => 'Name (ex: Jordan Nemrow)' %>
-  <%= user.text_field 'cell', :placeholder => 'Cell Phone (ex: 1-555-555-555)' %>
+  <%= user.text_field 'cell', :placeholder => 'Cell Phone (ex: (555) 555-555)', :class => 'cell_formatted' %>
   <%= user.text_field 'password', :placeholder => 'Password' %>
   <%= user.submit 'Join!' %>
 <% end %>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    Inputs.init();
+  });
+</script>
