@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :cell, :email, :first_name, :last_name, :password
+  attr_accessible :cell, :email, :name, :password
 
   validates :email, :uniqueness => true
   validates :cell, :uniqueness => true
@@ -10,12 +10,18 @@ class User < ActiveRecord::Base
   has_many :orders
   has_many :paypal_preapprovals
 
+  before_create :format_cell
+
+  def format_cell
+    self.cell = cell.gsub(/\D/,'')
+  end
+
   def preapproval
     paypal_preapprovals.where("active = true").first
   end
 
-  def full_name
-    "#{first_name} #{last_name}"
+  def first_name
+    name.match(/^[a-zA-Z]+/)[0]
   end
 
   def address

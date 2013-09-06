@@ -1,5 +1,4 @@
-@user = User.create( :first_name => 'Jordan',
-                    :last_name => 'Nemrow',
+@user = User.create( :name => 'Jordan Nemrow',
                     :email => 'nemrowj@gmail.com',
                     :cell => '17078496085',
                     :password => 'password'

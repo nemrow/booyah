@@ -5,8 +5,8 @@ Feature: User Signup
     When I visit the homepage
     And I click the 'Sign Up' link
     And I fill in the following fields for 'user':
-      | first_name  | last_name   | email             | cell        | password  |
-      | Jordan      | Nemrow      | nemrowj@gamil.com | 17078496085 | password  |
+      | name            | email             | cell        | password  |
+      | Jordan Nemrow   | nemrowj@gamil.com | 17078496085 | password  |
     And I fill in the following fields for 'address':
       | address_line_1    | address_line_2  | city      | state | zip   | country |
       | 22 Weatherby ct.  |                 | Petaluma  | CA    | 94954 | US      |

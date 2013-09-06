@@ -14,7 +14,7 @@ module OrdersHelper
   def order_new_postcard(user, picture)
     lob = Lob(api_key: ENV['LOB_KEY'])
     lob.postcards.create(
-      "#{user.first_name} #{user.last_name}\'s Order",
+      "#{user.name}\'s Order",
       user.address.lob_address_id,
       message: "Thanks for using Booyah!",
       front: picture,
@@ -38,7 +38,7 @@ module OrdersHelper
   def create_new_address(address_params)
     @lob = Lob(api_key: ENV['LOB_KEY'])
     new_address = Address.new(address_params)
-    address_params.merge!(  :name => current_user.full_name,
+    address_params.merge!(  :name => current_user.name,
                             :email => current_user.email,
                             :phone => current_user.cell
                           )
@@ -51,7 +51,7 @@ module OrdersHelper
 
   def update_address(address_params, address)
     @lob = Lob(api_key: ENV['LOB_KEY'])
-    address_params.merge!(  :name => current_user.full_name,
+    address_params.merge!(  :name => current_user.name,
                             :email => current_user.email,
                             :phone => current_user.cell
                           )
