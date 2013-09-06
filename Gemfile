@@ -7,6 +7,7 @@ gem 'rmagick', '2.13.2'
 gem 'lob'
 gem 'bcrypt-ruby'
 gem 'aws-sdk', '~> 1.0'
+gem 'paypal-sdk-adaptivepayments'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

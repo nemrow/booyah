@@ -8,6 +8,11 @@ class User < ActiveRecord::Base
 
   has_many :addresses
   has_many :orders
+  has_many :paypal_preapprovals
+
+  def preapproval
+    paypal_preapprovals.where("active = true").first
+  end
 
   def full_name
     "#{first_name} #{last_name}"
@@ -15,5 +20,9 @@ class User < ActiveRecord::Base
 
   def address
     addresses.first
+  end
+
+  def account_active?
+    address && preapproval ? true : false
   end
 end

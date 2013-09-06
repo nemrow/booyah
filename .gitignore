@@ -15,4 +15,5 @@
 /tmp
 
 /config/app_environment_variables.rb
+/config/paypal.yml
 app/assets/images/user_pictures/*.pdf

@@ -9,7 +9,7 @@ class UsersController < ApplicationController
       set_current_user(user)
       redirect_to new_user_address_path(user)
     else
-
+      redirect_to new_user_path(:errors => 'could not create new user')
     end
   end
 

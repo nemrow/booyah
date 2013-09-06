@@ -6,8 +6,8 @@ class AddressesController < ApplicationController
   def create
     user = User.find(params[:user_id])
     if address = verify_and_create_address(params[:address])
-      send_welcome_message(user) if user.addresses.count == 1
-      redirect_to user_path(current_user)
+      # send_welcome_message(user) if user.addresses.count == 1
+      redirect_to get_preapproval_url(user)
     else 
       redirect_to new_user_address_path(current_user, :error => 'That address does not exist')
     end

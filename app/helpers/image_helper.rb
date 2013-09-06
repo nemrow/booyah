@@ -10,13 +10,6 @@ module ImageHelper
     image_hash[:jpg] = render_jpg(img, file_name, user)
     p image_hash
     image_hash
-    # img.density = "300x300"
-    # if img.columns < img.rows
-    #   img = img.rotate(90)
-    # end
-    # img.resize_to_fill(1800,1200).write("tmp/#{file_name}")
-    # write_to_aws(user, file_name)
-    # "https://s3.amazonaws.com/booyahbooyah/#{file_name}"
   end
 
   def rotate_img_if_needed(img)

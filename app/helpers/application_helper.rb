@@ -3,6 +3,7 @@ require 'securerandom'
 module ApplicationHelper
   include OrdersHelper
   include TextingHelper
+  include PaypalHelper
 
   def base_url
     request.protocol + request.host_with_port

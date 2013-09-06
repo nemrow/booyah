@@ -1,9 +1,12 @@
 Booyah::Application.routes.draw do
+  get "preapproval/new"
+
   root :to => 'welcome#index'
 
   resources :users do
     resources :addresses
     resources :orders
+    resources :preapproval, :only => [:show]
   end
 
   resources :pictures, :only => [:create]
