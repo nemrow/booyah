@@ -1,18 +1,39 @@
 <h1>Profile for <%= @user.first_name %></h1>
 
-<h2>Address</h2>
-<% if @address %>
-  <%= render :partial => 'shared/address', :locals => {:address => @address} %>
-<p><%= link_to 'Edit Addess', edit_user_address_path(@user, @address) %></p>
-<% else %>
-  <%= link_to 'Add your address', new_user_address_path(current_user) %>
-<% end %>
 
 <h2>Recent Orders</h2>
-
-<h2>Paypal Status</h2>
-<% if @approval_status != 'ACTIVE' %>
-  <%= link_to 'Activate Paypal Now!', get_preapproval_url(current_user) %>
-<% else %>
-  <p><%= @approval_status %></p>
+<ul class="large-block-grid-4">
+<% @orders.each do |order| %>
+  <li class="recent_order_shells">
+    <%= image_tag order.jpg_source %>
+    <p><%= order.created_at %></p>
+  </li>
 <% end %>
+</ul>
+
+<div class="row">
+  <div class="large-4 columns">
+    <h2>Contact</h2>
+    <%= render :partial => 'shared/personal_info' %>
+    <%= link_to 'Edit', edit_user_path(@user) %>
+  </div>
+
+  <div class="large-4 columns">
+    <h2>Address</h2>
+    <% if @address %>
+      <%= render :partial => 'shared/address', :locals => {:address => @address} %>
+      <p><%= link_to 'Edit Addess', edit_user_address_path(@user, @address) %></p>
+    <% else %>
+      <%= link_to 'Add your address', new_user_address_path(current_user) %>
+    <% end %>
+  </div>
+
+  <div class="large-4 columns">
+    <h2>Paypal Status</h2>
+    <% if @approval_status != 'ACTIVE' %>
+      <%= link_to 'Activate Paypal Now!', get_preapproval_url(current_user) %>
+    <% else %>
+      <p><%= @approval_status %></p>
+    <% end %>
+  </div>
+</div>

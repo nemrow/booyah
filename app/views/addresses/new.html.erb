@@ -5,7 +5,7 @@
   <%= f.text_field 'address_line2', :placeholder => 'Address Line 2' %>
   <%= f.text_field 'city', :placeholder => 'City' %>
   <%= f.text_field 'state', :placeholder => 'State', :maxlength => 2 %>
-  <%= f.number_field 'zip', :placeholder => 'Zip' %>
+  <%= f.text_field 'zip', :placeholder => 'Zip' %>
   <%= f.hidden_field 'country', :value => 'US' %>
   <%= f.submit 'Continue to Paypal' %>
 <% end %>

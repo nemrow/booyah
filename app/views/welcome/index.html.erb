@@ -1,15 +1,31 @@
-<h1>Welcome to Booyah</h1>
-<p>Get PHYSICAL again with pictures.. easily</p>
-
-<h1>New User</h1>
-<p>US only</p>
-<%= form_for @user, :url => users_path do |user| %>
-  <%= user.text_field 'email', :placeholder => 'Email' %>
-  <%= user.text_field 'name', :placeholder => 'Name (ex: Jordan Nemrow)' %>
-  <%= user.text_field 'cell', :placeholder => 'Cell Phone (ex: (555) 555-555)', :class => 'cell_formatted' %>
-  <%= user.text_field 'password', :placeholder => 'Password' %>
-  <%= user.submit 'Join!' %>
-<% end %>
+<%= image_tag 'family_beach_run.jpg', :class => 'family_beach_run_img' %>
+<%= image_tag 'three_steps_small.png', :class => 'three_steps_small' %>
+<div class="row">
+  <div class="small-12 columns home-page-top-block">
+    <h1 class="tagline">Pictures from your phone, delivered to your home.</h1>
+    <h3 class="sub-tagline">Getting photos from your phone printed is as easy as sending a text message</h3>
+  </div>
+</div>
+<div class="home-page-block-2">
+  <div class="row"> 
+    <div class="large-6 columns">
+      <%= form_for @user, :url => users_path, :html => {:class => 'home-page-new-user-signup'} do |user| %>
+        <%= user.text_field 'email', :placeholder => 'Email' %>
+        <%= user.text_field 'name', :placeholder => 'Name (ex: Jordan Nemrow)' %>
+        <%= user.text_field 'cell', :placeholder => 'Cell Phone (ex: (555) 555-555)', :class => 'cell_formatted' %>
+        <%= user.text_field 'password', :placeholder => 'Password' %>
+        <div class="button-border"><%= user.submit 'Start Printing!' %></div>
+      <% end %>
+    </div> 
+    <div class="large-6 columns">
+      <div class="picture-description-shell">
+        <p>$1.50</p>
+        <p>per print</p>
+        <p>prints are 4" X 6" postcards</p>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script type="text/javascript">
   $(document).ready(function(){

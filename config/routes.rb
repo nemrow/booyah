@@ -9,7 +9,9 @@ Booyah::Application.routes.draw do
     resources :preapproval, :only => [:show]
   end
 
-  resources :pictures, :only => [:create]
+  resources :pictures, :only => [:create] do
+    get 'orders'
+  end
   resources :sessions, :only => [:create]
 
   get 'signup', :to => 'users#new'

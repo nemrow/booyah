@@ -968,10 +968,10 @@
 //
 
 // Background color for the top bar
-// $topbar-bg: #111;
+// $topbar-bg: transparent;
 
 // Height and margin
-// $topbar-height: 45px;
+$topbar-height: 100px;
 // $topbar-margin-bottom: emCalc(30px);
 
 // Control Input height for top bar
@@ -1008,5 +1008,7 @@
 // $topbar-breakpoint: emCalc(940px); // Change to 9999px for always mobile layout
 // $topbar-media-query: "only screen and (min-width "#{$topbar-breakpoint}")";
 
+$topbar-bg: rgba(0,0,0,0);
+$topbar-dropdown-bg: rgba(0,0,0,0);
 
 @import 'foundation';

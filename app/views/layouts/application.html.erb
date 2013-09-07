@@ -14,7 +14,7 @@
   	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   	<title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
-
+    <link href='http://fonts.googleapis.com/css?family=Cabin:700|PT+Sans|Comfortaa:700' rel='stylesheet' type='text/css'>
   	<%= stylesheet_link_tag    "application" %>
   	<%= javascript_include_tag "vendor/custom.modernizr" %>
     <%= javascript_include_tag "application" %>
@@ -22,9 +22,13 @@
   </head>
 
   <body>
-    <%= render :partial => 'layouts/header' %>
+    <% if current_page?(root_path) %>
+      <%= image_tag 'blurred_lines_bg.png', :class => 'blurred_lines_bg' %>
+    <% end %>
+    <div class="row">
+    <%= render :partial => 'layouts/header2' %>
     <%= yield %>
-
+    </div>
     
   </body>
 </html>

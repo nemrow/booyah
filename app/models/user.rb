@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   before_create :format_cell
 
   def format_cell
-    self.cell = cell.gsub(/\D/,'')
+    self.cell = 1.to_s + cell.gsub(/\D/,'').to_s
   end
 
   def preapproval

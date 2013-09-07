@@ -1,32 +1,19 @@
-<nav class="top-bar">
-  <ul class="title-area">
-    <li class="name">
-      <h1><%= link_to 'Booyah', root_path %></h1>
-    </li>
-    <li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
-  </ul>
-
-  <section class="top-bar-section">
-    <!-- Left Nav Section -->
-    <ul class="left">
-    </ul>
-
-    <!-- Right Nav Section -->
-    <ul class="right">
-      <% if current_user %>
-
-        <li>Hello <%= current_user.first_name %></li>
-        <li><%= link_to 'My Account', user_path(current_user) %></li>
-        <li><%= link_to 'Signout', signout_path %></li>
-      <% else %>
-
-        <li class="divider"></li>
-        <li><%= link_to 'Sign Up', signup_path %></li>
-        <li class="divider"></li>
-        <li><%= link_to 'Sign In', signin_path %></li>
-
-      <% end %>
-
-    </ul>
-  </section>
-</nav>
+<div class="row header-main <%= "header-for-root" if current_page?(root_url) %>">
+  <div class="small-12 columns padded-container">
+    <%= link_to image_tag 'booyah-logo-2-web.png', :class => 'logo-main' %>
+    <div class="top-nav-right">
+      <ul>
+        <% if current_user %>
+          <li>Hello <%= current_user.first_name %></li>
+          <li><%= link_to 'My Account', user_path(current_user) %></li>
+          <li><%= link_to 'Signout', signout_path %></li>
+        <% else %>
+          <li class="divider"></li>
+          <li><%= link_to 'Sign Up', signup_path %></li>
+          <li class="divider"></li>
+          <li><%= link_to 'Sign In', signin_path %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

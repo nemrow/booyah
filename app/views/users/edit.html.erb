@@ -1,0 +1,7 @@
+<h1>Edit <%= @user.first_name %>'s Info</h1>
+<%= form_for @user do |user| %>
+  <%= user.text_field 'email', :placeholder => 'Email' %>
+  <%= user.text_field 'name', :placeholder => 'Name (ex: Jordan Nemrow)' %>
+  <%= user.text_field 'cell', :placeholder => 'Cell Phone (ex: (555) 555-555)', :class => 'cell_formatted' %>
+  <%= user.submit 'Update' %>
+<% end %>
