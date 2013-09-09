@@ -4,22 +4,6 @@ module ApplicationHelper
   include OrdersHelper
   include TextingHelper
   include PaypalHelper
-
-  def base_url
-    request.protocol + request.host_with_port
-  end
-
-  def environment
-    if base_url == "http://localhost:3000"
-      "local"
-    elsif base_url == "http://test.host"
-      "test"
-    elsif base_url == "http://booyah-s.herokuapp.com"
-      "staging"
-    elsif base_url == 'http://booyah-p.herokuapp.com'
-      "production"
-    end
-  end
   
   def current_user
     begin

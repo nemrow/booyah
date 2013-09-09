@@ -24,7 +24,7 @@ module OrdersHelper
       user.address.lob_address_id,
       message: "Thanks for using Booyah!",
       front: picture,
-      from: Rails.env.production? ? 'adr_d06d2d0316a1cd0f' : 'adr_5860b42d2df0309e'
+      from: ENV['LOB_ADDRESS_KEY']
     )
   end
 
