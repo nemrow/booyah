@@ -1,5 +1,5 @@
 PayPal::SDK.configure(
-  :mode      => Rails.env.production?  ? "live" : "sandbox",
+  :mode      => ENV['PAYPAL_MODE'],
   :app_id    => ENV['PAYPAL_APP_ID'],
   :username  => ENV['PAYPAL_USERNAME'],
   :password  => ENV['PAYPAL_PASSWORD'],
