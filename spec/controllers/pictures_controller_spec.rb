@@ -7,7 +7,10 @@ describe PicturesController do
     before do
       @user = FactoryGirl.create(:user)
       @address = FactoryGirl.create(:address)
+      @paypal_preapproval = FactoryGirl.create(:paypal_preapproval)
       @user.addresses << @address
+      @user.paypal_preapprovals << @paypal_preapproval
+      @paypal_preapproval.activate
     end
 
     it "should get the data" do

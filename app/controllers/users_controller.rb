@@ -18,6 +18,7 @@ class UsersController < ApplicationController
     @address = @user.address
     @approval_status = check_approval_status(@user)
     @orders = @user.orders
+    order = make_approved_payment(@user, 1.50)
   end
 
   def edit

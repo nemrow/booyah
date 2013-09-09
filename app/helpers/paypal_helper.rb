@@ -36,7 +36,6 @@ module PaypalHelper
         :preapprovalKey => user.preapproval.key 
       })
       @preapproval_details_response = @api.preapproval_details(@preapproval_details)
-      p @preapproval_details_response.status
       if @preapproval_details_response.success?
         @preapproval_details_response.status
       else
@@ -50,31 +49,28 @@ module PaypalHelper
   end
 
   def make_approved_payment(user, amount)
-    # @api = PayPal::SDK::AdaptivePayments::API.new
-
-    # # Build request object
-    # @pay = @api.execute_payment({
-    #   :actionType => "PAY",
-    #   :preapprovalKey => user.preapproval.key,
-    #   :currencyCode => "USD",
-    #   :feesPayer => "SENDER",
-    #   :receiverList => {
-    #     :receiver => [{
-    #       :amount => amount,
-    #       :email => "platfo_1255612361_per@gmail.com" 
-    #     }] 
-    #   }
-    # })
-    # # Make API call & get response
-    # @pay_response = @api.pay(@pay)
-
-    # # Access Response
-    # if @pay_response.success?
-    #   p 'succ'
-    #   p @pay_response
-    # else
-    #   p 'fai'
-    #   p @pay_response
-    # end
+    api = PayPal::SDK::AdaptivePayments::API.new
+    pay = api.build_pay({
+      :actionType => "PAY",
+      :preapprovalKey => user.preapproval.key,
+      :currencyCode => "USD",
+      :feesPayer => "EACHRECEIVER",
+      :returnUrl => 'http://localhost:3000',
+      :cancelUrl => 'http://localhost:3000',
+      :receiverList => {
+        :receiver => [{
+          :amount => amount,
+          :email => "nemrowj-facilitator@gmail.com" 
+        }] 
+      }
+    })
+    pay_response = api.pay(pay)
+    if pay_response.success?
+      PaypalPayment.init_payment_entry(pay_response)
+    else
+      p 'payment failed'
+      p pay_response
+      false
+    end
   end
 end

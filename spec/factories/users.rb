@@ -3,6 +3,6 @@ FactoryGirl.define do
     name "Jordan Nemrow"
     email "nemrowj@gmizzail.com"
     password 'password'
-    cell '17078496085'
+    cell '7078496085'
   end
 end

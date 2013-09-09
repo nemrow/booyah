@@ -4,7 +4,6 @@ class SessionsController < ApplicationController
   end
 
   def create
-    p params
     user = User.find_by_email(params[:user][:email])
     if user.authenticate(params[:user][:password])
       set_current_user(user)

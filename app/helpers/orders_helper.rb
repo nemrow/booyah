@@ -1,12 +1,18 @@
 module OrdersHelper
   # @lob = Lob(api_key: ENV['LOB_KEY'])
-  def create_new_order(user, image_hash)
-    postcard = order_new_postcard(user, image_hash[:pdf])
-    if postcard
-      order = add_order_to_db(user, postcard, image_hash, 1.50)
-      order
+  def create_new_order(user, image_hash, amount = 1.50)
+    if payment = make_approved_payment(user, amount)
+      postcard = order_new_postcard(user, image_hash[:pdf])
+      if postcard
+        order = add_order_to_db(user, postcard, image_hash, amount, payment)
+        order
+      else
+        p "error trying to order postcard: #{postcard}"
+        false
+      end
     else
-      p "error trying to order postcard: #{postcard}"
+      p "error. payment did not go through"
+      p payment
       false
     end
   end
@@ -22,7 +28,7 @@ module OrdersHelper
     )
   end
 
-  def add_order_to_db(user, postcard, image_hash, user_cost)
+  def add_order_to_db(user, postcard, image_hash, user_cost, payment)
     order = Order.create( :user_id => user.id,
                           :to_id => postcard['to'],
                           :order_id => postcard['id'],
@@ -31,6 +37,7 @@ module OrdersHelper
                           :pdf_source => image_hash[:pdf],
                           :jpg_source => image_hash[:jpg]
                         )
+    order.paypal_payment = payment
     user.orders << order
     order
   end

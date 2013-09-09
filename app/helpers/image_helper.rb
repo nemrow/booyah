@@ -8,7 +8,6 @@ module ImageHelper
     image_hash = {}
     image_hash[:pdf] = render_pdf(img, file_name, user)
     image_hash[:jpg] = render_jpg(img, file_name, user)
-    p image_hash
     image_hash
   end
 
