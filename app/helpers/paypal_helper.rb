@@ -3,9 +3,9 @@ module PaypalHelper
     @api = PayPal::SDK::AdaptivePayments::API.new
     users_preapproval = PaypalPreapproval.create
     @preapproval = @api.build_preapproval({
-      :cancelUrl => "http://localhost:3000/users/#{user.id}?error=payment%20broke",
+      :cancelUrl => "#{base_url}/users/#{user.id}?error=payment%20broke",
       :currencyCode => "USD",
-      :returnUrl => "http://localhost:3000/users/#{user.id}/preapproval/#{users_preapproval.id}",
+      :returnUrl => "#{base_url}/users/#{user.id}/preapproval/#{users_preapproval.id}",
       :memo => "You will only be charged $1.50 per order placed via text",
       :startingDate => Time.now 
     })
@@ -55,12 +55,12 @@ module PaypalHelper
       :preapprovalKey => user.preapproval.key,
       :currencyCode => "USD",
       :feesPayer => "EACHRECEIVER",
-      :returnUrl => 'http://localhost:3000',
-      :cancelUrl => 'http://localhost:3000',
+      :returnUrl => base_url,
+      :cancelUrl => base_url,
       :receiverList => {
         :receiver => [{
           :amount => amount,
-          :email => "nemrowj-facilitator@gmail.com" 
+          :email => ENV['PAYPAL_EMAIL'] 
         }] 
       }
     })
@@ -72,5 +72,10 @@ module PaypalHelper
       p pay_response
       false
     end
+  end
+
+  private
+  def base_url
+    request.protocol + request.host_with_port
   end
 end
