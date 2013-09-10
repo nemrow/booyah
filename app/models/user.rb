@@ -1,8 +1,9 @@
 class User < ActiveRecord::Base
   attr_accessible :cell, :email, :name, :password
 
-  validates :email, :uniqueness => true
-  validates :cell, :uniqueness => true
+  validates :email, :uniqueness => true, :presence => true
+  validates :name, :presence => true
+  validates :cell, :uniqueness => true, :presence => true
 
   has_secure_password
 

@@ -1,11 +1,23 @@
-<h1>Your Address</h1>
-<p>United Stated Only</p>
-<%= form_for @address, :url => user_addresses_path(current_user) do |f| %>
-  <%= f.text_field 'address_line1', :placeholder => 'Address Line 1' %>
-  <%= f.text_field 'address_line2', :placeholder => 'Address Line 2' %>
-  <%= f.text_field 'city', :placeholder => 'City' %>
-  <%= f.text_field 'state', :placeholder => 'State', :maxlength => 2 %>
-  <%= f.text_field 'zip', :placeholder => 'Zip' %>
-  <%= f.hidden_field 'country', :value => 'US' %>
-  <%= f.submit 'Continue to Paypal' %>
-<% end %>
+<div class="row">
+  <div class="large-8 large-centered columns">
+    <div class="row">
+      <div class="large-12 columns">
+        <h1>Your Address</h1>
+        <p>United Stated Only</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-12 columns">
+        <%= form_for @address, :url => user_addresses_path(current_user) do |f| %>
+          <%= f.text_field 'address_line1', :placeholder => 'Address Line 1' %>
+          <%= f.text_field 'address_line2', :placeholder => 'Address Line 2' %>
+          <%= f.text_field 'city', :placeholder => 'City' %>
+          <%= f.text_field 'state', :placeholder => 'State', :maxlength => 2 %>
+          <%= f.text_field 'zip', :placeholder => 'Zip' %>
+          <%= f.hidden_field 'country', :value => 'US' %>
+          <%= f.submit current_user.preapproval ? 'Add Address' : 'Continue to Paypal' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

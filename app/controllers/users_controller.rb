@@ -1,15 +1,16 @@
 class UsersController < ApplicationController
   def new
     @user = User.new
+    @error = params[:error] if params[:error]
   end
 
   def create
     user = User.new(params[:user])
     if user.save
       set_current_user(user)
-      redirect_to new_user_address_path(user)
+      redirect_to new_user_address_path(user, :notice => flash("new user basic success", {:user => user}))
     else
-      redirect_to new_user_path(:errors => 'could not create new user')
+      redirect_to new_user_path(:error => flash("new user basic fail"))
     end
   end
 
@@ -18,7 +19,6 @@ class UsersController < ApplicationController
     @address = @user.address
     @approval_status = check_approval_status(@user)
     @orders = @user.orders
-    order = make_approved_payment(@user, 1.50)
   end
 
   def edit

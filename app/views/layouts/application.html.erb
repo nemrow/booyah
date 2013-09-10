@@ -25,8 +25,9 @@
     <% if current_page?(root_path) %>
       <%= image_tag 'blurred_lines_bg.png', :class => 'blurred_lines_bg' %>
     <% end %>
-    <div class="row">
-    <%= render :partial => 'layouts/header2' %>
+    <div class="row main_row_container">
+    <%= render :partial => 'layouts/header' %>
+    <%= render :partial => 'layouts/notice_and_errors' %>
     <%= yield %>
     </div>
     

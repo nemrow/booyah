@@ -18,3 +18,7 @@ end
 When(/^show page$/) do
   save_and_open_page
 end
+
+Then(/^the page should show '(.*?)'$/) do |value|
+  page.should have_content(value)
+end

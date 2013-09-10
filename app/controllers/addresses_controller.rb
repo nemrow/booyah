@@ -1,12 +1,18 @@
 class AddressesController < ApplicationController
   def new
     @address = Address.new
+    @notice = params[:notice] if params[:notice]
+    @error = params[:error] if params[:error]
   end
 
   def create
     user = User.find(params[:user_id])
     if address = verify_and_create_address(params[:address])
-      redirect_to get_preapproval_url(user)
+      if user.preapproval
+        redirect_to user_path(user)
+      else
+        redirect_to get_preapproval_url(user)
+      end
     else 
       redirect_to new_user_address_path(current_user, :error => 'That address does not exist')
     end

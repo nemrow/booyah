@@ -1,11 +1,21 @@
-<h1>New User</h1>
-<%= form_for @user do |user| %>
-  <%= user.text_field 'email', :placeholder => 'Email' %>
-  <%= user.text_field 'name', :placeholder => 'Name (ex: Jordan Nemrow)' %>
-  <%= user.text_field 'cell', :placeholder => 'Cell Phone (ex: (555) 555-555)', :class => 'cell_formatted' %>
-  <%= user.text_field 'password', :placeholder => 'Password' %>
-  <%= user.submit 'Join!' %>
-<% end %>
+<div class="row">
+  <div class="large-8 large-centered columns">
+    <div class="row">
+      <div class="large-12 columns">
+        <h1>New User</h1>
+      </div>
+    </div>
+    <div class="large-12">
+      <%= form_for @user do |user| %>
+        <%= user.text_field 'email', :placeholder => 'Email' %>
+        <%= user.text_field 'name', :placeholder => 'Name (ex: Jordan Nemrow)' %>
+        <%= user.text_field 'cell', :placeholder => 'Cell Phone (ex: (555) 555-555)', :class => 'cell_formatted' %>
+        <%= user.text_field 'password', :placeholder => 'Password' %>
+        <%= user.submit 'Join!' %>
+      <% end %>
+    </div>
+  </div>
+</div>
 
 <script type="text/javascript">
   $(document).ready(function(){

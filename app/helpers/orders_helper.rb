@@ -1,5 +1,4 @@
 module OrdersHelper
-  # @lob = Lob(api_key: ENV['LOB_KEY'])
   def create_new_order(user, image_hash, amount = 1.50)
     if payment = make_approved_payment(user, amount)
       postcard = order_new_postcard(user, image_hash[:pdf])

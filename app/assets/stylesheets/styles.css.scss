@@ -7,13 +7,17 @@ $font-2: 'Cabin', sans-serif;
 $font-3: 'PT Sans', sans-serif; 
 //////////////////////////////////////////////// Mixins
 
-
 ////////////////////////////////////////////////// Foundation overrides
+.main_row_container{
+  // width: 1030px;
+}
+.top-bar{
+  margin-bottom: 0px;
+}
 .top-bar-section ul li > a{
   padding-top: 4px;
   padding-bottom: 4px;
 }
-
 .top-bar .name{
   margin: 15px 0 0 20px;
 }
@@ -118,15 +122,20 @@ input[type="submit"]:hover{
   color: $dark_pink;
   text-shadow: 1px 1px 2px #fff;
   font-size: 25px;
-  margin: 0 0 15px 40px;
-  max-width: 320px;
+  text-align: center;
+  padding: 0 15px;
+  text-align: left;
+  max-width: 388px;
+  margin: 10px 0 20px 0;
 }
 .sub-tagline{
   color: #fff;
   text-shadow: 1px 1px 2px #000;
   font-size: 16px;
-  margin: 0 0 20px 40px;
-  max-width: 320px;
+  margin: 0px;
+  padding: 0 15px;
+  max-width: 350px;
+  text-align: left;
 }
 .three_steps_small{
   position: absolute;
@@ -181,4 +190,14 @@ input[type="submit"]:hover{
   p{
     text-align: center;
   }
+}
+
+//////////////////////////////////////////////////////// Flash Messages
+.notice_message{
+  color: red;
+  text-align: center;
+}
+.error_message{
+  color: green;
+  text-align: center;
 }

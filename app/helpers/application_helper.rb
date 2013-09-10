@@ -4,6 +4,7 @@ module ApplicationHelper
   include OrdersHelper
   include TextingHelper
   include PaypalHelper
+  include MessageHelper
   
   def current_user
     begin

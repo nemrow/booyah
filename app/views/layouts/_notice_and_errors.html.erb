@@ -1,0 +1,14 @@
+<% if @error || @notice %>
+  <div class="row">
+    <% if @error %>
+      <div class="large-6 large-centered columns">
+        <p class="notice_message"><%= @error %></p>
+      </div>
+    <% end %>
+    <% if @notice %>
+      <div class="large-6 large-centered columns">
+        <p class="error_message"><%= @notice %></p>
+      </div>
+    <% end %>
+  </div>
+<% end %>

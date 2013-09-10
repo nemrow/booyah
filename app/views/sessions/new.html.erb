@@ -1,6 +1,18 @@
-<h1>Sign In</h1>
-<%= form_for @user, :url => sessions_path do |user| %>
-  <%= user.text_field 'email', :placeholder => 'Email' %>
-  <%= user.text_field 'password', :placeholder => 'Password' %>
-  <%= user.submit 'Sign In' %>
-<% end %>
+<div class="row">
+  <div class="small-8 small-centered columns">
+    <div class="row">
+      <div class="small-12 columns">
+        <h1>Sign In</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-12 columns">
+        <%= form_for @user, :url => sessions_path do |user| %>
+          <%= user.text_field 'email', :placeholder => 'Email' %>
+          <%= user.text_field 'password', :placeholder => 'Password' %>
+          <%= user.submit 'Sign In' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

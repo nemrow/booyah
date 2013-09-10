@@ -56,8 +56,12 @@ module TextingHelper
       "&message=#{URI::encode(message)}" +
       "&format=json"
     )
-    response = Net::HTTP.start(url.host, use_ssl: true, ssl_version: 'SSLv3', verify_mode: OpenSSL::SSL::VERIFY_NONE) do |http|
-      http.get url.request_uri
+    if !Rails.env.test?
+      response = Net::HTTP.start(url.host, use_ssl: true, ssl_version: 'SSLv3', verify_mode: OpenSSL::SSL::VERIFY_NONE) do |http|
+        http.get url.request_uri
+      end
+    else
+      p "message '#{message}' has been sent to #{to}"
     end
   end
 
