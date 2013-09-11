@@ -66,12 +66,12 @@ input:-moz-placeholder { color:$grey-pink; }
 .row{
   position: relative;
 }
-input[type="text"]{
+input[type="text"], input[type="password"]{
   background-color: $light_pink;
   border: 1px solid $dark_pink;
   outline: none;
 }
-input[type="text"]:focus{
+input[type="text"], input[type="password"]:focus{
   border: 3px solid $dark_pink;
   background-color: $light_pink;
 }
@@ -100,7 +100,10 @@ input[type="submit"]:hover{
   background: $dark_pink;
 }
 /////////////////////////////////////////////////// Header
-
+.header-logo-mobile-opt{
+  width: 130px;
+  margin-top: 27px;
+}
 //////////////////////////////////////////////////// Homepage
 .family_beach_run_img{
   position: absolute;
@@ -108,6 +111,10 @@ input[type="submit"]:hover{
   z-index: -1;
   left: 0px;
   top: 0px;
+}
+.home-tagline-container{
+  max-width: 500px;
+  padding: 0 15px;
 }
 .home-page-top-block{
   min-width: 1030px;
@@ -125,7 +132,6 @@ input[type="submit"]:hover{
   text-align: center;
   padding: 0 15px;
   text-align: left;
-  max-width: 388px;
   margin: 10px 0 20px 0;
 }
 .sub-tagline{
@@ -134,13 +140,25 @@ input[type="submit"]:hover{
   font-size: 16px;
   margin: 0px;
   padding: 0 15px;
-  max-width: 350px;
   text-align: left;
 }
-.three_steps_small{
+.home-small-steps-outer-container{
   position: absolute;
+  width: 100%;
+  height: 0px;
+  top: 0px;
+  left: 0px;
+}
+.home-small-steps-inner-container{
+  position: relative;
+  max-width: 500px;
   top: 390px;
-  left: 60px;
+  text-align: center;
+}
+.three_steps_small{
+  position: relative;
+  width: 288px;
+  margin: 0 auto;
 }
 .home-page-block-2{
   position: absolute;
@@ -189,6 +207,38 @@ input[type="submit"]:hover{
   }
   p{
     text-align: center;
+  }
+}
+.profile-squares{
+}
+//////////////////////////////////////////////////////// Activate Success Page
+.steps-shell{
+  text-align: center;
+  img{
+    padding-bottom: 20px;
+  }
+  img.steps_arrow{
+    padding: 45px 0;
+  }
+  p{
+    font-size: 12px;
+    span{
+      font-weight: bold;
+      color: $dark_green;
+      font-size: 14px;
+    }
+  }
+}
+.account-activated-text{
+  text-align: center;
+  margin-bottom: 40px;
+  h1{
+    font-size: 25px;
+    color: $dark_pink;
+  }
+  h3{
+    font-size: 16px;
+    color: $dark_green;
   }
 }
 
