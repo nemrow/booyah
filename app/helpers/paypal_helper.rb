@@ -24,7 +24,11 @@ module PaypalHelper
 
   def get_preapproval_url(user)
     if preapproval_key = get_preapproval_key(user)
-      "https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_ap-preapproval&preapprovalkey=#{preapproval_key}"
+      if ENV['PAYPAL_MODE'] == 'live'
+        "https://www.paypal.com/cgi-bin/webscr?cmd=_ap-preapproval&preapprovalkey=#{preapproval_key}"        
+      else
+        "https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_ap-preapproval&preapprovalkey=#{preapproval_key}"
+      end
     else
       p preapproval_key
       false
