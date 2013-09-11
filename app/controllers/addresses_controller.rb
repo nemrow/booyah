@@ -19,6 +19,7 @@ class AddressesController < ApplicationController
   end
 
   def edit
+    @error = params[:error] if params[:error]
     @user = User.find(params[:user_id])
     @address = @user.address
   end

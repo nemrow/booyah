@@ -17,4 +17,5 @@ Booyah::Application.routes.draw do
   get 'signup', :to => 'users#new'
   get 'signin', :to => 'sessions#new'
   get 'signout', :to => 'sessions#destroy'
+  get 'contact', :to => 'welcome#contact'
 end

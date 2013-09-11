@@ -22,6 +22,8 @@ class UsersController < ApplicationController
   end
 
   def edit
+    p params
+    @error = params[:error] if params[:error]
     @user = User.find(params[:id])
   end
 
@@ -30,7 +32,7 @@ class UsersController < ApplicationController
     if user.update_attributes(params[:user])
       redirect_to user_path(user)
     else
-      redirect_to edit_user_path(:errors => 'could not update user')
+      redirect_to edit_user_path(:error => 'could not update user')
     end
   end
 end

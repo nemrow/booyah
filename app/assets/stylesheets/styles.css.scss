@@ -25,6 +25,7 @@ $font-3: 'PT Sans', sans-serif;
 .top-bar-section .right li a{
   color: #000;
   text-shadow: none;
+  text-align: center;
 }
 
 .top-bar-section-homepage .right li a{
@@ -241,7 +242,26 @@ input[type="submit"]:hover{
     color: $dark_green;
   }
 }
-
+//////////////////////////////////////////////////////// Contact Us
+.contact-us-shell{
+  text-align: center;
+  img{
+    width: 200px;
+  }
+  h1{
+    padding-bottom: 20px;
+  }
+}
+.contact-us-content{
+  margin-top: 50px;
+  b{
+    font-size: 20px;
+    color: $dark_green;
+  }
+  i{
+    font-size: 14px;
+  }
+}
 //////////////////////////////////////////////////////// Flash Messages
 .notice_message{
   color: red;
