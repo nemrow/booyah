@@ -7,7 +7,9 @@ module PaypalHelper
       :currencyCode => "USD",
       :returnUrl => "#{ENV['BASE_URL']}/users/#{user.id}/preapproval/#{users_preapproval.id}",
       :memo => "You will only be charged $1.50 per order placed via text",
-      :startingDate => Time.now 
+      :startingDate => Time.now,
+      :endingDate => Time.now + 364.days,
+      :maxTotalAmountOfAllPayments => 500 
     })
     @preapproval_response = @api.preapproval(@preapproval)
     if @preapproval_response.success?
