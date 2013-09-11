@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe PicturesController do
   
-  context "receiving incoming MMS from an existing user" do
+  context "receiving incoming MMS from an existing user with accurate data" do
 
     before do
       @user = FactoryGirl.create(:user)

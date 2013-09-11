@@ -1,5 +1,4 @@
 When(/^I fill in the following fields for '(.*)':$/) do |model, table|
-  p model
   table.hashes.each do |row|
     row.each do |key, val|
       fill_in "#{model}[#{key}]", :with => val

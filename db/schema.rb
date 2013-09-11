@@ -35,8 +35,9 @@ ActiveRecord::Schema.define(:version => 20130909155054) do
     t.string   "jpg_source"
     t.float    "lob_cost"
     t.float    "user_cost"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "lob_object_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "paypal_payments", :force => true do |t|

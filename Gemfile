@@ -19,11 +19,13 @@ end
 
 group :development, :test do
   gem 'rspec-rails'
+  gem 'rspec-mocks'
   gem 'shoulda-matchers'
   gem 'cucumber-rails', :require => false
   gem 'database_cleaner'
   gem 'launchy'
   gem "factory_girl_rails", "~> 4.0"
+  gem 'fakeweb'
 end
 
 gem 'jquery-rails'

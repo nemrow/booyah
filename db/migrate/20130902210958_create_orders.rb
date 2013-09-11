@@ -8,6 +8,7 @@ class CreateOrders < ActiveRecord::Migration
       t.string :jpg_source
       t.float :lob_cost
       t.float :user_cost
+      t.string :lob_object_id
 
       t.timestamps
     end

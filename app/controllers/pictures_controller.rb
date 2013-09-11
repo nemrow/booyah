@@ -8,7 +8,7 @@ class PicturesController < ApplicationController
       if user.account_active?
         if params['images'][0]['image']
           image_hash = create_picture(params['images'][0]['image'], user)
-          order = create_new_order(user, image_hash)
+          order = create_new_print_order(user, image_hash)
           if order
             send_order_success_sms(order)
           else
