@@ -1,5 +1,5 @@
 <h1>Update Address</h1>
-<p>United Stated Only</p>
+<p>United States Only</p>
 <%= form_for @address, :url => user_address_path(current_user, @address) do |f| %>
   <%= f.text_field 'address_line1', :placeholder => 'Address Line 1' %>
   <%= f.text_field 'address_line2', :placeholder => 'Address Line 2' %>
