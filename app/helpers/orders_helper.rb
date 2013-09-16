@@ -32,7 +32,7 @@ module OrdersHelper
   def add_print_order_to_db(user, print, image_hash, user_cost, payment)
     order = Order.create( :user_id => user.id,
                           :to_id => print['to']['id'],
-                          :order_id => print['id'],
+                          :lob_order_id => print['id'],
                           :lob_cost => print['price'],
                           :lob_object_id => print['objects'][0]['id'],
                           :user_cost => user_cost,
@@ -92,7 +92,7 @@ module OrdersHelper
   def add_postcard_order_to_db(user, postcard, image_hash, user_cost, payment)
     order = Order.create( :user_id => user.id,
                           :to_id => postcard['to'],
-                          :order_id => postcard['id'],
+                          :lob_order_id => postcard['id'],
                           :lob_cost => postcard['price'],
                           :user_cost => user_cost,
                           :pdf_source => image_hash[:pdf],

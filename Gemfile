@@ -26,6 +26,7 @@ group :development, :test do
   gem 'launchy'
   gem "factory_girl_rails", "~> 4.0"
   gem 'fakeweb'
+  gem 'database_cleaner'
 end
 
 gem 'jquery-rails'

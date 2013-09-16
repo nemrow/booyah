@@ -4,6 +4,6 @@ FactoryGirl.define do
   factory :order do
     to_id "MyString"
     user_id 1
-    order_id "MyString"
+    lob_order_id "MyString"
   end
 end

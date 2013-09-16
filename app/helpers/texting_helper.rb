@@ -14,14 +14,14 @@ module TextingHelper
   def send_failed_order(user)
     message = 
       "Hello #{user.first_name}, " +
-      "We are sorry, something went wrong and we could not complete your order! "
+      "We are sorry, something went wrong and we could not complete your order!"
     send_sms(user.cell, message)
   end
 
   def send_account_incomplete_message(user)
     message = 
       "Hello #{user.first_name}, " +
-      "Your account is not active. Please go to booyahbooyah.com to finish activating it! "
+      "Your account is not active. Please go to booyahbooyah.com to finish activating it!"
     send_sms(user.cell, message)
   end
 
@@ -35,7 +35,7 @@ module TextingHelper
   def send_no_image_response(user)
     message = 
       "Hello #{user.first_name}, " +
-      "It appears there was no image attached to that message! "
+      "It appears there was no image attached to that message!"
     send_sms(user.cell, message)
   end
 
@@ -61,7 +61,7 @@ module TextingHelper
         http.get url.request_uri
       end
     else
-      p "message '#{message}' has been sent to #{to}"
+      raise message
     end
   end
 

@@ -1,9 +1,4 @@
 <%= image_tag 'family_beach_run.jpg', :class => 'family_beach_run_img' %>
-<div class='home-small-steps-outer-container'>
-  <div class='home-small-steps-inner-container'>
-    <%= image_tag 'three_steps_small.png', :class => 'three_steps_small' %>
-  </div>
-</div>
 <div class="row">
   <div class="home-tagline-container">
     <div class="row">
@@ -15,25 +10,36 @@
   </div>
 </div>
 <div class="home-page-block-2">
-  <%= render :partial => 'shared/three_steps' %>
-  <div class="row"> 
-    <div class="large-6 columns">
-      <%= form_for @user, :url => users_path, :html => {:class => 'home-page-new-user-signup'} do |user| %>
-        <%= user.text_field 'email', :placeholder => 'Email' %>
-        <%= user.text_field 'name', :placeholder => 'Name (ex: Jordan Nemrow)' %>
-        <%= user.text_field 'cell', :placeholder => 'Cell Phone (ex: (555) 555-555)', :class => 'cell_formatted' %>
-        <%= user.password_field 'password', :placeholder => 'Password' %>
-        <div class="button-border"><%= user.submit 'Start Printing!' %></div>
-      <% end %>
-    </div> 
-    <div class="large-6 columns">
-      <div class="picture-description-shell">
-        <p>$1.50</p>
-        <p>per print</p>
-        <p>prints are 4" X 6" glossy</p>
+  <div class="row">
+    <div class="large-7 columns">
+      <div class="row">
+        <%= render :partial => 'shared/three_steps_small' %>
+      </div>
+      <div class="row picture-description-shell">
+        <div class="picture-desc-separator"></div>
+        <div class="small-6 columns">
+          <p class="desc-left">$1.50 <span>per print</span></p>
+        </div>
+        <div class="small-6 columns">
+          <p class="desc-right">4" X 6" glossy print</p>
+        </div>
+      </div>
+    </div>
+    <div class="large-5 columns">
+      <div class="row">
+        <div class="large-12 columns">
+          <%= form_for @user, :url => users_path, :html => {:class => 'home-page-new-user-signup'} do |user| %>
+            <%= user.text_field 'email', :placeholder => 'Email' %>
+            <%= user.text_field 'name', :placeholder => 'Name (ex: Jordan Nemrow)' %>
+            <%= user.text_field 'cell', :placeholder => 'Cell Phone (ex: (555) 555-555)', :class => 'cell_formatted' %>
+            <%= user.password_field 'password', :placeholder => 'Password' %>
+            <div class="button-border"><%= user.submit 'Start Printing!' %></div>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
+  <%= render :partial => 'layouts/footer' %>
 </div>
 
 <script type="text/javascript">

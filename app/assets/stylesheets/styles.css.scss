@@ -9,7 +9,7 @@ $font-3: 'PT Sans', sans-serif;
 
 ////////////////////////////////////////////////// Foundation overrides
 .main_row_container{
-  // width: 1030px;
+  // width: 800px;
 }
 .top-bar{
   margin-bottom: 0px;
@@ -25,7 +25,7 @@ $font-3: 'PT Sans', sans-serif;
 .top-bar-section .right li a{
   color: #000;
   text-shadow: none;
-  text-align: center;
+  text-align: left;
 }
 
 .top-bar-section-homepage .right li a{
@@ -66,19 +66,20 @@ input:-moz-placeholder { color:$grey-pink; }
 }
 .row{
   position: relative;
+  max-width: 800px;
 }
 input[type="text"], input[type="password"]{
   background-color: $light_pink;
   border: 1px solid $dark_pink;
   outline: none;
 }
-input[type="text"], input[type="password"]:focus{
+input[type="text"]:focus, input[type="password"]:focus{
   border: 3px solid $dark_pink;
   background-color: $light_pink;
 }
 .button-border{
   background-color: $dark_pink;
-  padding: 1px;
+  padding: 2px;
   float: left;
 }
 input[type="submit"]{
@@ -108,17 +109,17 @@ input[type="submit"]:hover{
 //////////////////////////////////////////////////// Homepage
 .family_beach_run_img{
   position: absolute;
-  min-width: 1030px;
+  min-width: 800px;
   z-index: -1;
   left: 0px;
   top: 0px;
 }
 .home-tagline-container{
-  max-width: 500px;
+  max-width: 390px;
   padding: 0 15px;
 }
 .home-page-top-block{
-  min-width: 1030px;
+  min-width: 800px;
   position: relative;
   height: 430px;
 }
@@ -133,7 +134,7 @@ input[type="submit"]:hover{
   text-align: center;
   padding: 0 15px;
   text-align: left;
-  margin: 10px 0 20px 0;
+  margin: 10px 0 55px 0;
 }
 .sub-tagline{
   color: #fff;
@@ -163,41 +164,44 @@ input[type="submit"]:hover{
 }
 .home-page-block-2{
   position: absolute;
-  top: 585px;
+  top: 456px;
   width: 100%;
 }
 .picture-description-shell{
-  width: 90%;
-  margin-left: 5%;
-  height: 200px;
-  border: 1px solid $dark_green;
+  padding: 0 4%;
   text-align: center;
-  margin-bottom: 20px;
-    p{
-      margin: 0px;
-      padding: 0px;
-    }
-    p:nth-child(1){
-      color: $dark_pink;
-      font-size: 55px;
-      font-family: $font-1;
-      line-height: 45px;
-      margin-top: 40px
-    }
-    p:nth-child(2){
-      font-size: 30px;
+  p.desc-left{
+    font-size: 37px;
+    color: $dark_pink;
+    margin: 0px;
+    span{
+      font-size: 18px;
       color: $dark_green;
-      font-family: $font-1;
+      position: relative;
+      top: -8px;
     }
-    p:nth-child(3){
-      font-size: 20px;
-      color: #000;
-    }
+  }
+  p.desc-right{
+    font-size: 16px;
+    position: relative;
+    top: 15px;
+  }
+}
+.picture-desc-separator{
+  position: absolute;
+  width: 1px;
+  height: 33px;
+  background-color: #b33864;
+  left: 52%;
+  top: 11px;
 }
 .home-page-new-user-signup{
   width: 90%;
   margin-left: 5%;
-  padding-bottom: 40px;
+  padding-bottom: 15px;
+  input[type='text'], input[type='password']{
+    height: 40px;
+  }
 }
 
 /////////////////////////////////////////////////////// Profile
@@ -242,6 +246,35 @@ input[type="submit"]:hover{
     color: $dark_green;
   }
 }
+//////////////////////////////////////////////////////// Footer
+.home-footer{
+  // position: absolute !important;
+  // top: 400px !important;
+}
+.footer{
+  hr{
+    height: 1px;
+    background-color: $dark_pink;
+    border: none;
+    margin-bottom: 0px;
+  }
+  ul{
+    text-align: center;
+    list-style: none;
+    li{
+      display: inline;
+      margin:0 10px;
+      font-size: 12px;
+      color: $dark_green;
+      a{
+        color: $dark_green;
+      }
+      a:visited{
+        color: $dark_green;
+      }
+    }
+  }
+}
 //////////////////////////////////////////////////////// Contact Us
 .contact-us-shell{
   text-align: center;
@@ -263,6 +296,26 @@ input[type="submit"]:hover{
   }
 }
 //////////////////////////////////////////////////////// Flash Messages
+.error-div{
+  background-color: red;
+  text-align: center;
+  border-radius: 10px;
+  color: #fff;
+  p{
+    font-size: 14px;
+    font-weight: bold;
+    margin: 0px;
+  }
+  h4{
+    color: #fff;
+  }
+  ul{
+    list-style:  none;
+    li{
+      font-size: 10px;
+    }
+  }
+}
 .notice_message{
   color: red;
   text-align: center;

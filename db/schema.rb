@@ -11,14 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130909155054) do
+ActiveRecord::Schema.define(:version => 20130916180731) do
 
   create_table "addresses", :force => true do |t|
     t.string   "address_line1"
     t.string   "address_line2"
     t.string   "city"
     t.string   "state"
-    t.integer  "zip"
+    t.string   "zip"
     t.string   "country"
     t.integer  "user_id"
     t.string   "lob_address_id"
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(:version => 20130909155054) do
   create_table "orders", :force => true do |t|
     t.string   "to_id"
     t.integer  "user_id"
-    t.string   "order_id"
+    t.string   "lob_order_id"
     t.string   "pdf_source"
     t.string   "jpg_source"
     t.float    "lob_cost"

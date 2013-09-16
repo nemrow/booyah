@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   def new
     @user = User.new
-    @error = params[:error] if params[:error]
+    @error = format_errors(params[:error]) if params[:error]
   end
 
   def create
@@ -10,7 +10,7 @@ class UsersController < ApplicationController
       set_current_user(user)
       redirect_to new_user_address_path(user, :notice => flash("new user basic success", {:user => user}))
     else
-      redirect_to new_user_path(:error => flash("new user basic fail"))
+      redirect_to new_user_path(:error => user.errors.messages )
     end
   end
 
@@ -22,7 +22,6 @@ class UsersController < ApplicationController
   end
 
   def edit
-    p params
     @error = params[:error] if params[:error]
     @user = User.find(params[:id])
   end

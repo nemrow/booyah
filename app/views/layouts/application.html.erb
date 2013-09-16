@@ -37,6 +37,6 @@
     <%= render :partial => 'layouts/notice_and_errors' %>
     <%= yield %>
     </div>
-    
+    <%= render :partial => 'layouts/footer' unless current_page?(root_path) %>
   </body>
 </html>

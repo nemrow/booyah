@@ -1,4 +1,3 @@
-include OrdersHelper
 
 class PicturesController < ApplicationController
   skip_before_filter  :verify_authenticity_token
@@ -6,7 +5,7 @@ class PicturesController < ApplicationController
   def create
     if user = User.find_by_cell(params['msisdn'])
       if user.account_active?
-        if params['images'][0]['image']
+        if params['images'] && params['images'][0]['image']
           image_hash = create_picture(params['images'][0]['image'], user)
           order = create_new_print_order(user, image_hash)
           if order
