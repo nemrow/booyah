@@ -18,6 +18,13 @@ module TextingHelper
     send_sms(user.cell, message)
   end
 
+  def send_paypal_failed_message(user)
+    message = 
+      "Hello #{user.first_name}, " +
+      "We are sorry, paypal will not allow us to complete your order. Please check your paypal account and contact us!"
+    send_sms(user.cell, message)
+  end
+
   def send_account_incomplete_message(user)
     message = 
       "Hello #{user.first_name}, " +

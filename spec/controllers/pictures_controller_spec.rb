@@ -11,15 +11,7 @@ describe PicturesController do
       @user.addresses << @address
       @user.paypal_preapprovals << @paypal_preapproval
       @paypal_preapproval.activate
-      @order = Order.create(
-        :to_id => "adr_39dd19dac0a5876a", 
-        :lob_order_id => "job_1090046c4d77d278", 
-        :pdf_source => "https://s3.amazonaws.com/booyahbooyah/user_52_13790", 
-        :jpg_source => "https://s3.amazonaws.com/booyahbooyah/user_52_13790", 
-        :lob_cost => 1.21, 
-        :user_cost => 1.5, 
-        :lob_object_id => "obj_8f939617219ad8e1"
-      )
+      @order = FactoryGirl.create(:order)
       @user.orders << @order
       PicturesController.any_instance.stub(:create_picture).and_return({:pdf=>"https://s3.amazonaws.com/booyahbooyah/user_52_1379099369.pdf", :jpg=>"https://s3.amazonaws.com/booyahbooyah/user_52_1379099369.jpg"})
       PicturesController.any_instance.stub(:create_new_print_order).and_return(@order)
