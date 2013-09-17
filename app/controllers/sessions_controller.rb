@@ -5,15 +5,13 @@ class SessionsController < ApplicationController
   end
 
   def create
-    if user = User.find_by_email(params[:user][:email])
-      if user.authenticate(params[:user][:password])
-        set_current_user(user)
-        redirect_to user_path(user)
-      else
-        redirect_to signin_path(:error => "Incorrect Password")
-      end
+    user = User.find_by_email(params[:user][:email])
+    return redirect_to signin_path(:error => "No user with that email address") if user == nil
+    if user.authenticate(params[:user][:password])
+      set_current_user(user)
+      redirect_to user_path(user)
     else
-      redirect_to signin_path(:error => "No user with that email address")      
+      redirect_to signin_path(:error => "Incorrect Password")
     end
   end
 

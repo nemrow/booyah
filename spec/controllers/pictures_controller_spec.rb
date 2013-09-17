@@ -1,10 +1,11 @@
 require 'spec_helper'
 
+
 describe PicturesController do
   
-  context "receiving incoming MMS from an existing user with accurate data" do
+  describe "receiving incoming MMS from existing user" do
 
-    before do
+    before :each do
       @user = FactoryGirl.create(:user)
       @address = FactoryGirl.create(:address)
       @paypal_preapproval = FactoryGirl.create(:paypal_preapproval)
@@ -15,45 +16,51 @@ describe PicturesController do
       @user.orders << @order
       PicturesController.any_instance.stub(:create_picture).and_return({:pdf=>"https://s3.amazonaws.com/booyahbooyah/user_52_1379099369.pdf", :jpg=>"https://s3.amazonaws.com/booyahbooyah/user_52_1379099369.jpg"})
       PicturesController.any_instance.stub(:create_new_print_order).and_return(@order)
+      @valid_order_json = JSON.parse( 
+        '{
+          "event": "message-in",
+          "campaign_id": "49136",
+          "msisdn": "17078496085",
+          "carrier": "Verizon Wireless",
+          "message": "Booyah",
+          "subject": "",
+          "images": [
+            {
+              "image": "http://d2c.bandcon.mogreet.com/mo-mms/images/710133_4856324.jpeg"
+            }
+          ]
+        }'
+      )
+      @no_image_order_json = JSON.parse( 
+        '{
+          "event": "message-in",
+          "campaign_id": "49136",
+          "msisdn": "17078496085",
+          "carrier": "Verizon Wireless",
+          "message": "Booyah",
+          "subject": ""
+        }'
+      )
     end
 
-    it "should create an order when accurate data is passed get the data" do
-      expect{
-        json = JSON.parse(' {
-                              "event": "message-in",
-                              "campaign_id": "49136",
-                              "msisdn": "17078496085",
-                              "carrier": "Verizon Wireless",
-                              "message": "Booyah",
-                              "subject": "",
-                              "images": [
-                                {
-                                  "image": "http://d2c.bandcon.mogreet.com/mo-mms/images/710133_4856324.jpeg"
-                                }
-                              ]
-                            }
-                          ')
-        post :create, json
-      }.to raise_error("Hello Jordan, your image has been received and you will receive it shortly in the mail! Order total: $1.5.")
-    end 
+    context "with accurate data" do
+      it "should create an order and send confirmation message" do
+        expect{
+          post :create, @valid_order_json
+        }.to raise_error("Hello Jordan, your image has been received and you will receive it shortly in the mail! Order total: $1.5.")
+      end 
+    end
 
-    it "should reply to user letting them know no image was attatched" do
-      expect{
-        json = JSON.parse(' {
-                              "event": "message-in",
-                              "campaign_id": "49136",
-                              "msisdn": "17078496085",
-                              "carrier": "Verizon Wireless",
-                              "message": "Booyah",
-                              "subject": ""
-                            }
-                          ')
-        post :create, json
-      }.to raise_error('Hello Jordan, It appears there was no image attached to that message!')
-    end 
+    context "without image" do
+      it "should reply to user letting them know no image was attatched" do
+        expect{
+          post :create, @no_image_order_json
+        }.to raise_error('Hello Jordan, It appears there was no image attached to that message!')
+      end 
+    end
   end
 
-  context "receive incoming MMS from an unknown number" do
+  describe "Receiving MMS from an unknown number" do
     it "should send back a message stating they are not a member yet" do
       expect{
         json = JSON.parse(' {
