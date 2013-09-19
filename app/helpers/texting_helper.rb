@@ -18,6 +18,14 @@ module TextingHelper
     send_sms(user.cell, message)
   end
 
+  def send_order_success_with_credits_sms(order)
+    message = 
+      "Hello #{order.user.first_name}, " +
+      "your image has been received and you will receive it shortly in the mail! " +
+      "You used one credit."
+    send_sms(order.user.cell, message)
+  end
+
   def send_paypal_failed_message(user)
     message = 
       "Hello #{user.first_name}, " +

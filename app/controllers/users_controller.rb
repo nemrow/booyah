@@ -8,6 +8,7 @@ class UsersController < ApplicationController
     user = User.new(params[:user])
     if user.save
       set_current_user(user)
+      user.make_credit_transaction(1, "initial credit")
       redirect_to new_user_address_path(user, :notice => flash("new user basic success", {:user => user}))
     else
       redirect_to new_user_path(:error => user.errors.messages )

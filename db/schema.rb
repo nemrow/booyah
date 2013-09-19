@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130916180731) do
+ActiveRecord::Schema.define(:version => 20130917151609) do
 
   create_table "addresses", :force => true do |t|
     t.string   "address_line1"
@@ -25,6 +25,14 @@ ActiveRecord::Schema.define(:version => 20130916180731) do
     t.boolean  "primary"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
+  end
+
+  create_table "credits", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "amount"
+    t.string   "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "orders", :force => true do |t|
@@ -61,8 +69,9 @@ ActiveRecord::Schema.define(:version => 20130916180731) do
     t.string   "email"
     t.string   "cell"
     t.string   "password_digest"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
+    t.string   "role",            :default => "user"
   end
 
 end

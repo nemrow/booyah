@@ -1,6 +1,6 @@
 @user = User.create( :name => 'Jordan Nemrow',
                     :email => 'nemrowj@gmail.com',
-                    :cell => '17078496085',
+                    :cell => '(707) 849-6085',
                     :password => 'password'
                   )
 @address = Address.create( :address_line1 => '22 Weatherby ct.',

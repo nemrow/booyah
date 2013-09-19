@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
   has_many :addresses
   has_many :orders
   has_many :paypal_preapprovals
+  has_many :credits
 
   before_create :format_cell
 
@@ -35,6 +36,18 @@ class User < ActiveRecord::Base
     elsif name.split(' ').count > 2
       errors.add(:name, "Only first and last name are needed")
     end
+  end
+
+  def make_credit_transaction(amount, description)
+    credit = Credit.create(
+      :amount => amount,
+      :description => description
+    )
+    credits << credit
+  end
+
+  def available_credits
+    credits.sum('amount')
   end
 
   def format_cell

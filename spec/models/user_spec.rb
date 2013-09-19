@@ -56,4 +56,5 @@ describe User do
   it { should have_many(:addresses) }
   it { should have_many(:orders) }
   it { should have_many(:paypal_preapprovals) }
+  it { should have_many(:credits) }
 end

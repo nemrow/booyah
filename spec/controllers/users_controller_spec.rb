@@ -10,6 +10,17 @@ describe UsersController do
       }.to change(User, :count).by(1)
     end
 
+    it "should give add a Credit to the database" do
+      expect{
+        post :create, :user => FactoryGirl.attributes_for(:user)
+      }.to change(Credit, :count).by(1)
+    end
+
+    it "should assign that credit to the user" do
+        post :create, :user => FactoryGirl.attributes_for(:user)
+        expect(User.last.available_credits).to eq(1)
+    end
+
     it "should not create a new user without last name" do
       expect{
         post :create, :user => FactoryGirl.attributes_for(:user, :name => 'Jordan')

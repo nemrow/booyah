@@ -2,16 +2,16 @@ module OrdersHelper
   @@lob = Lob(api_key: ENV['LOB_KEY'])
 
   def create_new_print_order(user, image_hash, amount = 1.50)
-    if payment = make_approved_payment(user, amount)
-      if print = order_new_print(user, image_hash[:pdf])
-        add_print_order_to_db(user, print, image_hash, amount, payment)
-      else
-        p "error trying to order print: #{print}"
-        false
-      end
+    if user.available_credits > 0
+      user.make_credit_transaction(-1, "order")
     else
-      p "error. payment did not go through"
-      p payment
+      payment = make_approved_payment(user, amount)
+    end
+    return false if payment == false
+    if print = order_new_print(user, image_hash[:pdf])
+      add_print_order_to_db(user, print, image_hash, amount, payment)
+    else
+      p "trouble sending order to Lob"
       false
     end
   end

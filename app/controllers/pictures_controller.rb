@@ -12,10 +12,12 @@ class PicturesController < ApplicationController
     rescue
       return send_failed_order(user)
     end
-    if order = create_new_print_order(user, image_hash)
-      send_order_success_sms(order)
+    credits = user.available_credits
+    order = create_new_print_order(user, image_hash) 
+    if credits < 1
+      order ? send_order_success_sms(order) : send_paypal_failed_message(user)
     else
-      send_paypal_failed_message(user)
+      order ? send_order_success_with_credits_sms(order) : send_failed_order(user)      
     end
     render :nothing => true
   end

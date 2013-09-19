@@ -8,6 +8,7 @@ gem 'lob'
 gem 'bcrypt-ruby'
 gem 'aws-sdk', '~> 1.0'
 gem 'paypal-sdk-adaptivepayments'
+gem "rest-client", "~> 1.6.7"
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

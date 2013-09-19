@@ -192,6 +192,7 @@ DEPENDENCIES
   paypal-sdk-adaptivepayments
   pg
   rails (= 3.2.13)
+  rest-client (~> 1.6.7)
   rmagick (= 2.13.2)
   rspec-mocks
   rspec-rails
