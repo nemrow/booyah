@@ -1,11 +1,15 @@
 <h1>Update Address</h1>
 <p>United States Only</p>
 <%= form_for @address, :url => user_address_path(current_user, @address) do |f| %>
+  <%= f.text_field 'name', :placeholder => 'Name' %>
   <%= f.text_field 'address_line1', :placeholder => 'Address Line 1' %>
   <%= f.text_field 'address_line2', :placeholder => 'Address Line 2' %>
   <%= f.text_field 'city', :placeholder => 'City' %>
   <%= f.text_field 'state', :placeholder => 'State', :maxlength => 2 %>
   <%= f.text_field 'zip', :placeholder => 'Zip' %>
+  <%= f.text_field 'keyword', :placeholder => 'Keyword (ex: grandma)' %>
+  <label for="default-checkbox">Make this address your default</label>
+  <%= f.check_box 'default', :id => 'default-checkbox' %><br>
   <%= f.hidden_field 'country', :value => 'US' %>
   <%= f.submit 'Update Address' %>
 <% end %>

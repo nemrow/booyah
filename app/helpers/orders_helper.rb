@@ -46,22 +46,22 @@ module OrdersHelper
 
   def create_new_address(address_params)
     new_address = Address.new(address_params)
-    address_params.merge!(  :name => current_user.name,
-                            :email => current_user.email,
-                            :phone => current_user.cell
-                          )
+    current_user.addresses << new_address
+    address_params.merge!(  
+      :email => current_user.email,
+      :phone => current_user.cell
+    )
     new_lob_address = @@lob.addresses.create(address_params)
     new_address.lob_address_id = new_lob_address['id']
     new_address.save
-    current_user.addresses << new_address
     new_lob_address
   end
 
   def update_address(address_params, address)
-    address_params.merge!(  :name => current_user.name,
-                            :email => current_user.email,
-                            :phone => current_user.cell
-                          )
+    address_params.merge!(  
+      :email => current_user.email,
+      :phone => current_user.cell
+    )
     new_lob_address = @@lob.addresses.create(address_params)
     address_params.merge!(:lob_address_id => new_lob_address['id'])
     address.update_lob_friendly_attributes(address_params)
@@ -70,7 +70,7 @@ module OrdersHelper
 
   def verify_and_create_address(address_params)
     begin
-      @@lob.addresses.verify(address_params.dup)
+      verify_address_via_lob(address_params.except(:keyword, :default, :name).dup)
       create_new_address(address_params)
     rescue Exception => e
       p e
@@ -78,9 +78,13 @@ module OrdersHelper
     end
   end
 
+  def verify_address_via_lob(address_params)
+    @@lob.addresses.verify(address_params.dup)
+  end
+
   def verify_and_update_address(address, address_params)
     begin
-      @@lob.addresses.verify(address_params.dup)
+      verify_address_via_lob(address_params.except(:keyword, :default, :name).dup)
       update_address(address_params, address)
     rescue
       false

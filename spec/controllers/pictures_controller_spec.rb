@@ -7,7 +7,7 @@ describe PicturesController do
 
     before :each do
       @user = FactoryGirl.create(:user)
-      @address = FactoryGirl.create(:address)
+      @address = FactoryGirl.create(:completed_address)
       @paypal_preapproval = FactoryGirl.create(:paypal_preapproval)
       @user.addresses << @address
       @user.paypal_preapprovals << @paypal_preapproval

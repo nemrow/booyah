@@ -7,7 +7,8 @@ class AddressesController < ApplicationController
 
   def create
     user = User.find(params[:user_id])
-    if address = verify_and_create_address(params[:address])
+    p address = verify_and_create_address(params[:address])
+    if address
       if user.preapproval
         redirect_to user_path(user)
       else
@@ -21,7 +22,7 @@ class AddressesController < ApplicationController
   def edit
     @error = params[:error] if params[:error]
     @user = User.find(params[:user_id])
-    @address = @user.address
+    @address = Address.find(params[:id])
   end
 
   def update

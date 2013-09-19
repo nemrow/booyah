@@ -6,6 +6,8 @@ FactoryGirl.define do
     state 'CA'
     zip '94954'
     country 'US'
-    lob_address_id 'adr_39dd19dac0a5876a'
+    factory :completed_address do
+      lob_address_id 'adr_39dd19dac0a5876a'
+    end
   end
 end

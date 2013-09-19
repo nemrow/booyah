@@ -98,4 +98,19 @@ class StubLocker
       :jpg=>"https://s3.amazonaws.com/booyahbooyah/user_52_1379099369.jpg"
     }
   end
+
+  def self.lob_address_verification_json_return
+    '{
+      "address" : 
+        {
+          "address_line1" : "22 WEATHERBY CT", 
+          "address_line2" : "", 
+          "address_city" : "PETALUMA", 
+          "address_state" : "CA", 
+          "address_zip" : "94954-4659", 
+          "address_country" : "US", 
+          "object" : "address"
+        }
+    }'
+  end
 end

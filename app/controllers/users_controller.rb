@@ -17,7 +17,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @address = @user.address
+    @addresses = @user.addresses
     @approval_status = check_approval_status(@user)
     @orders = @user.orders
   end

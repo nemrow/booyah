@@ -1,4 +1,8 @@
-<p>
+<p class="general-address">
+<b><%= address.name %></b><br>
+<% if address.keyword != '' %>
+  <i>"<%= address.keyword %>"</i><br>
+<% end %>
 <%= address.address_line1 %><br>
 <% if address.address_line2 != '' %>
   <%= address.address_line2 %><br>
@@ -6,4 +10,8 @@
 <%= address.city %><br>
 <%= address.state %><br>
 <%= address.zip %>
+<% if address.default %>
+  <br>DEFAULT ADDRESS
+<% end %>
 </p>
+<p><%= link_to 'Edit Addess', edit_user_address_path(@user, address) %></p>

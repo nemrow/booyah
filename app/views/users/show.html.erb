@@ -17,21 +17,21 @@
       </ul>
     <% end %>
 
+    <h2>Addresses</h2>
+    <%= link_to "Add Another Address", new_user_address_path(@user) %>
+    <ul class="large-block-grid-4">
+      <% @addresses.each do |address| %>
+        <li class="recent_order_shells">
+          <%= render :partial => 'shared/address', :locals => {:address => address} %>
+        </li>
+      <% end %>
+    </ul>
+
     <div class="row">
       <div class="large-4 columns profile-squares">
         <h2>Contact</h2>
         <%= render :partial => 'shared/personal_info' %>
         <%= link_to 'Edit', edit_user_path(@user) %>
-      </div>
-
-      <div class="large-4 columns profile-squares">
-        <h2>Address</h2>
-        <% if @address %>
-          <%= render :partial => 'shared/address', :locals => {:address => @address} %>
-          <p><%= link_to 'Edit Addess', edit_user_address_path(@user, @address) %></p>
-        <% else %>
-          <%= link_to 'Add your address', new_user_address_path(current_user) %>
-        <% end %>
       </div>
 
       <div class="large-4 columns profile-squares">
