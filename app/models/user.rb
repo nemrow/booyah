@@ -1,3 +1,5 @@
+include ApplicationHelper
+
 class User < ActiveRecord::Base
   attr_accessible :cell, :email, :name, :password
 
@@ -44,6 +46,30 @@ class User < ActiveRecord::Base
 
   def default_address
     addresses.where(:default => true).first
+  end
+
+  def self.verify_sender_status_by_cell(params)
+    user = find_by_cell(params['msisdn'])
+    if user == nil
+      send_no_user_message(params['msisdn'])
+      return false
+    elsif !user.account_active?
+      send_account_incomplete_message(user)
+      return false
+    end
+    user   
+  end
+
+  def verify_receiver(user, params)
+    receiver = get_receiver(params['message'])
+    if receiver == 'people'
+      send_contact_list_message(user)
+      return false
+    elsif !receiver
+      send_could_not_recognize_receiver_message(user)
+      return false
+    end
+    receiver
   end
 
   def get_receiver(message)

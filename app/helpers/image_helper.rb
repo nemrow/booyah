@@ -11,6 +11,15 @@ module ImageHelper
     image_hash
   end
 
+  def verify_image(params, user)
+    if !params['images']
+      send_no_image_response(user)
+      return false
+    else
+      create_picture(params['images'][0]['image'], user)
+    end
+  end
+
   def rotate_img_if_needed(img)
     img.columns < img.rows ? img.rotate(90) : img
   end
