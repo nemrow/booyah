@@ -16,7 +16,9 @@ namespace :update_data do
 
   task :make_users_first_address_default => :environment do
     User.all.each do |user|
-      user.addresses.first.update_attributes(:default => true)
+      if user.addresses.select{|address| address.default == true}.count < 1
+        user.addresses.first.update_attributes(:default => true)
+      end
     end
   end
 end
