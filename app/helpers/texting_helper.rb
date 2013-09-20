@@ -21,7 +21,7 @@ module TextingHelper
   def send_contact_list_message(user)
     message = 
       "Hello #{user.first_name}, " +
-      "Here is the list of contacts: we have not developed this yet"
+      "Here is the list of contacts: #{user.get_all_contacts}"
     send_sms(user.cell, message)
   end
 

@@ -60,6 +60,10 @@ class User < ActiveRecord::Base
     false 
   end
 
+  def get_all_contacts
+    addresses.map{|address| address.formatted_name}.join(', ')
+  end
+
   def make_credit_transaction(amount, description)
     credit = Credit.create(
       :amount => amount,

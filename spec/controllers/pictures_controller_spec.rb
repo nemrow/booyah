@@ -98,10 +98,14 @@ describe PicturesController do
     end
 
     context "requesting contacts" do
+      before :each do
+        @user.addresses << FactoryGirl.create(:completed_address, :name => 'BB Nems')
+        @user.addresses << FactoryGirl.create(:completed_address, :name => 'Dad')
+      end
       it "should send back a list of their contacts" do
         expect{
           post :create, StubLocker.contacts_request_json
-        }.to raise_error("Hello Jordan, Here is the list of contacts: we have not developed this yet")
+        }.to raise_error("Hello Jordan, Here is the list of contacts: Jordan Nemrow, Bb Nems, Dad")
       end
     end
   end
