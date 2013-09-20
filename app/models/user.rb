@@ -43,13 +43,19 @@ class User < ActiveRecord::Base
   end
 
   def default_address
-    self.addresses.where(:default => true).first
+    p "in the default_address method. Here are all possible addresses"
+    p addresses
+    p "here is the one with default"
+    p addresses.where(:default => true).first
+    addresses.where(:default => true).first
   end
 
   def get_receiver(message)
     name = message.downcase.gsub!(/#{ENV['MAIN_KEYWORD']}/, '')
     if name == nil
+      p "name is nill"
       return default_address if default_address
+      p "went over default address"
       return false
     end
     return 'people' if name.strip == 'people'
