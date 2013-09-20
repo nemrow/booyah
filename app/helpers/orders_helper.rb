@@ -16,7 +16,7 @@ module OrdersHelper
     end
   end
 
-  def order_new_print(user, picture)
+  def order_new_print(user, picture, receiver)
     object = create_new_object(user, picture)
     @@lob.jobs.create("#{user.name}\'s Job", receiver.lob_address_id, object['id'])
   end
