@@ -61,7 +61,7 @@ class StubLocker
       }
   end
 
-  def self.valid_order_json
+  def self.valid_order_json_no_receiver
     JSON.parse( 
         '{
           "event": "message-in",
@@ -77,6 +77,55 @@ class StubLocker
           ]
         }'
       )
+  end
+
+  def self.valid_order_with_receiver_json
+    JSON.parse(
+      '{
+        "event": "message-in",
+        "campaign_id": "49892",
+        "msisdn": "17078496085",
+        "carrier": "Verizon Wireless",
+        "message": "Booyahtest Grammie",
+        "subject": "",
+        "images": [
+          {
+            "image": "http://d2c.bandcon.mogreet.com/mo-mms/images/755634_5151977.jpeg"
+          }
+        ]
+      }'
+    )
+  end
+
+  def self.valid_order_with_receiver_name_json
+    JSON.parse(
+      '{
+        "event": "message-in",
+        "campaign_id": "49892",
+        "msisdn": "17078496085",
+        "carrier": "Verizon Wireless",
+        "message": "Booyahtest Grammie and Poppa",
+        "subject": "",
+        "images": [
+          {
+            "image": "http://d2c.bandcon.mogreet.com/mo-mms/images/755634_5151977.jpeg"
+          }
+        ]
+      }'
+    )
+  end
+
+  def self.contacts_request_json
+    JSON.parse(
+      '{
+        "event": "message-in",
+        "campaign_id": "49892",
+        "msisdn": "17078496085",
+        "carrier": "Verizon Wireless",
+        "message": "Booyahtest people",
+        "subject": ""
+      }'
+    )
   end
 
   def self.no_image_order_json

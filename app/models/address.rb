@@ -3,11 +3,9 @@ class Address < ActiveRecord::Base
                   :state, :user_id, :zip, :default, :lob_address_id, :keyword, :name
 
   belongs_to :user
-  before_save :deactivate_other_defaults
+  before_save :deactivate_other_defaults, :downcase_fields
 
   def update_lob_friendly_attributes(address_params)
-    p 'lob friends incoming'
-    p address_params
     update_attributes( 
       :address_line1 => address_params[:address_line1],
       :address_line2 => address_params[:address_line2],
@@ -20,6 +18,15 @@ class Address < ActiveRecord::Base
       :name => address_params[:name],
       :default => address_params[:default]
     )
+  end
+
+  def downcase_fields
+    self.keyword = keyword.downcase if keyword
+    self.name = name.downcase if name
+  end
+
+  def formatted_name
+    name.split(' ').map{|name| name.capitalize}.join(' ')
   end
 
   def deactivate_other_defaults

@@ -3,10 +3,10 @@ require 'uri'
 
 module TextingHelper
 
-  def send_order_success_sms(order)
+  def send_order_success_sms(order, receiver)
     message = 
       "Hello #{order.user.first_name}, " +
-      "your image has been received and you will receive it shortly in the mail! " +
+      "your image has been received and it will be shipped to #{receiver.formatted_name} shortly! " +
       "Order total: $#{order.user_cost}."
     send_sms(order.user.cell, message)
   end
@@ -18,10 +18,24 @@ module TextingHelper
     send_sms(user.cell, message)
   end
 
-  def send_order_success_with_credits_sms(order)
+  def send_contact_list_message(user)
+    message = 
+      "Hello #{user.first_name}, " +
+      "Here is the list of contacts: we have not developed this yet"
+    send_sms(user.cell, message)
+  end
+
+  def send_could_not_recognize_receiver_message(user)
+    message = 
+      "Hello #{user.first_name}, " +
+      "We are sorry, we could not recognize the receiver for this picture! Reply with 'people' to get a list."
+    send_sms(user.cell, message)
+  end
+
+  def send_order_success_with_credits_sms(order, receiver)
     message = 
       "Hello #{order.user.first_name}, " +
-      "your image has been received and you will receive it shortly in the mail! " +
+      "your image has been received and it will be shipped to #{receiver.formatted_name} shortly! " +
       "You used one credit."
     send_sms(order.user.cell, message)
   end

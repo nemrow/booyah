@@ -28,6 +28,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def formatted_name
+    name.split(' ').map{|name| name.capitalize}.join(' ')
+  end
+
   def name_must_have_first_and_last
     if name == nil
       errors.add(:name, "Name must be provided")      
@@ -36,6 +40,24 @@ class User < ActiveRecord::Base
     elsif name.split(' ').count > 2
       errors.add(:name, "Only first and last name are needed")
     end
+  end
+
+  def default_address
+    self.addresses.where(:default => true).first
+  end
+
+  def get_receiver(message)
+    name = message.downcase.gsub!(/#{ENV['MAIN_KEYWORD']}/, '')
+    if name == nil
+      return default_address if default_address
+      return false
+    end
+    return 'people' if name.strip == 'people'
+    address_by_name = addresses.where(:name => name.strip).first
+    return address_by_name if address_by_name
+    address_by_keyword = addresses.where(:keyword => name.strip).first
+    return address_by_keyword if address_by_keyword
+    false 
   end
 
   def make_credit_transaction(amount, description)
@@ -59,7 +81,11 @@ class User < ActiveRecord::Base
   end
 
   def first_name
-    name.match(/^[a-zA-Z]+/)[0]
+    name.split(' ')[0].capitalize
+  end
+
+  def last_name
+    name.split(' ')[1].capitalize
   end
 
   def address

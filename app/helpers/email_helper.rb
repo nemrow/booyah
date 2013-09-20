@@ -9,7 +9,7 @@ module EmailHelper
   end
   
   def send_email(to, subject, message, from = 'Jordan@booyahbooyah.com')
-    p RestClient.post "https://api:#{ENV['MAILGUN_KEY']}@api.mailgun.net/v2/booyahbooyah.com"+"/messages", 
+    RestClient.post "https://api:#{ENV['MAILGUN_KEY']}@api.mailgun.net/v2/booyahbooyah.com"+"/messages", 
         :from => from,
         :to => to,
         :subject => subject,

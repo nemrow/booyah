@@ -39,6 +39,15 @@ describe AddressesController do
         expect(response).to redirect_to user_path(@user)
       end
     end
+
+    context "with an invalid address" do
+      before :each do
+        post :create, :user_id => @user.id, :address => FactoryGirl.attributes_for(:address, :address_line1 => '')
+      end
+      it "should redirect back to new_user_address with errors" do
+        expect(response).to redirect_to new_user_address_path(@user, :error => 'That address does not exist')
+      end
+    end
   end
 end
   
