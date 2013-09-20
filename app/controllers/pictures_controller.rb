@@ -7,6 +7,7 @@ class PicturesController < ApplicationController
     return send_no_user_message(params['msisdn']) if user == nil
     return send_account_incomplete_message(user) if !user.account_active?
     receiver = user.get_receiver(params['message'])
+    p receiver
     return send_contact_list_message(user) if receiver == 'people'
     return send_could_not_recognize_receiver_message(user) if !receiver
     return send_no_image_response(user) if !params['images'] && receiver != 'people'
@@ -22,6 +23,6 @@ class PicturesController < ApplicationController
     else
       order ? send_order_success_with_credits_sms(order, receiver) : send_failed_order(user)      
     end
-    render :nothing => true
+    render :json => {}
   end
 end
