@@ -58,6 +58,8 @@ class User < ActiveRecord::Base
       p "went over default address"
       return false
     end
+    p "bypassed the name == 1 conditional: here is the name"
+    p name
     return 'people' if name.strip == 'people'
     address_by_name = addresses.where(:name => name.strip).first
     return address_by_name if address_by_name
