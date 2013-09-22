@@ -6,6 +6,8 @@ require 'rspec/autorun'
 require 'database_cleaner'
 require 'stub_locker'
 
+Capybara.server_port = 4000
+
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }

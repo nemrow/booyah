@@ -15,6 +15,8 @@ module PaypalHelper
     if @preapproval_response.success?
       users_preapproval.update_attributes(:key => @preapproval_response.preapprovalKey)
       user.paypal_preapprovals << users_preapproval
+      puts "in the get preapproval_key method"
+      p users_preapproval
       @preapproval_response.preapprovalKey
     else
       p @preapproval_response.error

@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 ruby '1.9.3'
+
+gem 'nokogiri'
 gem 'rails', '3.2.13'
 
 gem 'pg'
@@ -28,21 +30,7 @@ group :development, :test do
   gem "factory_girl_rails", "~> 4.0"
   gem 'fakeweb'
   gem 'database_cleaner'
+  gem "selenium-webdriver", "~> 2.35.1"
 end
 
 gem 'jquery-rails'
-
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
-
-# To use Jbuilder templates for JSON
-# gem 'jbuilder'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger
-# gem 'debugger'
