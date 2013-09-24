@@ -3,7 +3,6 @@ require 'spec_helper'
 feature "New user signup" do
   scenario "User signs up", :js => true do
     visit root_path
-    sleep(5)
     fill_in 'user[name]', :with => 'Jordan Nemrow'
     fill_in 'user[email]', :with => 'nemrowj@gmail.com'
     fill_in 'user[cell]', :with => '(555) 555-5555'
@@ -25,8 +24,6 @@ feature "New user signup" do
     click_button "Log In"
     click_button "Approve"
     click_button "Return"
-    sleep(10)
-    save_and_open_page
-    # page.should have_content("Congrats")
+    page.should have_content("Congrats")
   end
 end
