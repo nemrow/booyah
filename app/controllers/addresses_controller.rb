@@ -7,12 +7,12 @@ class AddressesController < ApplicationController
 
   def create
     user = User.find(params[:user_id])
-    address = verify_and_create_address(params[:address])
+    address = Address.verify_and_create_address(params[:address], user)
     return redirect_to new_user_address_path(current_user, :error => 'That address does not exist') if !address
     if user.preapproval
       redirect_to user_path(user)
     else
-      redirect_to get_preapproval_url(user)
+      redirect_to PaypalPreapproval.get_preapproval_url(user)
     end
   end
 
@@ -25,7 +25,7 @@ class AddressesController < ApplicationController
   def update
     user = User.find(params[:user_id])
     address = Address.find(params[:id])
-    if address = verify_and_update_address(address, params[:address])
+    if Address.verify_and_update_address(address, params[:address], user)
       redirect_to user_path(current_user)
     else 
       redirect_to edit_user_address_path(current_user, params[:id], :error => 'That address does not exist')

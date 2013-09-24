@@ -3,6 +3,6 @@ class PreapprovalController < ApplicationController
     user = User.find(params[:user_id])
     preapproval = PaypalPreapproval.find(params[:id])
     preapproval.activate
-    send_welcome_message(user) if user.addresses.count == 1
+    User.send_sms(:user => user, :cell => user.cell, :message_code => 10) if user.addresses.count == 1
   end
 end

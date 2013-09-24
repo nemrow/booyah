@@ -79,6 +79,24 @@ class StubLocker
       )
   end
 
+  def self.valid_order_json_unkown_cell
+    JSON.parse( 
+        '{
+          "event": "message-in",
+          "campaign_id": "49136",
+          "msisdn": "17078496000",
+          "carrier": "Verizon Wireless",
+          "message": "Booyah",
+          "subject": "",
+          "images": [
+            {
+              "image": "http://d2c.bandcon.mogreet.com/mo-mms/images/710133_4856324.jpeg"
+            }
+          ]
+        }'
+      )
+  end
+
   def self.valid_order_with_receiver_json
     JSON.parse(
       '{
@@ -143,8 +161,8 @@ class StubLocker
 
   def self.create_picture_json
     {
-      :pdf=>"https://s3.amazonaws.com/booyahbooyah/user_52_1379099369.pdf", 
-      :jpg=>"https://s3.amazonaws.com/booyahbooyah/user_52_1379099369.jpg"
+      :pdf_source => "https://s3.amazonaws.com/booyahbooyah/user_52_1379099369.pdf", 
+      :jpg_source => "https://s3.amazonaws.com/booyahbooyah/user_52_1379099369.jpg"
     }
   end
 
@@ -153,6 +171,21 @@ class StubLocker
       "address" : 
         {
           "address_line1" : "22 WEATHERBY CT", 
+          "address_line2" : "", 
+          "address_city" : "PETALUMA", 
+          "address_state" : "CA", 
+          "address_zip" : "94954-4659", 
+          "address_country" : "US", 
+          "object" : "address"
+        }
+    }'
+  end
+
+  def self.lob_address_verification_json_return_updated_address
+    '{
+      "address" : 
+        {
+          "address_line1" : "14 WEATHERBY CT", 
           "address_line2" : "", 
           "address_city" : "PETALUMA", 
           "address_state" : "CA", 

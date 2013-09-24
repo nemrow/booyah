@@ -10,7 +10,7 @@
       <ul class="large-block-grid-4">
       <% @orders.each do |order| %>
         <li class="recent_order_shells">
-          <%= image_tag order.jpg_source %>
+          <%= image_tag order.picture.jpg_source %>
           <p><%= order.created_at %></p>
         </li>
       <% end %>

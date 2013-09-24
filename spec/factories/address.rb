@@ -12,6 +12,7 @@ FactoryGirl.define do
     factory :grammies_address do
       name 'Grammie and Poppa'
       keyword 'Grammie'
+      lob_address_id 'adr_7dc743b4b8ab4904'
     end
     name 'Jordan Nemrow'
   end
