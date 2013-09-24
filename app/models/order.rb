@@ -1,11 +1,16 @@
 class Order < ActiveRecord::Base
-  attr_accessible :lob_order_id, :to_id, :user_id, :lob_cost, :user_cost, :pdf_source, :jpg_source, :lob_object_id
+  attr_accessible :lob_order_id, :to_id, :address_id, :user_id, :lob_cost, :user_cost, :pdf_source, :jpg_source, :lob_object_id
 
   belongs_to :user
+  belongs_to :address
   has_one :paypal_payment
   has_one :picture
 
   @@lob = Lob(api_key: ENV['LOB_KEY'])
+
+  def formatted_date
+    created_at.strftime('%B %d, %Y')
+  end
 
   def self.handle_incoming_message(params)
     user = User.verify_status(params)
@@ -27,7 +32,7 @@ class Order < ActiveRecord::Base
     payment = decide_payment_type(user, amount)
     return false if payment == false
     if print = order_new_print(user, image.pdf_source, receiver)
-      add_print_order_to_db(user, print, image, amount, payment)
+      add_print_order_to_db(user, print, image, amount, payment, receiver)
     else
       p "trouble sending order to Lob"
       false
@@ -48,8 +53,8 @@ class Order < ActiveRecord::Base
     @@lob.jobs.create("#{user.name}\'s Job", receiver.lob_address_id, object['id'])
   end
 
-  def self.add_print_order_to_db(user, print, image, user_cost, payment)
-    order = print_friendly_create_order(user, print, user_cost)
+  def self.add_print_order_to_db(user, print, image, user_cost, payment, receiver)
+    order = print_friendly_create_order(user, print, user_cost, receiver)
     update_image_in_db(image, print, order)
     update_payment_source_in_db(payment, order)
     user.orders << order
@@ -57,14 +62,16 @@ class Order < ActiveRecord::Base
     order
   end
 
-  def self.print_friendly_create_order(user, print, user_cost)
-    Order.create( 
+  def self.print_friendly_create_order(user, print, user_cost, receiver)
+    order = Order.create( 
       :user_id => user.id,
       :to_id => print['to']['id'],
       :lob_order_id => print['id'],
       :lob_cost => print['price'],
       :user_cost => user_cost
     )
+    receiver.orders << order
+    order
   end
 
   def self.update_image_in_db(image, print, order)

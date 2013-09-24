@@ -13,7 +13,8 @@
       <% @orders.each do |order| %>
         <li class="recent_order_shells">
           <%= image_tag order.picture.jpg_source %>
-          <p><%= order.created_at %></p>
+          <p><%= order.formatted_date %></p>
+          <%= render :partial => 'shared/address', :locals => {:address => order.address} %>          
         </li>
       <% end %>
       </ul>

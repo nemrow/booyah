@@ -3,6 +3,8 @@ class Address < ActiveRecord::Base
                   :state, :user_id, :zip, :default, :lob_address_id, :keyword, :name
 
   belongs_to :user
+  has_many :orders
+  
   before_save :deactivate_other_defaults, :downcase_fields
 
   @@lob = Lob(api_key: ENV['LOB_KEY'])
