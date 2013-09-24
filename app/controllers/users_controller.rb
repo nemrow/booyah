@@ -19,6 +19,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @addresses = @user.addresses
     @approval_status = PaypalPreapproval.check_approval_status(@user)
+    # @preapproval_url = PaypalPreapproval.get_preapproval_url(@user)
     @orders = @user.orders
   end
 

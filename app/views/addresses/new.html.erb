@@ -1,25 +1,34 @@
-<div class="row">
-  <div class="large-8 large-centered columns">
+<div class="row percent-padded">
+  <div class="small-12 large-uncentered columns">
     <div class="row">
-      <div class="large-12 columns">
-        <h1>Your Address</h1>
-        <p>United States Only</p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="large-12 columns">
+      <div class="large-7 large-uncentered columns">
+        <p class="form-header-text">Who do you want to send photos to?</p>
         <%= form_for @address, :url => user_addresses_path(current_user) do |f| %>
-          <%= f.text_field 'name', :placeholder => 'Name' %>
-          <%= f.text_field 'address_line1', :placeholder => 'Address Line 1' %>
-          <%= f.text_field 'address_line2', :placeholder => 'Address Line 2' %>
+          <% if current_user.addresses.count == 0 %>
+            <div class="input-with-helper-shell">
+              <%= f.text_field 'name', :placeholder => 'Name' %>
+              <p>You can add more later<br>This is just to get you started</p>
+            </div>
+          <% else %>
+            <%= f.text_field 'name', :placeholder => 'Name' %>
+          <% end %>
+          <%= f.text_field 'address_line1', :placeholder => 'Address 1' %>
+          <%= f.text_field 'address_line2', :placeholder => 'Address 2' %>
           <%= f.text_field 'city', :placeholder => 'City' %>
           <%= f.text_field 'state', :placeholder => 'State', :maxlength => 2 %>
           <%= f.text_field 'zip', :placeholder => 'Zip' %>
-          <%= f.text_field 'keyword', :placeholder => 'Keyword (ex: grandma)' %>
-          <label for="default-checkbox">Make this address your default</label>
-          <%= f.check_box 'default', :id => 'default-checkbox' %><br>
+          <div class="input-with-helper-shell">
+            <%= f.text_field 'keyword', :placeholder => 'Keyword (ex: grandma)' %>
+            <p>Rather than texting your reciepients full name, just send us their nickname. For example, if you want to send a photo to your grandma, simply set her nickname to ‘grandma’ then text us "fly grandma".</p>
+          </div>
+          <div class="input-with-helper-shell">
+            <%= f.check_box 'default', :id => 'default-checkbox' %>
+            <label for="default-checkbox">Make this address your default</label>
+            <p>When you text in a picture with just the word "fly" in the message (without a recipient), it will be delivered to your default address.</p>
+          </div>
           <%= f.hidden_field 'country', :value => 'US' %>
-          <%= f.submit current_user.preapproval ? 'Add Address' : 'Continue to Paypal' %>
+          <div class="button-border"><%= f.submit current_user.preapproval ? 'Add Address' : 'Continue to Paypal' %></div>
+          <p class="shipping-restriction-text">*Shipping to US only</p>
         <% end %>
       </div>
     </div>

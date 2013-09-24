@@ -4,7 +4,9 @@ $dark_green: #187b4d;
 $grey-pink: #937b84;
 $font-1: 'Comfortaa', cursive;
 $font-2: 'Cabin', sans-serif;
-$font-3: 'PT Sans', sans-serif; 
+$font-3: 'PT Sans', sans-serif;
+$light_grey_1: #a3a3a3;
+$light_grey_2: #e1e1e1;
 //////////////////////////////////////////////// Mixins
 
 ////////////////////////////////////////////////// Foundation overrides
@@ -31,6 +33,7 @@ $font-3: 'PT Sans', sans-serif;
 .top-bar-section-homepage .right li a{
   color: #fff;
   text-shadow: 1px 1px 2px #000;
+  padding: 0 7px;
 }
 ////////////////////////////////////////////////// Shared
 
@@ -104,7 +107,7 @@ input[type="submit"]:hover{
 /////////////////////////////////////////////////// Header
 .header-logo-mobile-opt{
   width: 130px;
-  margin-top: 27px;
+  margin-top: 14px;
 }
 //////////////////////////////////////////////////// Homepage
 .family_beach_run_img{
@@ -116,7 +119,7 @@ input[type="submit"]:hover{
 }
 .home-tagline-container{
   max-width: 390px;
-  padding: 0 15px;
+  padding: 0 15px 0 20px;
 }
 .home-page-top-block{
   min-width: 800px;
@@ -128,13 +131,16 @@ input[type="submit"]:hover{
   height: 100px;
 }
 .tagline{
-  color: $dark_pink;
-  text-shadow: 1px 1px 2px #fff;
+  color: #fff;
+  text-shadow: 1px 1px 2px #000;
   font-size: 25px;
   text-align: center;
   padding: 0 15px;
   text-align: left;
-  margin: 10px 0 55px 0;
+  margin: 48px 0 17px 0;
+}
+.tagline-mobile-opt{
+  margin: 67px 0 17px 0;
 }
 .sub-tagline{
   color: #fff;
@@ -164,24 +170,40 @@ input[type="submit"]:hover{
 }
 .home-page-block-2{
   position: absolute;
-  top: 456px;
+  top: 350px;
   width: 100%;
 }
 .picture-description-shell{
-  padding: 0 4%;
-  text-align: center;
-  p.desc-left{
-    font-size: 37px;
-    color: $dark_pink;
-    margin: 0px;
-    span{
+  padding: 0 4% 20px 4%;
+  div.desc-left{
+    width: 165px;
+    position: relative;
+    margin: 0 auto;
+    p{
+      position: absolute;
+    }
+    p:nth-child(1){
+      font-size: 37px;
+      color: $dark_pink;
+      top: 0px;
+      left: 0px;
+    }
+    p:nth-child(2){
       font-size: 18px;
       color: $dark_green;
-      position: relative;
-      top: -8px;
+      right: 1px;
+      top: 7px;
+    }
+    p:nth-child(3){
+      font-size: 11px;
+      color: #999;
+      font-style: italic;
+      right: 0px;
+      top: 29px;
     }
   }
   p.desc-right{
+    text-align: center;
     font-size: 16px;
     position: relative;
     top: 15px;
@@ -200,21 +222,105 @@ input[type="submit"]:hover{
   margin-left: 5%;
   padding-bottom: 15px;
   input[type='text'], input[type='password']{
-    height: 40px;
+    height: 30px;
+  }
+  h4{
+    font-size: 16px;
+    color: $dark_pink;
+    font-weight: normal;
+    margin: 0 0 20px 0;
   }
 }
 
 /////////////////////////////////////////////////////// Profile
-
+p.profile-cat-title{
+  font-family: $font-2;
+  font-size: 16px;
+  color: $light_grey_1;
+  span.add-new-address{
+    float: right;
+    margin-right: 20px;
+    a{
+      font-weight: bold;
+      color: $dark_green;
+    }
+    a:visited{
+      font-weight: bold;
+      color: $dark_green;
+    }
+  }
+}
+.header_padding{
+  height: 30px;
+}
 .recent_order_shells{
   img{
     width: 100%;
   }
-  p{
-    text-align: center;
+  p.general-address{
+    font-size: 12px;
+    line-height: 13px;
+    margin: 0px;
   }
 }
+div.general-profile-box{
+  font-size: 12px;
+  line-height: 13px;
+  margin: 0px;
+}
+p.edit-general-fields{
+  margin: 5px 0 0 0;
+  a, a:visited{
+    font-size: 12px;
+    color: $dark_green;
+  }
+}
+a.edit-general-fields, a.edit-general-fields:visited{
+  font-size: 12px;
+  color: $dark_green;
+}
+.no-orders-yet-text{
+  color: $dark_pink;
+  font-size: 12px;
+}
 .profile-squares{
+}
+.percent-padded{
+  width: 96% !important;
+  margin-left: 2% !important;
+}
+.input-with-helper-shell{
+  background-color: $light_grey_2;
+  margin-bottom: 14px;
+  p{
+    margin: 10px;
+    color: $dark_pink;
+    font-size: 12px;
+    padding-bottom: 10px;
+  }
+  input[type='text']{
+    margin-bottom: 5px;
+  }
+  input[type='checkbox']{
+    float:  left;
+    margin: 10px 10px 0 10px;
+  }
+  label{
+    display: inline-block;
+    margin: 10px 0 0 0;
+  }
+}
+p.form-header-text{
+  font-size: 16px;
+  color: $dark_green;
+  margin: 15px 0;
+  font-weight: bold;
+}
+p.shipping-restriction-text{
+  float: right;
+  margin: 9px 0 0 0;
+  font-size: 12px;
+  color: $dark_pink;
 }
 //////////////////////////////////////////////////////// Activate Success Page
 .steps-shell{

@@ -21,4 +21,15 @@ namespace :update_data do
       end
     end
   end
+
+  task :port_images_to_table => :environment do
+    Order.all.each do |order|
+      pic = Picture.create(
+        :pdf_source => order.pdf_source,
+        :jpg_source => order.jpg_source, 
+        :lob_object_id => order.lob_object_id
+        )
+      order.picture = pic
+    end
+  end
 end

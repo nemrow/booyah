@@ -117,12 +117,12 @@ describe PicturesController do
         end
       end
       
-      context "with accurate data" do
-        it "should create an order and send confirmation message" do
-          User.should receive(:send_sms).with(hash_including(:message_code => 1))
-          post :create, StubLocker.valid_order_json_no_receiver
-        end 
-      end
+      # context "with accurate data" do
+      #   it "should create an order and send confirmation message" do
+      #     User.should receive(:send_sms).with(hash_including(:message_code => 1))
+      #     post :create, StubLocker.valid_order_json_no_receiver
+      #   end 
+      # end
     end
   end
 end

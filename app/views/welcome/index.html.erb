@@ -3,8 +3,8 @@
   <div class="home-tagline-container">
     <div class="row">
       <div class="small-12 columns">
-        <h1 class="tagline">Pictures from your phone, delivered to your home.</h1>
-        <h3 class="sub-tagline">Getting photos from your phone printed is as easy as sending a text message</h3>
+        <h1 class="tagline">Never lose touch with friends and loved one.</h1>
+        <h3 class="sub-tagline">Send photo prints through the mail<br> with just a text message.</h3>
       </div>
     </div>
   </div>
@@ -18,7 +18,12 @@
       <div class="row picture-description-shell">
         <div class="picture-desc-separator"></div>
         <div class="small-6 columns">
-          <p class="desc-left">$1.50 <span>per print</span></p>
+          <div class="desc-left">
+            <p>$1.50</p>
+            <p>per print</p>
+            <p>(free shipping)</p>
+            <!-- $1.50 <div class="per-print-desc">per print<br><span>(free shipping)</span></div></p> -->
+          </div>
         </div>
         <div class="small-6 columns">
           <p class="desc-right">4" X 6" glossy print</p>
@@ -29,6 +34,7 @@
       <div class="row">
         <div class="large-12 columns">
           <%= form_for @user, :url => users_path, :html => {:class => 'home-page-new-user-signup'} do |user| %>
+            <h4>Sign up and get your first print free!</h4>
             <%= user.text_field 'email', :placeholder => 'Email' %>
             <%= user.text_field 'name', :placeholder => 'Name (ex: Jordan Nemrow)' %>
             <%= user.text_field 'cell', :placeholder => 'Cell Phone (ex: (555) 555-555)', :class => ('cell_formatted' unless Rails.env.test?)  %>

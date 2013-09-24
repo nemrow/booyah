@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   validate :cell_must_be_numeric_only
   validates :cell, :uniqueness => {:message => "Someone has already taken that cell phone number"}, 
     :presence => {:message => "Cell phone number is required"}, 
-    :length =>  {:is => 14, :message => "That is not a valid phone length"}
+    :length =>  {:is => 11, :message => "That is not a valid phone length"}
 
   has_secure_password
 
@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
   has_many :paypal_preapprovals
   has_many :credits
 
-  before_create :format_cell
+  before_validation :format_cell
 
   def cell_must_be_numeric_only
     if cell != nil
@@ -105,7 +105,9 @@ class User < ActiveRecord::Base
   end
 
   def format_cell
-    self.cell = 1.to_s + cell.gsub(/\D/,'').to_s
+    if cell && cell != ''
+      self.cell = 1.to_s + cell.gsub(/\D/,'').to_s
+    end
   end
 
   def preapproval

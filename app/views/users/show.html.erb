@@ -1,11 +1,13 @@
 <div class="row">
   <div class="small-12 columns padded-container">
-    <h1>Profile for <%= @user.first_name %></h1>
-
-
-    <h2>Recent Orders</h2>
+    <div class="header_padding"></div>
+    <p class="profile-cat-title">Orders:</p>
     <% if @orders.count == 0 %>
-      <p>You have not place any orders yet!<p>
+      <p class="no-orders-yet-text">No orders yet...<br>
+        to place an order, simply text a photo<br>
+        along with the words "fly" + recipient<br>
+        example: "fly grandma"
+        <p>
     <% else %>
       <ul class="large-block-grid-4">
       <% @orders.each do |order| %>
@@ -17,8 +19,11 @@
       </ul>
     <% end %>
 
-    <h2>Addresses</h2>
-    <%= link_to "Add Another Address", new_user_address_path(@user) %>
+    <p class="profile-cat-title">Addresses:
+      <span class="add-new-address">
+        <%= link_to "+ Add Recipient", new_user_address_path(@user) %>
+      </span>
+    </p>
     <ul class="large-block-grid-4">
       <% @addresses.each do |address| %>
         <li class="recent_order_shells">
@@ -28,20 +33,27 @@
     </ul>
 
     <div class="row">
-      <div class="large-4 columns profile-squares">
-        <h2>Contact</h2>
-        <%= render :partial => 'shared/personal_info' %>
-        <%= link_to 'Edit', edit_user_path(@user) %>
+      <div class="large-3 columns profile-squares">
+        <div class="general-profile-box">
+          <p class="profile-cat-title">Personal Information:</p>
+          <%= render :partial => 'shared/personal_info' %>
+          <%= link_to 'Edit', edit_user_path(@user), :class => 'edit-general-fields' %>
+        </div>
       </div>
 
       <div class="large-4 columns profile-squares">
-        <h2>Paypal Status</h2>
-        <% if @approval_status != 'ACTIVE' %>
-          <%= link_to 'Activate Paypal Now!', get_preapproval_url(current_user) %>
-        <% else %>
-          <p><%= @approval_status %></p>
-        <% end %>
+        <p class="profile-cat-title">Paypal Status:</p>
+        <div class="general-profile-box">
+          <% if @approval_status != 'ACTIVE' %>
+            <%= link_to 'Activate Paypal Now!', PaypalPreapproval.get_preapproval_url(@user) %>
+          <% else %>
+            <p><%= @approval_status %></p>
+          <% end %>
+        </div>
       </div>
+
+      <div class="large-4 columns profile-squares"></div>
+      <div class="large-4 columns profile-squares"></div>
     </div>
   </div>
 </div>

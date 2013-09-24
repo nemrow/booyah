@@ -68,7 +68,7 @@ class StubLocker
           "campaign_id": "49136",
           "msisdn": "17078496085",
           "carrier": "Verizon Wireless",
-          "message": "Booyah",
+          "message": "flytest",
           "subject": "",
           "images": [
             {
@@ -86,7 +86,7 @@ class StubLocker
           "campaign_id": "49136",
           "msisdn": "17078496000",
           "carrier": "Verizon Wireless",
-          "message": "Booyah",
+          "message": "flytest",
           "subject": "",
           "images": [
             {
@@ -104,7 +104,7 @@ class StubLocker
         "campaign_id": "49892",
         "msisdn": "17078496085",
         "carrier": "Verizon Wireless",
-        "message": "Booyahtest Grammie",
+        "message": "flytest Grammie",
         "subject": "",
         "images": [
           {
@@ -122,7 +122,7 @@ class StubLocker
         "campaign_id": "49892",
         "msisdn": "17078496085",
         "carrier": "Verizon Wireless",
-        "message": "Booyahtest Grammie and Poppa",
+        "message": "flytest Grammie and Poppa",
         "subject": "",
         "images": [
           {
@@ -140,7 +140,7 @@ class StubLocker
         "campaign_id": "49892",
         "msisdn": "17078496085",
         "carrier": "Verizon Wireless",
-        "message": "Booyahtest people",
+        "message": "flytest people",
         "subject": ""
       }'
     )
@@ -153,7 +153,7 @@ class StubLocker
           "campaign_id": "49136",
           "msisdn": "17078496085",
           "carrier": "Verizon Wireless",
-          "message": "Booyah",
+          "message": "flytest",
           "subject": ""
         }'
       )

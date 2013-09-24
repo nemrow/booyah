@@ -35,7 +35,7 @@ describe UsersController do
 
     it "should not create a new user without cell" do
       expect{
-        post :create, :user => FactoryGirl.attributes_for(:user, :cell => nil)
+        post :create, :user => FactoryGirl.attributes_for(:user, :cell => '')
       }.to_not change(User, :count)
     end 
 

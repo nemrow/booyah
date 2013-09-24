@@ -24,11 +24,7 @@ class Order < ActiveRecord::Base
   end
 
   def self.create_new_print_order(user, image, receiver, amount = 1.50)
-    if user.available_credits > 0
-      user.make_credit_transaction(-1, "order")
-    else
-      payment = PaypalPayment.make_approved_payment(user, amount)
-    end
+    payment = decide_payment_type(user, amount)
     return false if payment == false
     if print = order_new_print(user, image.pdf_source, receiver)
       add_print_order_to_db(user, print, image, amount, payment)
@@ -38,24 +34,51 @@ class Order < ActiveRecord::Base
     end
   end
 
+  def self.decide_payment_type(user, amount)
+    if user.available_credits > 0
+      user.make_credit_transaction(-1, "order")
+      'credit'
+    else
+      PaypalPayment.make_approved_payment(user, amount)
+    end
+  end
+
   def self.order_new_print(user, picture, receiver)
     object = Picture.create_new_object(user, picture)
     @@lob.jobs.create("#{user.name}\'s Job", receiver.lob_address_id, object['id'])
   end
 
   def self.add_print_order_to_db(user, print, image, user_cost, payment)
-    order = Order.create( :user_id => user.id,
-                          :to_id => print['to']['id'],
-                          :lob_order_id => print['id'],
-                          :lob_cost => print['price'],
-                          :user_cost => user_cost
-                        )
-    image.lob_object_id = print['objects'][0]['id']
-    image.order = order
-    image.save
-    order.paypal_payment = payment
+    order = print_friendly_create_order(user, print, user_cost)
+    update_image_in_db(image, print, order)
+    update_payment_source_in_db(payment, order)
     user.orders << order
     order.save
     order
+  end
+
+  def self.print_friendly_create_order(user, print, user_cost)
+    Order.create( 
+      :user_id => user.id,
+      :to_id => print['to']['id'],
+      :lob_order_id => print['id'],
+      :lob_cost => print['price'],
+      :user_cost => user_cost
+    )
+  end
+
+  def self.update_image_in_db(image, print, order)
+    image.lob_object_id = print['objects'][0]['id']
+    image.order = order
+    image.save
+  end
+
+  def self.update_payment_source_in_db(payment, order)
+    if payment == 'credit'
+      order.payment_source = 'credit'
+    else
+      order.payment_source = 'paypal'
+      order.paypal_payment = payment
+    end
   end
 end
