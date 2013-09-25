@@ -20,4 +20,8 @@ module ApplicationHelper
   def remove_current_user
     session[:user_id] = nil
   end
+
+  def aws_web_image_path
+    "#{ENV['AWS_BUCKET_PATH']}/web_images"
+  end
 end

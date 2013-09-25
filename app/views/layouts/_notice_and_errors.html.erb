@@ -11,7 +11,11 @@
     <% end %>
     <% if @notice %>
       <div class="large-6 large-centered columns">
-        <p class="error_message"><%= @notice %></p>
+        <div class="row">
+          <div class="large-12 columns">
+            <p class="error_message"><%= @notice %></p>
+          </div>
+        </div>
       </div>
     <% end %>
   </div>

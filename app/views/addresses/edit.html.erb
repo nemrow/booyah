@@ -1,15 +1,38 @@
-<h1>Update Address</h1>
-<p>United States Only</p>
-<%= form_for @address, :url => user_address_path(current_user, @address) do |f| %>
-  <%= f.text_field 'name', :placeholder => 'Name' %>
-  <%= f.text_field 'address_line1', :placeholder => 'Address Line 1' %>
-  <%= f.text_field 'address_line2', :placeholder => 'Address Line 2' %>
-  <%= f.text_field 'city', :placeholder => 'City' %>
-  <%= f.text_field 'state', :placeholder => 'State', :maxlength => 2 %>
-  <%= f.text_field 'zip', :placeholder => 'Zip' %>
-  <%= f.text_field 'keyword', :placeholder => 'Keyword (ex: grandma)' %>
-  <label for="default-checkbox">Make this address your default</label>
-  <%= f.check_box 'default', :id => 'default-checkbox' %><br>
-  <%= f.hidden_field 'country', :value => 'US' %>
-  <%= f.submit 'Update Address' %>
-<% end %>
+<div class="row percent-padded">
+  <div class="small-12 large-uncentered columns">
+    <div class="row">
+      <div class="large-7 large-uncentered columns">
+        <p class="form-header-text">Edit Address:</p>
+        <%= form_for @address, :url => user_address_path(current_user, @address) do |f| %>
+          <% if current_user.addresses.count == 0 %>
+            <div class="input-with-helper-shell">
+              <%= f.text_field 'name', :placeholder => 'Name' %>
+              <p>You can add more later<br>This is just to get you started</p>
+            </div>
+          <% else %>
+            <%= f.text_field 'name', :placeholder => 'Name' %>
+          <% end %>
+          <%= f.text_field 'address_line1', :placeholder => 'Address 1' %>
+          <%= f.text_field 'address_line2', :placeholder => 'Address 2' %>
+          <%= f.text_field 'city', :placeholder => 'City' %>
+          <%= f.text_field 'state', :placeholder => 'State', :maxlength => 2 %>
+          <%= f.text_field 'zip', :placeholder => 'Zip' %>
+          <div class="input-with-helper-shell">
+            <%= f.text_field 'keyword', :placeholder => 'Keyword (ex: grandma)' %>
+            <p>Rather than texting your reciepients full name, just send us their nickname. For example, if you want to send a photo to your grandma, simply set her nickname to ‘grandma’ then text us "fly grandma".</p>
+          </div>
+          <% if current_user.addresses.count > 0 %>
+            <div class="input-with-helper-shell">
+              <%= f.check_box 'default', :id => 'default-checkbox' %>
+              <label for="default-checkbox">Make this address your default</label>
+              <p>When you text in a picture with just the word "fly" in the message (without a recipient), it will be delivered to your default address.</p>
+            </div>
+          <% end %>
+          <%= f.hidden_field 'country', :value => 'US' %>
+          <div class="button-border"><%= f.submit 'Update' %></div>
+          <p class="shipping-restriction-text">*Shipping to US only</p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

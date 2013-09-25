@@ -32,6 +32,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def cell_form_formatted
+    cell[1..cell.length]
+  end
+
   def formatted_name
     name.split(' ').map{|name| name.capitalize}.join(' ')
   end
@@ -175,7 +179,7 @@ class User < ActiveRecord::Base
       "Hello #{params[:user].first_name}, " +
       "Your account is not active. Please go to pigeonpic.com to finish activating it!"
     when 8
-      "Hello! This number is not registered with Booyah. " +
+      "Hello! This number is not registered with Pigeon. " +
       "Please go to pigeonpic.com to begin getting prints!"
     when 9
       "Hello #{params[:user].first_name}, " +

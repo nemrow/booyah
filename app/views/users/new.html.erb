@@ -1,18 +1,16 @@
-<div class="row">
-  <div class="large-8 large-centered columns">
+<div class="row percent-padded">
+  <div class="small-12 large-uncentered columns">
     <div class="row">
-      <div class="large-12 columns">
-        <h1>New User</h1>
+      <div class="large-7 large-uncentered columns">
+        <p class="form-header-text">New User:</p>
+        <%= form_for @user do |user| %>
+          <%= user.text_field 'email', :placeholder => 'Email' %>
+          <%= user.text_field 'name', :placeholder => 'Name (ex: Jordan Nemrow)' %>
+          <%= user.text_field 'cell', :placeholder => 'Cell Phone (ex: (555) 555-555)', :class => 'cell_formatted' %>
+          <%= user.password_field 'password', :placeholder => 'Password' %>
+          <div class="button-border"><%= user.submit 'Join!' %></div>
+        <% end %>
       </div>
-    </div>
-    <div class="large-12">
-      <%= form_for @user do |user| %>
-        <%= user.text_field 'email', :placeholder => 'Email' %>
-        <%= user.text_field 'name', :placeholder => 'Name (ex: Jordan Nemrow)' %>
-        <%= user.text_field 'cell', :placeholder => 'Cell Phone (ex: (555) 555-555)', :class => 'cell_formatted' %>
-        <%= user.password_field 'password', :placeholder => 'Password' %>
-        <%= user.submit 'Join!' %>
-      <% end %>
     </div>
   </div>
 </div>

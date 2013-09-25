@@ -1,16 +1,12 @@
-<div class="row">
-  <div class="small-8 small-centered columns">
+<div class="row percent-padded">
+  <div class="small-12 large-uncentered columns">
     <div class="row">
-      <div class="small-12 columns">
-        <h1>Sign In</h1>
-      </div>
-    </div>
-    <div class="row">
-      <div class="small-12 columns">
+      <div class="large-7 large-uncentered columns">
+        <p class="form-header-text">Sign In:</p>
         <%= form_for @user, :url => sessions_path do |user| %>
           <%= user.text_field 'email', :placeholder => 'Email' %>
           <%= user.password_field 'password', :placeholder => 'Password' %>
-          <%= user.submit 'Sign In' %>
+          <div class="button-border"><%= user.submit 'Sign In' %></div>
         <% end %>
       </div>
     </div>

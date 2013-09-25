@@ -18,4 +18,5 @@ Booyah::Application.routes.draw do
   get 'signin', :to => 'sessions#new'
   get 'signout', :to => 'sessions#destroy'
   get 'contact', :to => 'welcome#contact'
+  get 'permission_denied', :to => 'errors#permission_denied' 
 end

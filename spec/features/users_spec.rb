@@ -27,3 +27,22 @@ feature "New user signup" do
     page.should have_content("Congrats")
   end
 end
+
+# WIP more feature tests
+# feature "Edit Users Info" do
+#   before do
+#     @user = FactoryGirl.create(:user)
+#     @address = FactoryGirl.create(:grammies_address)
+#     @user.addresses << @address
+#     @paypal_preapproval = FactoryGirl.create(:paypal_preapproval)
+#     @user.paypal_preapprovals << @paypal_preapproval
+#   end
+#   scenario "Edit address", :js => true do
+#     visit root_path
+#     click_link 'Sign In'
+#     fill_in 'user[email]', :with => @user.email
+#     fill_in 'user[password]', :with => @user.password
+#     click_button 'Sign In'
+#     save_and_open_page
+#   end
+# end

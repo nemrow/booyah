@@ -43,27 +43,40 @@ class Picture < ActiveRecord::Base
     img.columns < img.rows ? img.rotate(90) : img
   end
 
+  def self.aws_path
+    ENV['AWS_BUCKET_PATH']
+  end
+
+  def self.aws_users_path
+    Rails.env.production? ? 'users_photos' : 'test_users_photos'
+  end
+
+  def self.aws_full_path_creator(user, file_name, extension)
+    "#{aws_path}/#{aws_users_path}/user_#{user.id}/#{file_name}.#{extension}"
+  end
+
   def self.render_jpg(img, file_name, user)
     img.density = "72x72"
     img.resize_to_fill(432,288).write("tmp/#{file_name}.jpg")
     write_to_aws(user, "#{file_name}.jpg")
-    "https://s3.amazonaws.com/booyahbooyah/#{file_name}.jpg"
+    aws_full_path_creator(user, file_name, 'jpg')
   end
 
   def self.render_pdf(img, file_name, user)
     img.density = "300x300"
     img.resize_to_fill(1800,1200).write("tmp/#{file_name}.pdf")
     write_to_aws(user, "#{file_name}.pdf")
-    "https://s3.amazonaws.com/booyahbooyah/#{file_name}.pdf"
+    aws_full_path_creator(user, file_name, 'pdf')
   end
 
   def self.write_to_aws(user, file_name)
     s3 = AWS::S3.new(
-                      :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
-                      :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
-                    )
-    s3.buckets['booyahbooyah'].objects[file_name].write( :file => "tmp/#{file_name}",
-                                                          :acl => :public_read
-                                                        )
+      :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
+      :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
+    )
+    s3.buckets['pigeonpictures'].objects["#{aws_users_path}/user_#{user.id}/#{file_name}"].write( 
+      :file => "tmp/#{file_name}",
+      :acl => :public_read
+    )
   end
 end

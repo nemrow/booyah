@@ -1,4 +1,6 @@
 class AddressesController < ApplicationController
+  before_filter :require_login
+
   def new
     @address = Address.new
     @notice = params[:notice] if params[:notice]
@@ -31,4 +33,11 @@ class AddressesController < ApplicationController
       redirect_to edit_user_address_path(current_user, params[:id], :error => 'That address does not exist')
     end
   end
+
+  private
+  
+
+  # def require_credentials(user)
+  #   redirect_to permission_denied_path if user != current_user
+  # end
 end
