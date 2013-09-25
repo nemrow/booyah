@@ -48,7 +48,7 @@ class Picture < ActiveRecord::Base
   end
 
   def self.aws_users_path
-    Rails.env.production? ? 'users_photos' : 'test_users_photos'
+    ENV['PAYPAL_MODE'] == 'sanbox' ? 'test_users_photos' : 'users_photos'
   end
 
   def self.aws_full_path_creator(user, file_name, extension)
