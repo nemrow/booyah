@@ -173,16 +173,16 @@ class User < ActiveRecord::Base
       "We are sorry, paypal will not allow us to complete your order. Please check your paypal account and contact us!"
     when 7
       "Hello #{params[:user].first_name}, " +
-      "Your account is not active. Please go to booyahbooyah.com to finish activating it!"
+      "Your account is not active. Please go to pigeonpic.com to finish activating it!"
     when 8
       "Hello! This number is not registered with Booyah. " +
-      "Please go to booyahbooyah.com to begin getting prints!"
+      "Please go to pigeonpic.com to begin getting prints!"
     when 9
       "Hello #{params[:user].first_name}, " +
       "It appears there was no image attached to that message!"
     when 10
-      "Hello #{params[:user].first_name}, welcome to Booyah! " +
-      "Send a picture along with the text 'booyah' to this number to place print orders!"
+      "Hello #{params[:user].first_name}, welcome to Pigeon! " +
+      "Send a picture along with 'fly' + 'recipient' to this number to place print orders!"
     end
   end
 end
