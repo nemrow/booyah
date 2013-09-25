@@ -7,14 +7,14 @@
         to place an order, simply text a photo<br>
         along with the words "fly" + recipient<br>
         example: "fly grandma"
-        <p>
+        </p>
     <% else %>
       <ul class="large-block-grid-4">
       <% @orders.each do |order| %>
         <li class="recent_order_shells">
           <%= image_tag order.picture.jpg_source %>
-          <p><%= order.formatted_date %></p>
-          <%= render :partial => 'shared/address', :locals => {:address => order.address} %>          
+          <p class="date-of-order"><%= order.formatted_date %></p>
+          <%= render :partial => 'shared/order_summary_basic', :locals => {:address => order.address} %>
         </li>
       <% end %>
       </ul>
@@ -29,6 +29,7 @@
       <% @addresses.each do |address| %>
         <li class="recent_order_shells">
           <%= render :partial => 'shared/address', :locals => {:address => address} %>
+          <p class="edit-general-fields"><%= link_to 'Edit', edit_user_address_path(@user, address) %></p>
         </li>
       <% end %>
     </ul>
