@@ -140,7 +140,7 @@ class StubLocker
         "campaign_id": "49892",
         "msisdn": "17078496085",
         "carrier": "Verizon Wireless",
-        "message": "flytest people",
+        "message": "people",
         "subject": ""
       }'
     )

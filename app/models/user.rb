@@ -79,7 +79,7 @@ class User < ActiveRecord::Base
   end
 
   def get_receiver(message)
-    name = message.downcase.gsub!(/#{ENV['MAIN_KEYWORD']}/, '')
+    name = message.downcase.sub(/^#{ENV['MAIN_KEYWORD']}/, '')
     if name == nil || name == ''
       return default_address if default_address
       return false
@@ -171,7 +171,7 @@ class User < ActiveRecord::Base
     when 5
       "Hello #{params[:order].user.first_name}, " +
       "your image has been received and it will be shipped to #{params[:receiver].formatted_name} shortly! " +
-      "You used one credit."
+      "This print was free! There will be no charge."
     when 6
       "Hello #{params[:user].first_name}, " +
       "We are sorry, paypal will not allow us to complete your order. Please check your paypal account and contact us!"

@@ -24,10 +24,10 @@ describe PicturesController do
       context "with outside url's stubbed" do
 
         before :each do
-          # Picture.stub(:create_picture).and_return(StubLocker.create_picture_json)
-          # Order.stub(:order_new_print).and_return(StubLocker.lob_order_return)
-          # PaypalPayment.stub(:make_approved_payment).and_return(@paypal_payment)
-          # User.stub(:make_mogreet_request).and_return(true)
+          Picture.stub(:create_picture).and_return(StubLocker.create_picture_json)
+          Order.stub(:order_new_print).and_return(StubLocker.lob_order_return)
+          PaypalPayment.stub(:make_approved_payment).and_return(@paypal_payment)
+          User.stub(:make_mogreet_request).and_return(true)
         end
 
         context "with accurate data" do
@@ -102,6 +102,7 @@ describe PicturesController do
           before :each do
             @user.addresses << FactoryGirl.create(:completed_address, :name => 'BB Nems')
             @user.addresses << FactoryGirl.create(:completed_address, :name => 'Dad')
+            @address.update_attributes(:default => false)
           end
           it "should send back a list of their contacts" do
             User.should receive(:send_sms).with(hash_including(:message_code => 3))

@@ -7,7 +7,7 @@
           <% if current_user.addresses.count == 0 %>
             <div class="input-with-helper-shell">
               <%= f.text_field 'name', :placeholder => 'Name' %>
-              <p>You can add more later<br>This is just to get you started</p>
+              <p>You can add more later. This is just to get you started</p>
             </div>
           <% else %>
             <%= f.text_field 'name', :placeholder => 'Name' %>
