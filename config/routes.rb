@@ -7,7 +7,11 @@ Booyah::Application.routes.draw do
     resources :addresses
     resources :orders
     resources :preapproval, :only => [:show]
+    resources :credits, :only => [:create]
   end
+
+  resources :admin_users, :only => [:index, :show]
+  resources :admin_orders, :only => [:index, :show]
 
   resources :pictures, :only => [:create] do
     get 'orders'

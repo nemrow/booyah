@@ -24,4 +24,8 @@ module ApplicationHelper
   def aws_web_image_path
     "#{ENV['AWS_BUCKET_PATH']}/web_images"
   end
+
+  def formatted_date(date)
+    date.strftime('%B %d, %Y')
+  end
 end

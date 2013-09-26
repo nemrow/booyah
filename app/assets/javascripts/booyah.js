@@ -36,4 +36,18 @@ var ResizedElements = {
       $('.'+this_class).removeClass(this_class+'-mobile-opt');
     }
   }
-} 
+}
+
+var Admin = {
+  init: function(){
+    var admin_thumb_2 = $('.admin_img_magnifier')
+    var admin_thumb_2_orig_size = admin_thumb_2.css('width')
+    admin_thumb_2.hover(
+      function(){
+        $(this).stop().animate({'width':'400px'})
+      }, function(){
+        $(this).stop().animate({'width':admin_thumb_2_orig_size})
+      }
+    )
+  }
+}

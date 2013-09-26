@@ -3,7 +3,7 @@ require 'net/http'
 require 'uri'
 
 class User < ActiveRecord::Base
-  attr_accessible :cell, :email, :name, :password
+  attr_accessible :cell, :email, :name, :password, :role
 
   validates :email, :uniqueness => {:message => 'That email has already been taken'}, 
     :presence => {:message => "Email is required"}
@@ -151,6 +151,10 @@ class User < ActiveRecord::Base
     response = Net::HTTP.start(url.host, use_ssl: true, ssl_version: 'SSLv3', verify_mode: OpenSSL::SSL::VERIFY_NONE) do |http|
       http.get url.request_uri
     end
+  end
+
+  def order_count
+    orders.count
   end
 
   def self.message_code(params)

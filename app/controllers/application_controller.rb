@@ -17,4 +17,12 @@ class ApplicationController < ActionController::Base
       redirect_to permission_denied_path
     end
   end
+
+  def admin_credentials_required
+    if !current_user
+      redirect_to signin_path
+    elsif current_user.role != 'admin'
+      redirect_to permission_denied_path
+    end
+  end
 end

@@ -1,0 +1,34 @@
+<%= render :partial => 'shared/admin_sub_nav' %>
+<div class="row percent-padded">
+  <div class="small-12 large-uncentered columns">
+    <p class="form-header-text">Users:</p>
+    <table>
+      <thead>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Cell</th>
+        <th>Activated?</th>
+        <th>Member Since</th>
+        <th>Credits</th>
+        <th>Orders</th>
+      </thead>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= link_to user.name, admin_user_path(user) %></td>
+          <td><%= user.email %></td>
+          <td><%= user.cell %></td>
+          <td><%= user.account_active? %></td>
+          <td><%= formatted_date(user.created_at) %></td>
+          <td><%= user.available_credits %></td>
+          <td><%= user.order_count %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    Admin.init();
+  });
+</script>

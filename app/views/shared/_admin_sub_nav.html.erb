@@ -1,0 +1,5 @@
+<dl class="sub-nav">
+  <dt>Admin:</dt>
+  <dd class="<%= 'active' if current_page?(admin_users_path) %>"><%= link_to 'Users', admin_users_path %></dd>
+  <dd class="<%= 'active' if current_page?(admin_orders_path) %>"><%= link_to 'Orders', admin_orders_path %></dd>
+</dl>

@@ -1,0 +1,86 @@
+<%= render :partial => 'shared/admin_sub_nav' %>
+<div class="row percent-padded">
+  <div class="small-12 large-uncentered columns">
+    <p class="form-header-text"><%= @user.name %></p>
+    <table>
+      <tr>
+        <td>Email</td>
+        <td><%= @user.email %></td>
+      </tr>
+      <tr>
+        <tr>
+        <td>Cell</td>
+        <td><%= @user.cell %></td>
+      </tr>
+      <tr>
+        <td>Active?</td>
+        <td><%= @user.account_active? %></td>
+      </tr>
+      <tr>
+        <td>Member Since</td>
+        <td><%= formatted_date(@user.created_at) %></td>
+      </tr>
+    </table>
+
+    <p class="form-header-text">Orders - (<%= @user.order_count %>)</p>
+    <table>
+      <thead>
+        <th>Id</th>
+        <th>Date</th>
+        <th>Reveiver</th>
+        <th>Picture</th>
+        <th>Payment Type</th>
+        <th></th>
+      </thead>
+      <% @orders.each do |order| %>
+        <tr>
+          <td><%= order.id %></td>
+          <td><%= formatted_date(order.created_at) %></td>
+          <td>
+            ID: <%= order.address.id %><br>
+            <%= render :partial => 'shared/address', :locals => {:address => order.address} %>
+          </td>
+          <td>
+            ID: <%= order.picture.id %><br>
+            <%= image_tag order.picture.jpg_source, :class => 'admin_pic_thumb_2' %>
+          </td>
+          <td><%= order.payment_source %></td>
+        </tr>
+      <% end %>
+    </table>
+    <div class="row">
+      <div class="large-4 large-uncentered columns">
+        <p class="form-header-text">Credits - (<%= @user.available_credits %>)</p>
+        <p><b>History:</b></p>
+        <table>
+          <thead>
+            <th>ID</th>
+            <th>Date</th>
+            <th>Amount</th>
+            <th>Description</th>
+          </thead>
+          <% @credits.each do |credit| %>
+            <tr>
+              <td><%= credit.id %></td>
+              <td><%= formatted_date(credit.created_at) %></td>
+              <td><%= credit.amount %></td>
+              <td><%= credit.description %></td>
+            </tr>
+          <% end %>
+        </table>
+        <p><b>Give / Remove:</b></p>
+        <%= form_for @credit, :url => user_credits_path(@user) do |f| %>
+          <%= f.text_field 'amount', :placeholder => 'Credit Amount' %>
+          <%= f.text_field 'description', :placeholder => 'Description' %>
+          <%= f.submit 'Update Credits' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    Admin.init();
+  });
+</script>

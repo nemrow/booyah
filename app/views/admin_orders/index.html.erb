@@ -1,0 +1,36 @@
+<%= render :partial => 'shared/admin_sub_nav' %>
+<div class="row percent-padded">
+  <div class="small-12 large-uncentered columns">
+    <p class="form-header-text">Orders:</p>
+    <table>
+      <thead>
+        <th>Id</th>
+        <th>Date</th>
+        <th>User</th>
+        <th>Address</th>
+        <th>Lob Order ID</th>
+        <th>Payment Source</th>
+        <th>Picture</th>
+      </thead>
+      <% @orders.each do |order| %>
+        <tr>
+          <td><%= link_to order.id, admin_order_path(order) %></td>
+          <td><%= formatted_date(order.created_at) %></td>
+          <td><%= link_to order.user.name, admin_user_path(order.user) %></td>
+          <td>
+            <%= render :partial => 'shared/address', :locals => {:address => order.address} %>
+          </td>
+          <td><%= order.lob_order_id %></td>
+          <td><%= order.payment_source %></td>
+          <td><%= link_to image_tag(order.picture.jpg_source, :class => 'admin_pic_thumb_2 admin_img_magnifier'), order.picture.jpg_source, :target => 'blank' %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    Admin.init();
+  });
+</script>
