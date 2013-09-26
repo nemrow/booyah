@@ -109,7 +109,7 @@ class User < ActiveRecord::Base
   end
 
   def format_cell
-    if cell && cell != ''
+    if cell && cell != '' && cell.length != 11
       self.cell = 1.to_s + cell.gsub(/\D/,'').to_s
     end
   end
