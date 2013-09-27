@@ -48,7 +48,7 @@ class UsersController < ApplicationController
   def reset_password
     user = User.find_by_email(params[:user][:email])
     if user
-      temp_password = rand(10000)
+      temp_password = rand(10000..99999)
       p temp_password
       user.update_attributes(:password => temp_password)
       User.send_sms({:message_code => 11, :cell => user.cell, :user => user, :password => temp_password})
