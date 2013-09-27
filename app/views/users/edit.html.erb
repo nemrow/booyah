@@ -8,6 +8,7 @@
           <%= user.text_field 'name', :placeholder => 'Name (ex: Jordan Nemrow)' %>
           <%= user.text_field 'cell', :value => @user.cell_form_formatted, :placeholder => 'Cell Phone (ex: (555) 555-555)', :class => 'cell_formatted' %>
           <div class="button-border"><%= user.submit 'Update' %></div>
+          <p class="shipping-restriction-text"><%= link_to 'Want to change your password?', user_edit_password_path(@user) %></p>
         <% end %>
       </div>
     </div>

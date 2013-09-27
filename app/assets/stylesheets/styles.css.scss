@@ -326,6 +326,14 @@ p.shipping-restriction-text{
   margin: 9px 0 0 0;
   font-size: 12px;
   color: $dark_pink;
+  a{
+    font-size: 12px;
+    color: $dark_pink;
+  }
+  a.visited{
+    font-size: 12px;
+    color: $dark_pink;
+  }
 }
 p.date-of-order{
   font-size: 14px;

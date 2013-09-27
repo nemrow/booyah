@@ -11,9 +11,10 @@ class ApplicationController < ActionController::Base
   end
 
   def require_login_user
+    user_id = params[:id] ? params[:id] : params[:user_id]
     if !current_user
       redirect_to signin_path
-    elsif User.find(params[:id]) != current_user
+    elsif User.find(user_id) != current_user
       redirect_to permission_denied_path
     end
   end

@@ -1,7 +1,8 @@
 class SessionsController < ApplicationController
   def new
     @user = User.new
-    @error = format_plain_error(params[:error]) if params[:error] 
+    @error = format_plain_error(params[:error]) if params[:error]
+    @notice = params[:notice] if params[:notice]
   end
 
   def create

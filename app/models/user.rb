@@ -191,6 +191,9 @@ class User < ActiveRecord::Base
     when 10
       "Hello #{params[:user].first_name}, welcome to Pigeon! " +
       "Send a picture along with 'fly' + 'recipient' to this number to place print orders!"
+    when 11
+      "Hello #{params[:user].first_name}, " +
+      "Your temporary password is #{params[:password]}. Go to pigeonpic.com to change it. Thanks!"
     end
   end
 end
