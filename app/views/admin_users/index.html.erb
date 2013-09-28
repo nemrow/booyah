@@ -3,6 +3,16 @@
   <div class="small-12 large-uncentered columns">
     <p class="form-header-text">Users:</p>
     <table>
+      <tr>
+        <td>Total:</td>
+        <td><%= @user_count %></td>
+      </tr>
+      <tr>
+        <td>Completed:</td>
+        <td><%= @complete_users %></td>
+      </tr>
+    </table>
+    <table>
       <thead>
         <th>Name</th>
         <th>Email</th>

@@ -3,6 +3,8 @@ class AdminUsersController < ApplicationController
 
   def index
     @users = User.all
+    @user_count = User.count
+    @complete_users = User.all.map{ |user| user.account_active? }.count
   end
 
   def show
