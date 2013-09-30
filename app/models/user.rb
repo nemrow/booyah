@@ -23,6 +23,12 @@ class User < ActiveRecord::Base
 
   before_validation :format_cell
 
+  before_save :downcase_email
+
+  def downcase_email
+    self.email = self.email.downcase if email != nil
+  end
+
   def cell_must_be_numeric_only
     if cell != nil
       fixed_cell = cell.gsub(/\(/,'').gsub(/\)/,'').gsub(/\s/,'').gsub(/-/,'')

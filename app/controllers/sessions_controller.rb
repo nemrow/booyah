@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by_email(params[:user][:email])
+    user = User.find_by_email(params[:user][:email].downcase)
     return redirect_to signin_path(:error => "No user with that email address") if user == nil
     if user.authenticate(params[:user][:password])
       set_current_user(user)

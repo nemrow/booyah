@@ -32,4 +32,11 @@ namespace :update_data do
       order.picture = pic
     end
   end
+
+  task :downcase_emails => :environment do
+    User.all.each do |user|
+      user.email = user.email.downcase
+      user.save
+    end
+  end
 end
