@@ -50,7 +50,12 @@ class Order < ActiveRecord::Base
 
   def self.order_new_print(user, picture, receiver)
     object = Picture.create_new_object(user, picture)
-    @@lob.jobs.create("#{user.name}\'s Job", receiver.lob_address_id, object['id'])
+    @@lob.jobs.create(
+      "#{user.name}\'s Job", 
+      receiver.lob_address_id, 
+      object['id'],
+      :from => Order.pigeon_address
+    )
   end
 
   def self.add_print_order_to_db(user, print, image, user_cost, payment, receiver)
@@ -60,6 +65,10 @@ class Order < ActiveRecord::Base
     user.orders << order
     order.save
     order
+  end
+
+  def self.pigeon_address
+    ENV['PIGEON_ADDRESS_ID']
   end
 
   def self.print_friendly_create_order(user, print, user_cost, receiver)
