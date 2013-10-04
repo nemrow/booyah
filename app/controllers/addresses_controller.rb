@@ -4,13 +4,14 @@ class AddressesController < ApplicationController
   def new
     @address = Address.new
     @notice = params[:notice] if params[:notice]
-    @error = params[:error] if params[:error]
+    @error = format_errors(params[:error]) if params[:error]
   end
 
   def create
     user = User.find(params[:user_id])
-    address = Address.verify_and_create_address(params[:address], user)
-    return redirect_to new_user_address_path(current_user, :error => 'That address does not exist') if !address
+    address = Address.new(params[:address])
+    return redirect_to new_user_address_path(user, :error => address.errors.messages) if !address.save
+    user.addresses << address
     if user.preapproval
       redirect_to user_path(user)
     else
@@ -19,7 +20,7 @@ class AddressesController < ApplicationController
   end
 
   def edit
-    @error = params[:error] if params[:error]
+    @error = format_errors(params[:error]) if params[:error]
     @user = User.find(params[:user_id])
     @address = Address.find(params[:id])
   end
@@ -27,17 +28,10 @@ class AddressesController < ApplicationController
   def update
     user = User.find(params[:user_id])
     address = Address.find(params[:id])
-    if Address.verify_and_update_address(address, params[:address], user)
-      redirect_to user_path(current_user)
-    else 
-      redirect_to edit_user_address_path(current_user, params[:id], :error => 'That address does not exist')
+    if address.update_attributes(params[:address])
+      redirect_to user_path(user)
+    else
+      redirect_to edit_user_address_path(current_user, params[:id], :error => address.errors.messages)
     end
   end
-
-  private
-  
-
-  # def require_credentials(user)
-  #   redirect_to permission_denied_path if user != current_user
-  # end
 end

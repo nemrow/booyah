@@ -31,6 +31,7 @@ group :development, :test do
   gem 'fakeweb'
   gem 'database_cleaner'
   gem "selenium-webdriver", "~> 2.35.1"
+  gem "better_errors"
 end
 
 gem 'jquery-rails'

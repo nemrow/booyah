@@ -6,7 +6,6 @@ describe AddressesController do
     before :each do
       @user = FactoryGirl.create(:user)
       session[:user_id] = @user.id
-      Address.stub(:verify_address_via_lob).and_return(StubLocker.lob_address_verification_json_return)
       PaypalPreapproval.stub(:get_preapproval_key).and_return('PA-9RF40956PG755650W')
     end
 
@@ -45,7 +44,7 @@ describe AddressesController do
         post :create, :user_id => @user.id, :address => FactoryGirl.attributes_for(:address, :address_line1 => '')
       end
       it "should redirect back to new_user_address with errors" do
-        expect(response).to redirect_to new_user_address_path(@user, :error => 'That address does not exist')
+        expect(response).to redirect_to new_user_address_path(@user, "error[address_line1][]" => "Address is required")
       end
     end
 
@@ -70,18 +69,17 @@ describe AddressesController do
 
       context "with invalid address" do
         before :each do
-          Address.stub(:verify_address_via_lob).and_raise(Lob::Error)
-          put :update, :user_id => @user.id, :id => @address.id, :address => FactoryGirl.attributes_for(:address, :address_line1 => "9999 weatherby ct.")
+          # Address.stub(:verify_address_via_lob).and_raise(Lob::Error)
+          put :update, :user_id => @user.id, :id => @address.id, :address => FactoryGirl.attributes_for(:address, :address_line1 => "")
         end
 
         it "should not update the users address" do
           expect(Address.last.address_line1).to eq("22 weatherby ct.")
         end
         it "should redirect to update address with errors" do
-          expect(response).to redirect_to edit_user_address_path(@user, @address, :error => 'That address does not exist')
+          expect(response).to redirect_to edit_user_address_path(@user, @address, "error[address_line1][]" => "Address is required" )
         end
       end
     end
   end
 end
-  

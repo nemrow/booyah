@@ -22,7 +22,6 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @addresses = @user.addresses
     @approval_status = PaypalPreapproval.check_approval_status(@user)
-    # @preapproval_url = PaypalPreapproval.get_preapproval_url(@user)
     @orders = @user.orders
   end
 
@@ -49,7 +48,6 @@ class UsersController < ApplicationController
     user = User.find_by_email(params[:user][:email])
     if user
       temp_password = rand(10000..99999)
-      p temp_password
       user.update_attributes(:password => temp_password)
       User.send_sms({:message_code => 11, :cell => user.cell, :user => user, :password => temp_password})
       redirect_to signin_path(:notice => "A new password has been sent to your phone.")
