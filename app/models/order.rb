@@ -36,7 +36,7 @@ class Order < ActiveRecord::Base
       add_print_order_to_db(user, print, image, 1.50, payment, receiver)
     else
       User.send_sms({:message_code => 12, :user => user, :cell => user.cell})
-      # make a refund here for the payment
+      PaypalPayment.refund(payment)
       false
     end
   end

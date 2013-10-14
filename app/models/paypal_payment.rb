@@ -3,6 +3,8 @@ class PaypalPayment < ActiveRecord::Base
 
   belongs_to :order
 
+  @@api = PayPal::SDK::AdaptivePayments::API.new
+
   def self.init_payment_entry(paypal_params)
     payment_info = paypal_params.paymentInfoList.paymentInfo[0]
     payment_entry = self.create(
@@ -12,8 +14,7 @@ class PaypalPayment < ActiveRecord::Base
   end
 
   def self.make_approved_payment(user, amount)
-    api = PayPal::SDK::AdaptivePayments::API.new
-    pay = api.build_pay({
+    pay = @@api.build_pay({
       :actionType => "PAY",
       :preapprovalKey => user.preapproval.key,
       :currencyCode => "USD",
@@ -27,13 +28,24 @@ class PaypalPayment < ActiveRecord::Base
         }] 
       }
     })
-    pay_response = api.pay(pay)
+    pay_response = @@api.pay(pay)
     if pay_response.success?
       PaypalPayment.init_payment_entry(pay_response)
     else
-      p 'payment failed'
-      p pay_response
       User.send_sms({:message_code => 6, :user => user, :cell => user.cell})
+      false
+    end
+  end
+
+  def self.refund(payment)
+    refund = @@api.build_refund({
+      :transactionId => payment.transaction_id,
+      :currencyCode => "USD"
+    })
+    refund_response = @@api.refund(refund)
+    if refund_response.success?
+      # should record this into a refund table
+    else
       false
     end
   end
