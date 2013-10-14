@@ -98,6 +98,17 @@ describe PicturesController do
           end
         end
 
+        context "If an error occurs ordering from Lob" do
+          before :each do
+            Order.stub(:order_new_print).and_return(false)
+          end
+
+          it "should refund the paypal account and send an error sms" do
+            User.should receive(:send_sms).with(hash_including(:message_code => 12))
+            post :create, StubLocker.valid_order_json_no_receiver
+          end 
+        end
+
         context "requesting contacts" do
           before :each do
             @user.addresses << FactoryGirl.create(:completed_address, :name => 'BB Nems')

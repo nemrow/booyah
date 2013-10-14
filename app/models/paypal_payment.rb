@@ -33,6 +33,7 @@ class PaypalPayment < ActiveRecord::Base
     else
       p 'payment failed'
       p pay_response
+      User.send_sms({:message_code => 6, :user => user, :cell => user.cell})
       false
     end
   end

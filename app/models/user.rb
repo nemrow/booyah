@@ -200,6 +200,9 @@ class User < ActiveRecord::Base
     when 11
       "Hello #{params[:user].first_name}, " +
       "Your temporary password is #{params[:password]}. Go to pigeonpic.com to change it. Thanks!"
+    when 12
+      "Hello #{params[:user].first_name}, " +
+      "Something went wrong with the address of the recipient of this picture. Please contact us to resolve this."
     end
   end
 end
