@@ -49,12 +49,12 @@ class User < ActiveRecord::Base
 
   def self.log_all_non_active_users
     list = get_all_non_active_users.map { |user| user.id }
-    CSV.open("lib/assets/non_active_users_#{Time.now.to_s}", "wb") { |csv| csv << list }
+    CSV.open("lib/assets/non_active_users_#{Time.now.to_s}.csv", "wb") { |csv| csv << list }
   end
 
   def self.log_all_active_users
     list = get_all_active_users.map { |user| user.id }
-    CSV.open("lib/assets/active_users_#{Time.now.to_s}", "wb") { |csv| csv << list }
+    CSV.open("lib/assets/active_users_#{Time.now.to_s}.csv", "wb") { |csv| csv << list }
   end
 
   def cell_form_formatted
