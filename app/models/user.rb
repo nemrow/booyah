@@ -1,6 +1,7 @@
 include ApplicationHelper
 require 'net/http'
 require 'uri'
+require 'csv'
 
 class User < ActiveRecord::Base
   attr_accessible :cell, :email, :name, :password, :role
@@ -36,6 +37,24 @@ class User < ActiveRecord::Base
         errors.add(:cell, "Cell phone should only contain digits")
       end
     end
+  end
+
+  def self.get_all_non_active_users
+    User.all.select { |user| !user.account_active? }
+  end
+
+  def self.get_all_active_users
+    User.all.select { |user| user.account_active? }
+  end
+
+  def self.log_all_non_active_users
+    list = get_all_non_active_users.map { |user| user.id }
+    CSV.open("lib/assets/non_active_users_#{Time.now.to_s}", "wb") { |csv| csv << list }
+  end
+
+  def self.log_all_active_users
+    list = get_all_active_users.map { |user| user.id }
+    CSV.open("lib/assets/active_users_#{Time.now.to_s}", "wb") { |csv| csv << list }
   end
 
   def cell_form_formatted
