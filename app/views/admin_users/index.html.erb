@@ -21,6 +21,7 @@
         <th>Member Since</th>
         <th>Credits</th>
         <th>Orders</th>
+        <th>Addresses</th>
       </thead>
       <% @users.each do |user| %>
         <tr>
@@ -31,6 +32,7 @@
           <td><%= formatted_date(user.created_at) %></td>
           <td><%= user.available_credits %></td>
           <td><%= user.order_count %></td>
+          <td><%= user.addresses.count %></td>
         </tr>
       <% end %>
     </table>

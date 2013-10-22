@@ -17,7 +17,9 @@ class Order < ActiveRecord::Base
     return false if !user
     receiver = user.verify_receiver(params)
     return false if !receiver
-    image = Picture.verify_image(params, user)
+    message = User.get_message(params['message'], user)
+    return false if message == false
+    image = Picture.verify_image(params, user, message)
     return false if !image
     credits = user.available_credits
     payment = decide_payment_type(user, 1.50)

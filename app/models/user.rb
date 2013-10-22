@@ -103,8 +103,13 @@ class User < ActiveRecord::Base
     receiver
   end
 
+  def self.cleanup_message(message)
+    message.downcase.sub(/^#{ENV['MAIN_KEYWORD']}/, '')
+  end
+
   def get_receiver(message)
-    name = message.downcase.sub(/^#{ENV['MAIN_KEYWORD']}/, '')
+    full_string = User.cleanup_message(message)
+    name = full_string.split('"')[0]
     if name == nil || name == ''
       return default_address if default_address
       return false
@@ -115,6 +120,21 @@ class User < ActiveRecord::Base
     address_by_keyword = addresses.where(:keyword => name.strip).first
     return address_by_keyword if address_by_keyword
     false 
+  end
+
+  def self.get_message(message, user)
+    full_string = User.cleanup_message(message)
+    message = full_string.split('"')[1]
+    if message == nil
+      return nil
+    else
+      if message.length < 40
+        message
+      else
+        User.send_sms({:message_code => 13, :user => user, :cell => user.cell})
+        false
+      end
+    end
   end
 
   def get_all_contacts
@@ -222,6 +242,9 @@ class User < ActiveRecord::Base
     when 12
       "Hello #{params[:user].first_name}, " +
       "Something went wrong with the address of the recipient of this picture. Please contact us to resolve this."
+    when 13
+      "Hello #{params[:user].first_name}, " +
+      "Your message exceeds our 40 charecter limit. Please resend with 40 characters or less."
     end
   end
 end

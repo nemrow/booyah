@@ -90,10 +90,34 @@ describe PicturesController do
               post :create, StubLocker.valid_order_with_receiver_json
             end
           end
+          context "by specifying keyword and including a message (portrait image)" do
+            it "should create an order and send confirmation message" do
+              User.should receive(:send_sms).with(hash_including(:message_code => 1))
+              post :create, StubLocker.valid_order_with_receiver_json_and_message_portrait
+            end
+          end
+          context "by specifying keyword and including a message (landscape image)" do
+            it "should create an order and send confirmation message" do
+              User.should receive(:send_sms).with(hash_including(:message_code => 1))
+              post :create, StubLocker.valid_order_with_receiver_json_and_message_landscape
+            end
+          end
           context "by specifying name" do
             it "should create an order and send confirmation message" do
               User.should receive(:send_sms).with(hash_including(:message_code => 1))
               post :create, StubLocker.valid_order_with_receiver_name_json
+            end
+          end
+          context "by specifying name and including a message" do
+            it "should create an order and send confirmation message" do
+              User.should receive(:send_sms).with(hash_including(:message_code => 1))
+              post :create, StubLocker.valid_order_with_receiver_json_and_message_portrait
+            end
+          end
+          context "by specifying name and including a message that is longer than 40 chars" do
+            it "should send an error sms stating the message was too long" do
+              User.should receive(:send_sms).with(hash_including(:message_code => 13))
+              post :create, StubLocker.valid_order_with_receiver_json_and_message_too_long
             end
           end
         end

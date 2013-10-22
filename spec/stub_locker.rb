@@ -115,7 +115,79 @@ class StubLocker
     )
   end
 
+  def self.valid_order_with_receiver_json_and_message_portrait
+    JSON.parse(
+      '{
+        "event": "message-in",
+        "campaign_id": "49892",
+        "msisdn": "17078496085",
+        "carrier": "Verizon Wireless",
+        "message": "flytest Grammie \"We Miss you soooo much!\"",
+        "subject": "",
+        "images": [
+          {
+            "image": "http://www.gojapango.com/japan_picture/albums/upload/kyoto/golden_pavilion/normal_golden_pavilion_IMG_2254.jpg"
+          }
+        ]
+      }'
+    )
+  end
+
+  def self.valid_order_with_receiver_json_and_message_landscape
+    JSON.parse(
+      '{
+        "event": "message-in",
+        "campaign_id": "49892",
+        "msisdn": "17078496085",
+        "carrier": "Verizon Wireless",
+        "message": "flytest Grammie \"Hello Beer. I love you. This is crazy.\"",
+        "subject": "",
+        "images": [
+          {
+            "image": "http://d2c.bandcon.mogreet.com/mo-mms/images/755634_5151977.jpeg"
+          }
+        ]
+      }'
+    )
+  end
+
+  def self.valid_order_with_receiver_json_and_message_too_long
+    JSON.parse(
+      '{
+        "event": "message-in",
+        "campaign_id": "49892",
+        "msisdn": "17078496085",
+        "carrier": "Verizon Wireless",
+        "message": "flytest Grammie \"Hello Beer. I love you. This is extra, and the some more.\"",
+        "subject": "",
+        "images": [
+          {
+            "image": "http://d2c.bandcon.mogreet.com/mo-mms/images/755634_5151977.jpeg"
+          }
+        ]
+      }'
+    )
+  end
+
   def self.valid_order_with_receiver_name_json
+    JSON.parse(
+      '{
+        "event": "message-in",
+        "campaign_id": "49892",
+        "msisdn": "17078496085",
+        "carrier": "Verizon Wireless",
+        "message": "flytest Grammie and Poppa",
+        "subject": "",
+        "images": [
+          {
+            "image": "http://d2c.bandcon.mogreet.com/mo-mms/images/755634_5151977.jpeg"
+          }
+        ]
+      }'
+    )
+  end
+
+  def self.valid_order_with_receiver_name_json_and_message
     JSON.parse(
       '{
         "event": "message-in",

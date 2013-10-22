@@ -14,5 +14,6 @@ class AdminUsersController < ApplicationController
     @orders = @user.orders.includes(:picture, :address)
     @credit = Credit.new
     @credits = @user.credits
+    @addresses = @user.addresses
   end
 end

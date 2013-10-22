@@ -50,6 +50,39 @@
     </table>
     <div class="row">
       <div class="large-4 large-uncentered columns">
+        <p class="form-header-text">Addresses - (<%= @user.addresses.count %>)</p>
+        <p><b>Addresses:</b></p>
+        <table>
+          <thead>
+            <th>Name</th>
+            <th>Address 1</th>
+            <th>Address 2</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Zip</th>
+            <th>Lob Address Id</th>
+            <th>Keyword</th>
+            <th>Default</th>
+          </thead>
+          <% @user.addresses.each do |address| %>
+          <tr>
+            <td><%= address.name %></td>
+            <td><%= address.address_line1 %></td>
+            <td><%= address.address_line2 %></td>
+            <td><%= address.city %></td>
+            <td><%= address.state %></td>
+            <td><%= address.zip %></td>
+            <td><%= address.lob_address_id %></td>
+            <td><%= address.keyword %></td>
+            <td><%= address.default == true ? true : false %></td>
+          </tr>
+          <% end %>
+        </table>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="large-4 large-uncentered columns">
         <p class="form-header-text">Credits - (<%= @user.available_credits %>)</p>
         <p><b>History:</b></p>
         <table>
