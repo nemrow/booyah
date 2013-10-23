@@ -39,4 +39,10 @@ namespace :update_data do
       user.save
     end
   end
+
+  task :set_return_addresses => :environment do
+    User.all.each do |user|
+      user.save # user model has a before save method that creates the return address
+    end
+  end
 end

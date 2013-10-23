@@ -20,6 +20,18 @@ class Address < ActiveRecord::Base
     self.lob_address_id = @@lob.addresses.create(Hash[self.attributes.map{|k,v| [k.to_sym , v]}])['id'] if address_changed?
   end
 
+  def self.create_users_return_lob_address(user)
+    @@lob.addresses.create(
+      :name => "#{user.name} via Pigeon",
+      :address_line1 => '400 Cole St.',
+      :address_line2 => '',
+      :city => 'San Francisco',
+      :state => 'CA',
+      :country => 'US',
+      :zip => '94117'
+    )['id']
+  end
+
   def address_changed?
     address_line1_changed? || address_line2_changed? || city_changed? || 
     state_changed? || zip_changed? || country_changed? || name_changed?

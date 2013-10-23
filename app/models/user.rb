@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
 
   before_validation :format_cell
 
-  before_save :downcase_email
+  before_save :downcase_email, :set_user_return_address
 
   def downcase_email
     self.email = self.email.downcase if email != nil
@@ -37,6 +37,11 @@ class User < ActiveRecord::Base
         errors.add(:cell, "Cell phone should only contain digits")
       end
     end
+  end
+
+  def set_user_return_address
+    lob_id = Address.create_users_return_lob_address(self)
+    self.return_lob_address_id = lob_id
   end
 
   def self.get_all_non_active_users

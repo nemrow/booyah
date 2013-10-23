@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130924234332) do
+ActiveRecord::Schema.define(:version => 20131023160616) do
 
   create_table "addresses", :force => true do |t|
     t.string   "address_line1"
@@ -82,9 +82,10 @@ ActiveRecord::Schema.define(:version => 20130924234332) do
     t.string   "email"
     t.string   "cell"
     t.string   "password_digest"
-    t.datetime "created_at",                          :null => false
-    t.datetime "updated_at",                          :null => false
-    t.string   "role",            :default => "user"
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
+    t.string   "role",                  :default => "user"
+    t.string   "return_lob_address_id"
   end
 
 end
