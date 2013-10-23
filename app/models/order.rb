@@ -43,6 +43,10 @@ class Order < ActiveRecord::Base
     end
   end
 
+  def get_lob_job_info
+    @@lob.jobs.find(self.lob_order_id)
+  end
+
   def self.decide_payment_type(user, amount)
     if user.available_credits > 0
       user.make_credit_transaction(-1, "order")

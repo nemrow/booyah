@@ -2,5 +2,83 @@
 <div class="row percent-padded">
   <div class="small-12 large-uncentered columns">
     <p class="form-header-text">Order <%= @order.id %>:</p>
+    <%= image_tag @order.picture.jpg_source, :class => 'admin_big_image' %>
+    <table>
+      <thead>
+        <th colspan="2">Our Data</th>
+      </thead>
+      <tr>
+        <td>Order Date</td>
+        <td><%= @order.formatted_date %></td>
+      </tr>
+      <tr>
+        <td>User</td>
+        <td><%= link_to @order.user.formatted_name, admin_user_path(@order.user) %></td>
+      </tr>
+      <tr>
+        <td>Recipient</td>
+        <td><%= render :partial => 'shared/address', :locals => {:address => @order.address} %></td>
+      </tr>
+      <tr>
+        <td>Lob Recipient Id</td>
+        <td><%= @order.address.lob_address_id %></td>
+      </tr>
+      <tr>
+        <td>Lob Order Id</td>
+        <td><%= @order.lob_order_id %></td>
+      </tr>
+      <tr>
+        <td>Lob Object Id</td>
+        <td><%= @order.lob_object_id %></td>
+      </tr>
+    </table>
+
+    <table>
+      <thead>
+        <th colspan="2">Lobs Data</th>
+      </thead>
+      <tr>
+        <td>Id</td>
+        <td><%= @lob_info['id'] %></td>
+      </tr>
+      <tr>
+        <td>Price</td>
+        <td><%= @lob_info['price'] %></td>
+      </tr>
+      <tr>
+        <td>To</td>
+        <td>
+          <%= @lob_info['to']['id'] %><br>
+          <%= @lob_info['to']['name'] %><br>
+          <%= @lob_info['to']['address_line1'] %><br>
+          <%= @lob_info['to']['address_line2'] %><br>
+          <%= @lob_info['to']['address_city'] %><br>
+          <%= @lob_info['to']['address_state'] %><br>
+          <%= @lob_info['to']['address_zip'] %><br>
+          <%= @lob_info['to']['address_country'] %>
+        </td>
+      </tr>
+      <tr>
+        <td>From</td>
+        <td>
+          <%= @lob_info['from']['id'] %><br>
+          <%= @lob_info['from']['name'] %><br>
+          <%= @lob_info['from']['address_line1'] %><br>
+          <%= @lob_info['from']['address_line2'] %><br>
+          <%= @lob_info['from']['address_city'] %><br>
+          <%= @lob_info['from']['address_state'] %><br>
+          <%= @lob_info['from']['address_zip'] %><br>
+          <%= @lob_info['from']['address_country'] %>
+        </td>
+      </tr>
+      <tr>
+        <td>Status</td>
+        <td><%= @lob_info['status'] %></td>
+      </tr>
+      <tr>
+        <td>Objects</td>
+        <td><%= @lob_info['objects'][0]['id'] %></td>
+      </tr>
+    </table>
   </div>
 </div>

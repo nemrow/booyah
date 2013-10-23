@@ -34,7 +34,7 @@
       </thead>
       <% @orders.each do |order| %>
         <tr>
-          <td><%= order.id %></td>
+          <td><%= link_to order.id, admin_order_path(order) %></td>
           <td><%= formatted_date(order.created_at) %></td>
           <td>
             ID: <%= order.address.id %><br>
@@ -42,7 +42,7 @@
           </td>
           <td>
             ID: <%= order.picture.id %><br>
-            <%= image_tag order.picture.jpg_source, :class => 'admin_pic_thumb_2' %>
+            <%= link_to (image_tag order.picture.jpg_source, :class => 'admin_pic_thumb_2'), order.picture.jpg_source %>
           </td>
           <td><%= order.payment_source %></td>
         </tr>
