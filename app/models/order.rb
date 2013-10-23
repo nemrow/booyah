@@ -59,7 +59,7 @@ class Order < ActiveRecord::Base
         "#{user.name}\'s Job", 
         receiver.lob_address_id, 
         object['id'],
-        :from => Order.pigeon_address
+        :from => user.return_lob_address_id
       )
     rescue
       false

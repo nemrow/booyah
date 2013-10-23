@@ -26,7 +26,6 @@ class Picture < ActiveRecord::Base
   end
 
   def self.create_picture(file_url, user, message)
-    # YOU ARE HERE. SEE IF MESSAGE EXISTS AND CREATE OVERLAY ACCORDINGLY
     file_name = create_file_name(user)
     img = Magick::Image::read(file_url).first
     if needs_rotation?(img)
@@ -37,7 +36,6 @@ class Picture < ActiveRecord::Base
       img = resize_image(img, 'landscape')
       img = write_message_if_exists('landscape', img, message)
     end
-    # img = rotate_img_if_needed(img)
     image_hash = {}
     image_hash[:pdf_source] = render_pdf(img, file_name, user)
     image_hash[:jpg_source] = render_jpg(img, file_name, user)
@@ -98,7 +96,7 @@ class Picture < ActiveRecord::Base
   end
 
   def self.aws_users_path
-    ENV['PAYPAL_MODE'] == 'sanbox' ? 'test_users_photos' : 'users_photos'
+    ENV['PAYPAL_MODE'] == 'sandbox' ? 'test_users_photos' : 'users_photos'
   end
 
   def self.aws_full_path_creator(user, file_name, extension)
