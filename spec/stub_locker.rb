@@ -133,6 +133,24 @@ class StubLocker
     )
   end
 
+  def self.valid_order_with_no_receiver_json_and_message_portrait
+    JSON.parse(
+      '{
+        "event": "message-in",
+        "campaign_id": "49892",
+        "msisdn": "17078496085",
+        "carrier": "Verizon Wireless",
+        "message": "flytest *We Miss you!",
+        "subject": "",
+        "images": [
+          {
+            "image": "http://www.gojapango.com/japan_picture/albums/upload/kyoto/golden_pavilion/normal_golden_pavilion_IMG_2254.jpg"
+          }
+        ]
+      }'
+    )
+  end
+
   def self.valid_order_with_receiver_json_and_message_landscape
     JSON.parse(
       '{

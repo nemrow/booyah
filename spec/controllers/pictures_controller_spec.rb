@@ -25,7 +25,7 @@ describe PicturesController do
 
         before :each do
           Picture.stub(:create_picture).and_return(StubLocker.create_picture_json)
-          Order.stub(:order_new_print).and_return(StubLocker.lob_order_return)
+          # Order.stub(:order_new_print).and_return(StubLocker.lob_order_return)
           PaypalPayment.stub(:make_approved_payment).and_return(@paypal_payment)
           User.stub(:make_mogreet_request).and_return(true)
         end
@@ -112,6 +112,12 @@ describe PicturesController do
             it "should create an order and send confirmation message" do
               User.should receive(:send_sms).with(hash_including(:message_code => 1))
               post :create, StubLocker.valid_order_with_receiver_json_and_message_portrait
+            end
+          end
+          context "by using your default and including a message" do
+            it "should create an order and send confirmation message" do
+              User.should receive(:send_sms).with(hash_including(:message_code => 1))
+              post :create, StubLocker.valid_order_with_no_receiver_json_and_message_portrait
             end
           end
           context "by specifying name and including a message that is longer than 40 chars" do
