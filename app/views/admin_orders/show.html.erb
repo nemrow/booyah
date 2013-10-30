@@ -61,14 +61,18 @@
       <tr>
         <td>From</td>
         <td>
-          <%= @lob_info['from']['id'] %><br>
-          <%= @lob_info['from']['name'] %><br>
-          <%= @lob_info['from']['address_line1'] %><br>
-          <%= @lob_info['from']['address_line2'] %><br>
-          <%= @lob_info['from']['address_city'] %><br>
-          <%= @lob_info['from']['address_state'] %><br>
-          <%= @lob_info['from']['address_zip'] %><br>
-          <%= @lob_info['from']['address_country'] %>
+          <% if @lob_info['from'] != nil %>
+            <%= @lob_info['from']['id'] %><br>
+            <%= @lob_info['from']['name'] %><br>
+            <%= @lob_info['from']['address_line1'] %><br>
+            <%= @lob_info['from']['address_line2'] %><br>
+            <%= @lob_info['from']['address_city'] %><br>
+            <%= @lob_info['from']['address_state'] %><br>
+            <%= @lob_info['from']['address_zip'] %><br>
+            <%= @lob_info['from']['address_country'] %>
+          <% else %>
+            NA
+          <% end %>
         </td>
       </tr>
       <tr>
