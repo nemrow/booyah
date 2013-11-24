@@ -21,13 +21,6 @@
             <%= f.text_field 'keyword', :placeholder => 'Keyword (ex: grandma)' %>
             <p>Rather than texting your reciepients full name, just send us their nickname. For example, if you want to send a photo to your grandma, simply set her nickname to ‘grandma’ then text us "fly grandma".</p>
           </div>
-          <% if current_user.addresses.count > 0 %>
-            <div class="input-with-helper-shell">
-              <%= f.check_box 'default', :id => 'default-checkbox' %>
-              <label for="default-checkbox">Make this address your default</label>
-              <p>When you text in a picture with just the word "fly" in the message (without a recipient), it will be delivered to your default address.</p>
-            </div>
-          <% end %>
           <%= f.hidden_field 'country', :value => 'US' %>
           <div class="button-border"><%= f.submit current_user.preapproval ? 'Add Address' : 'Continue to Paypal' %></div>
           <p class="shipping-restriction-text">*Shipping to US only</p>

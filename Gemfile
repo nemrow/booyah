@@ -26,6 +26,7 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem 'cucumber-rails', :require => false
   gem 'database_cleaner'
+  gem 'debugger'
   gem 'launchy'
   gem "factory_girl_rails", "~> 4.0"
   gem 'fakeweb'
