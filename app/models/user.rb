@@ -114,7 +114,7 @@ class User < ActiveRecord::Base
 
   def get_receiver(message)
     full_string = User.cleanup_message(message)
-    name = full_string.split('*')[0]
+    name = full_string.split('"')[0]
     if name == nil || name == '' || name == ' '
       return default_address if default_address
       return false
@@ -129,7 +129,7 @@ class User < ActiveRecord::Base
 
   def self.get_message(message, user)
     full_string = User.cleanup_message(message)
-    message = full_string.split('*')[1]
+    message = full_string.split('"')[1]
     if message == nil
       return nil
     else

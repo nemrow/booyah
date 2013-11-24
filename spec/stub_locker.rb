@@ -122,7 +122,7 @@ class StubLocker
         "campaign_id": "49892",
         "msisdn": "17078496085",
         "carrier": "Verizon Wireless",
-        "message": "flytest Grammie *We Miss you soooo much!*",
+        "message": "flytest Grammie \"We Miss you soooo much!\"",
         "subject": "",
         "images": [
           {
@@ -140,7 +140,7 @@ class StubLocker
         "campaign_id": "49892",
         "msisdn": "17078496085",
         "carrier": "Verizon Wireless",
-        "message": "flytest *We Miss you!",
+        "message": "flytest \"We Miss you!\"",
         "subject": "",
         "images": [
           {
@@ -158,7 +158,7 @@ class StubLocker
         "campaign_id": "49892",
         "msisdn": "17078496085",
         "carrier": "Verizon Wireless",
-        "message": "flytest Grammie *Hello Beer. I love you. This is crazy.*",
+        "message": "flytest Grammie \"Hello Beer. I love you. This is crazy.\"",
         "subject": "",
         "images": [
           {
@@ -176,7 +176,7 @@ class StubLocker
         "campaign_id": "49892",
         "msisdn": "17078496085",
         "carrier": "Verizon Wireless",
-        "message": "flytest Grammie *Hello Beer. I love you. This is extra, and the some more.*",
+        "message": "flytest Grammie \"Hello Beer. I love you. This is extra, and the some more.\"",
         "subject": "",
         "images": [
           {
