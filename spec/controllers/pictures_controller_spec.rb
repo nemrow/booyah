@@ -25,7 +25,7 @@ describe PicturesController do
 
         before :each do
           Picture.stub(:create_picture).and_return(StubLocker.create_picture_json)
-          # Order.stub(:order_new_print).and_return(StubLocker.lob_order_return)
+          Order.stub(:order_new_print).and_return(StubLocker.lob_order_return)
           PaypalPayment.stub(:make_approved_payment).and_return(@paypal_payment)
           User.stub(:make_mogreet_request).and_return(true)
         end

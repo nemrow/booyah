@@ -58,9 +58,10 @@ class Picture < ActiveRecord::Base
   def self.create_overlay(style, img)
     background = Magick::Draw.new
     background.fill('black')
-    background.opacity(0.8)
+    background.opacity(0.7)
     background.stroke('transparent')
-    style == 'portrait' ? background.rectangle(0,1700,1200,1800) : background.rectangle(0,1100,1800,1200)
+    # rectangle size: first two params are x and y of on end, last 2 params are x and y end points
+    style == 'portrait' ? background.rectangle(0,1680,1200,1800) : background.rectangle(0,1080,1800,1200)
     background.draw(img)
     img
   end
@@ -74,7 +75,7 @@ class Picture < ActiveRecord::Base
     message_text.font_family = "helvetica"
     message_text.font_weight = Magick::BoldWeight
     message_text.font_style  = Magick::NormalStyle
-    message_text.text(x = 0, y = 25, text = message)
+    message_text.text(x = 0, y = 50, text = message)
     message_text.draw(img)
     img
   end
