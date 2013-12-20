@@ -26,11 +26,12 @@
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
     <%= render :partial => 'layouts/google_analytics' %>
+    <%= render :partial => 'layouts/homepage_css' if current_page?(root_path) %>
   </head>
 
   <body>
-    <div class="row main_row_container">
     <%= render :partial => 'layouts/header' %>
+    <div class="row main_row_container">
     <%= render :partial => 'layouts/notice_and_errors' %>
     <%= yield %>
     </div>

@@ -968,7 +968,7 @@
 //
 
 // Background color for the top bar
-// $topbar-bg: transparent;
+$topbar-bg: #e8c3d0;
 
 // Height and margin
 $topbar-height: 65px;
@@ -1008,7 +1008,7 @@ $topbar-menu-icon-color-toggled: #888;
 // $topbar-breakpoint: emCalc(940px); // Change to 9999px for always mobile layout
 // $topbar-media-query: "only screen and (min-width "#{$topbar-breakpoint}")";
 
-$topbar-bg: rgba(0,0,0,0);
-$topbar-dropdown-bg: rgba(0,0,0,0);
+// $topbar-bg: rgba(0,0,0,0);
+// $topbar-dropdown-bg: rgba(0,0,0,0);
 
 @import 'foundation';
