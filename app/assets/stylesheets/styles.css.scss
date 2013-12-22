@@ -2,8 +2,8 @@ $dark_pink: #b33864;
 $light_pink: #e8c3d0;
 $dark_green: #187b4d;
 $grey-pink: #937b84;
-$font-1: 'Comfortaa', cursive;
-$font-2: 'Cabin', sans-serif;
+$font-1: 'Comfortaa', bold;
+$font-2: 'Cabin', bold;
 $font-3: 'PT Sans', sans-serif;
 $light_grey_1: #a3a3a3;
 $light_grey_2: #e1e1e1;
@@ -22,15 +22,12 @@ $light_grey_2: #e1e1e1;
 }
 
 .top-bar-section .right li a{
-  color: #000;
+  color: $dark_green;
   text-shadow: none;
   text-align: left;
 }
-
-.top-bar-section-homepage .right li a{
-  color: #fff;
-  text-shadow: 1px 1px 2px #000;
-  padding: 0 7px;
+.top-bar-section li a:not(.button):hover{
+  background-color: $dark_pink;
 }
 ////////////////////////////////////////////////// Shared
 
@@ -131,23 +128,21 @@ input[type="submit"]:hover{
   height: 100px;
 }
 .tagline{
-  color: #fff;
-  text-shadow: 1px 1px 2px #000;
-  font-size: 25px;
+  color: $dark_green;
+  font-size: 30px;
   text-align: center;
-  padding: 0 100px;
+  padding: 0 69px;
   text-align: left;
-  margin: 47px 0 17px 0;
+  margin: 40px 0 17px 0;
 }
 .tagline-mobile-opt{
   margin: 67px 0 17px 0;
 }
 .sub-tagline{
-  color: #fff;
-  text-shadow: 1px 1px 2px #000;
-  font-size: 16px;
-  margin: 0px;
-  padding: 0 100px;
+  color: $dark_pink;
+  font-size: 20px;
+  margin-bottom: 20px;
+  padding: 0 69px;
   text-align: left;
 }
 .home-first-content{
@@ -206,13 +201,16 @@ input[type="submit"]:hover{
   }
   p.desc-right{
     text-align: center;
-    font-size: 16px;
+    font-size: 10px;
     position: relative;
     top: 15px;
+    padding: 0 25px 0 25px;
   }
 }
 .sample-photo-shell{
-  float: right;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
 }
 .picture-desc-separator{
   position: absolute;
@@ -220,7 +218,7 @@ input[type="submit"]:hover{
   height: 33px;
   background-color: #b33864;
   left: 52%;
-  top: 11px;
+  top: 18px;
 }
 .home-page-new-user-signup{
   width: 90%;
