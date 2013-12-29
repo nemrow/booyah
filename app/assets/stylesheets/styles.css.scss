@@ -98,6 +98,9 @@ input[type="submit"]:hover{
   cursor: pointer;
   background: $dark_pink;
 }
+.main_row_container{
+  max-width: 800px;
+}
 /////////////////////////////////////////////////// Header
 .header-logo-mobile-opt{
   width: 130px;
