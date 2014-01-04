@@ -365,6 +365,7 @@ p.date-of-order{
 }
 .account-activated-text{
   text-align: center;
+  margin-top: 20px;
   margin-bottom: 40px;
   h1{
     font-size: 25px;
@@ -373,6 +374,12 @@ p.date-of-order{
   h3{
     font-size: 16px;
     color: $dark_green;
+    span{
+      color: #000;
+      font-weight: normal;
+      font-family: 'Cabin Condensed', sans-serif;
+      font-size: 14px;
+    }
   }
 }
 //////////////////////////////////////////////////////// Footer

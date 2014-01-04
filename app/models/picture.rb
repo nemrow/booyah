@@ -75,7 +75,7 @@ class Picture < ActiveRecord::Base
     message_text.font_family = "helvetica"
     message_text.font_weight = Magick::BoldWeight
     message_text.font_style  = Magick::NormalStyle
-    message_text.text(x = 0, y = 50, text = message)
+    message_text.text(x = 0, y = 40, text = message)
     message_text.draw(img)
     img
   end

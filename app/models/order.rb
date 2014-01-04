@@ -22,7 +22,7 @@ class Order < ActiveRecord::Base
     image = Picture.verify_image(params, user, message)
     return false if !image
     credits = user.available_credits
-    payment = decide_payment_type(user, 1.50)
+    payment = decide_payment_type(user, 2)
     return false if payment == false
     order = create_new_print_order(user, image, receiver, payment)
     return false if order == false
@@ -35,7 +35,7 @@ class Order < ActiveRecord::Base
 
   def self.create_new_print_order(user, image, receiver, payment)
     if print = order_new_print(user, image.pdf_source, receiver)
-      add_print_order_to_db(user, print, image, 1.50, payment, receiver)
+      add_print_order_to_db(user, print, image, 2, payment, receiver)
     else
       User.send_sms({:message_code => 12, :user => user, :cell => user.cell})
       PaypalPayment.refund(payment)
