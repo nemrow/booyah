@@ -240,7 +240,7 @@ class User < ActiveRecord::Base
       "It appears there was no image attached to that message!"
     when 10
       "Hello #{params[:user].first_name}, welcome to Pigeon! " +
-      "Send a picture along with 'fly' + 'recipient' and personal message to this number to place print orders! Ex: 'fly grandma \"Wish you were here.\"'"
+      "Send a picture along with: 'fly + recipient + \"personal message\"' to this number to place print orders! Ex: 'fly grandma \"Wish you were here.\"'"
     when 11
       "Hello #{params[:user].first_name}, " +
       "Your temporary password is #{params[:password]}. Go to pigeonpic.com to change it. Thanks!"
