@@ -1,5 +1,6 @@
 Booyah::Application.routes.draw do
   get "preapproval/new"
+  get "emails/basic_template"
 
   root :to => 'welcome#index'
 
