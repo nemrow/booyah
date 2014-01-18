@@ -1,7 +1,7 @@
 class Mailer
-  def initialize(users, subject, template, opts={})
+  def initialize(users, template, opts={})
     @users = users
-    @subject = subject
+    @subject = "Add a Personal Message - Pigeon Pic"
     @template = "emails/#{template}"
     @opts = opts
     begin_mailing
