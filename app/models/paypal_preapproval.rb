@@ -15,7 +15,7 @@ class PaypalPreapproval < ActiveRecord::Base
       :cancelUrl => "#{ENV['BASE_URL']}/users/#{user.id}?error=payment%20broke",
       :currencyCode => "USD",
       :returnUrl => "#{ENV['BASE_URL']}/users/#{user.id}/preapproval/#{users_preapproval.id}",
-      :memo => "You will only be charged $1.50 per order placed via text",
+      :memo => "You will only be charged $2 per order placed via text",
       :startingDate => Time.now,
       :endingDate => Time.now + 364.days,
       :maxTotalAmountOfAllPayments => 500 
