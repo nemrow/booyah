@@ -13,7 +13,7 @@ Booyah::Application.routes.draw do
     get 'edit_password', :to => 'users#edit_password'
   end
 
-  resources :admin_users, :only => [:index, :show]
+  resources :admin_users, :only => [:index, :show, :destroy]
   resources :admin_orders, :only => [:index, :show]
 
   resources :pictures, :only => [:create] do

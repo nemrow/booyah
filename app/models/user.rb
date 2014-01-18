@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
 
   has_secure_password
 
-  has_many :addresses
+  has_many :addresses, :dependent => :destroy
   has_many :orders
   has_many :paypal_preapprovals
   has_many :credits

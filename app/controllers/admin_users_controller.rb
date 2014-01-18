@@ -16,4 +16,13 @@ class AdminUsersController < ApplicationController
     @credits = @user.credits
     @addresses = @user.addresses
   end
+
+  def destroy
+    user = User.find(params[:id])
+    if user.destroy
+      redirect_to admin_users_path
+    else
+      redirect_to admin_user_path(user)
+    end
+  end
 end

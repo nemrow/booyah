@@ -20,6 +20,14 @@
         <td>Member Since</td>
         <td><%= formatted_date(@user.created_at) %></td>
       </tr>
+      <tr>
+        <td>Member ID</td>
+        <td><%= @user.id %></td>
+      </tr>
+      <tr>
+        <td>Delete User</td>
+        <td><%= link_to "DELETE USER!", admin_user_path, :method => :delete, data: { confirm: "Are you sure? This user and all of their addresses will be deleted" } %></td>
+      </tr>
     </table>
 
     <p class="form-header-text">Orders - (<%= @user.order_count %>)</p>
