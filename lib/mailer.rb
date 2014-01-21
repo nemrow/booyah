@@ -12,6 +12,7 @@ class Mailer
       html = build_html(user)
       begin
         message = send_single_message(user, html)
+        p user.id
         p message
       rescue Exception => e
         p "user #{user.id} FUCKED UP"
